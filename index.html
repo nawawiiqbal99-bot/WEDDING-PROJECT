@@ -2,178 +2,403 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan - Nawawi Iqbal & Zikratul Aini</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
     <style>
-        /* Container untuk background slideshow */
-        .bg-slideshow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
+        /* --- RESET & BASIC STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        /* Elemen gambar individual */
-        .bg-slide {
+        /* --- ANIMATED BACKGROUND --- */
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #2c3e50;
+            background: linear-gradient(-45deg, #e6f0fa, #d5e5f7, #edf4fc, #c3dae9);
+            background-size: 400% 400%;
+            animation: gradientBG 12s ease infinite;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- TYPOGRAPHY --- */
+        h1, h2, .script-font {
+            font-family: 'Great Vibes', cursive;
+            color: #1b365d;
+        }
+        h1 { font-size: 3.5rem; margin-bottom: 10px; }
+        h2 { font-size: 2.5rem; margin-bottom: 20px; }
+        p { font-size: 0.95rem; margin-bottom: 15px; }
+
+        /* --- CONTAINER & SECTIONS --- */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 10px 30px rgba(27, 54, 93, 0.12);
+            position: relative;
+        }
+        section {
+            padding: 50px 20px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        /* --- HERO / COVER SECTION DENGAN VIDEO BACKGROUND --- */
+        .hero {
+            position: relative;
+            overflow: hidden;
+            padding: 120px 20px;
+            color: #ffffff;
+            background-color: #0f2043; /* Fallback warna jika video belum termuat */
+        }
+
+        /* Styling Video Background */
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: 1;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+        }
+
+        /* Overlay Gelap agar Teks Terbaca Jelas */
+        .hero-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-size: cover;
-            background-position: center;
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out, transform 8s ease-in-out;
-            transform: scale(1);
+            background: rgba(15, 32, 67, 0.60);
+            z-index: 2;
         }
 
-        /* Kelas untuk foto yang sedang aktif */
-        .bg-slide.active {
-            opacity: 1;
-            transform: scale(1.05); /* Efek zoom perlahan agar terkesan hidup */
+        /* Konten Teks Hero */
+        .hero-content {
+            position: relative;
+            z-index: 3;
         }
+        .hero-content h1, .hero-content p { color: #ffffff; }
+        .hero-content .subtitle { font-size: 1.1rem; letter-spacing: 2px; text-transform: uppercase; color: #dbebe9; }
 
-        /* Overlay gelap agar teks di atasnya tetap mudah dibaca */
-        .bg-overlay {
+        /* --- FLOATING MUSIC BUTTON --- */
+        .music-btn {
             position: fixed;
-            top: 0;
-            left: 0;
+            bottom: 25px;
+            right: 25px;
+            width: 45px;
+            height: 45px;
+            background-color: #1b365d;
+            color: #ffffff;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            z-index: 999;
+            transition: transform 0.3s ease, background-color 0.3s;
+        }
+        .music-btn:hover {
+            background-color: #0f2043;
+            transform: scale(1.1);
+        }
+        .music-btn.playing {
+            animation: spin 3s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* --- COUPLE PROFILE SECTION --- */
+        .couple-card {
+            background-color: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            padding: 25px 20px;
+            margin: 20px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+        .couple-img {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #1b365d;
+            margin-bottom: 12px;
+        }
+        .couple-role {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #64748b;
+            font-weight: 600;
+        }
+        .couple-name {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #1b365d;
+            margin: 5px 0;
+        }
+        .parents {
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+        .separator-amp {
+            font-size: 2.5rem;
+            color: #1b365d;
+            margin: 15px 0;
+        }
+
+        /* --- GALLERY SECTION --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .gallery-item {
             width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: -1;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
+            transition: transform 0.3s ease;
+        }
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+
+        /* --- EVENT DETAILS --- */
+        .event-card {
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 1px solid #cbd5e1;
+        }
+
+        /* --- BUTTONS --- */
+        .btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background-color: #1b365d;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #0f2043;
+        }
+
+        /* --- FORM (RSVP) --- */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #1b365d;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 20px;
+            font-size: 0.8rem;
+            color: #64748b;
+            background-color: #f8fafc;
         }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-4 font-sans text-slate-800 relative">
+<body>
 
-    <!-- LAYER BACKGROUND SLIDESHOW -->
-    <div class="bg-slideshow" id="slideshowContainer">
-        <!-- Foto-foto akan dimuat otomatis via JavaScript di bawah -->
-    </div>
-    <!-- Layer Kegelapan untuk Menjaga Keterbacaan Teks -->
-    <div class="bg-overlay"></div>
-
-    <!-- CARD UTAMA -->
-    <div class="bg-white/90 backdrop-blur-md p-8 rounded-2xl shadow-2xl w-full max-w-md border border-amber-200/50 text-center relative z-10">
-        <p class="text-amber-600 font-semibold tracking-widest text-xs uppercase mb-2">Pengecekan Undangan Pernikahan</p>
-        <h1 class="text-3xl font-serif font-bold text-slate-900 mb-1">Nawawi Iqbal</h1>
-        <p class="text-amber-700 italic font-medium my-1">&</p>
-        <h1 class="text-3xl font-serif font-bold text-slate-900 mb-6">Zikratul Aini</h1>
+    <div class="container">
         
-        <hr class="border-amber-200/80 my-4">
+        <!-- AUDIO ELEMENT (FILE DARI GITHUB) -->
+        <audio id="bg-music" loop>
+            <source src="assets/audio.mp3" type="audio/mpeg">
+        </audio>
 
-        <div class="mb-6 text-left">
-            <label class="block text-sm font-medium text-slate-700 mb-2">Masukkan Nama Anda:</label>
-            <input type="text" id="inputNama" placeholder="Contoh: Budi Santoso" 
-                   class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 bg-white/80">
-            <button onclick="prosesCek()" id="btnCek"
-                    class="w-full mt-3 bg-amber-600 hover:bg-amber-700 text-white font-semibold py-3 px-4 rounded-xl shadow-md transition-colors">
-                Cek Status Undangan
-            </button>
+        <!-- TOMBOL MUSIK MELAYANG -->
+        <div class="music-btn" id="musicToggleBtn" onclick="toggleMusic()">
+            <svg id="musicIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 18V5l12-2v13"></path>
+                <circle cx="6" cy="18" r="3"></circle>
+                <circle cx="18" cy="16" r="3"></circle>
+            </svg>
         </div>
 
-        <div id="resultArea" class="hidden p-4 rounded-xl text-left border transition-all">
-            <p class="text-xs uppercase tracking-wider text-slate-500 mb-1">Status Tamu:</p>
-            <h3 id="resNama" class="text-xl font-bold text-slate-900 mb-1">-</h3>
-            <span id="resStatus" class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide mb-3">-</span>
-            <p id="resMessage" class="text-sm text-slate-600 border-t border-slate-100 pt-2">-</p>
-        </div>
+        <!-- COVER / HERO SECTION DENGAN VIDEO BACKGROUND -->
+        <section class="hero">
+            <!-- Video dari GitHub -->
+            <video class="hero-video" autoplay loop muted playsinline>
+                <source src="assets/video.mp4" type="video/mp4">
+                Browser Anda tidak mendukung tag video.
+            </video>
+
+            <!-- Layer Gelap Transparan -->
+            <div class="hero-overlay"></div>
+
+            <!-- Konten Teks Hero -->
+            <div class="hero-content">
+                <p class="subtitle">The Wedding of</p>
+                <h1>Iqbal & Ira</h1>
+                <p>25 Oktober 2026</p>
+            </div>
+        </section>
+
+        <!-- KUTIPAN / AYAT -->
+        <section>
+            <p style="font-style: italic;">
+                "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya."
+            </p>
+            <strong style="font-size: 0.85rem; color: #1b365d;">- Ar-Rum: 21 -</strong>
+        </section>
+
+        <!-- PROFIL MEMPELAI -->
+        <section>
+            <h2>Mempelai Pria & Wanita</h2>
+            
+            <!-- MEMPELAI PRIA (GROOM) -->
+            <div class="couple-card">
+                <img class="couple-img" src="https://lh3.googleusercontent.com/d/FILE_ID_GROOM" alt="Nawawi Iqbal">
+                <div class="couple-role">Mempelai Pria</div>
+                <div class="couple-name">Nawawi Iqbal, S.Pd.</div>
+                <div class="parents">Putra pertama dari Bapak Natip & Ibu Sri Mariatun</div>
+            </div>
+
+            <div class="script-font separator-amp">&</div>
+
+            <!-- MEMPELAI WANITA (BRIDE) -->
+            <div class="couple-card">
+                <img class="couple-img" src="https://lh3.googleusercontent.com/d/FILE_ID_BRIDE" alt="Zikratul Aini">
+                <div class="couple-role">Mempelai Wanita</div>
+                <div class="couple-name">Zikratul Aini, S.Pd.</div>
+                <div class="parents">Putri pertama dari Bapak Muhammad Zainuddin & Ibu Rati'ah</div>
+            </div>
+        </section>
+
+        <!-- GALERI FOTO -->
+        <section>
+            <h2>Momen Bahagia</h2>
+            <p>Galeri Foto Prewedding</p>
+
+            <div class="gallery-grid">
+                <img class="gallery-item" src="https://lh3.googleusercontent.com/d/FILE_ID_1" alt="Foto Prewedding 1">
+                <img class="gallery-item" src="https://lh3.googleusercontent.com/d/FILE_ID_2" alt="Foto Prewedding 2">
+                <img class="gallery-item" src="https://lh3.googleusercontent.com/d/FILE_ID_3" alt="Foto Prewedding 3">
+                <img class="gallery-item" src="https://lh3.googleusercontent.com/d/FILE_ID_4" alt="Foto Prewedding 4">
+            </div>
+        </section>
+
+        <!-- RANGKAIAN ACARA -->
+        <section>
+            <h2>Jadwal Acara</h2>
+            
+            <div class="event-card">
+                <h3>Akad Nikah</h3>
+                <p><strong>Minggu, 25 Oktober 2026</strong><br>Pukul 08.00 - 10.00 WITA</p>
+                <p class="parents">Gedung Grand Ballroom, Lantai 2<br>Jl. Mawar No. 123, Mataram</p>
+            </div>
+
+            <div class="event-card">
+                <h3>Resepsi</h3>
+                <p><strong>Minggu, 25 Oktober 2026</strong><br>Pukul 11.00 - selesai</p>
+                <p class="parents">Gedung Grand Ballroom, Lantai 2<br>Jl. Mawar No. 123, Mataram</p>
+            </div>
+
+            <a href="https://maps.google.com" target="_blank" class="btn">Buka Google Maps</a>
+        </section>
+
+        <!-- RSVP / UCAPAN -->
+        <section>
+            <h2>Konfirmasi Kehadiran</h2>
+            <p>Mohon isi formulir di bawah ini untuk mengonfirmasi kehadiran:</p>
+            
+            <form onsubmit="event.preventDefault(); alert('Terima kasih atas konfirmasinya!');">
+                <input type="text" placeholder="Nama Lengkap" required>
+                <select required>
+                    <option value="">Konfirmasi Kehadiran</option>
+                    <option value="hadir">Hadir</option>
+                    <option value="tidak">Tidak Dapat Hadir</option>
+                </select>
+                <input type="number" placeholder="Jumlah Tamu (Orang)" min="1" max="5">
+                <textarea rows="3" placeholder="Ucapan & Doa"></textarea>
+                <button type="submit" class="btn">Kirim RSVP</button>
+            </form>
+        </section>
+
+        <!-- AMPLOP DIGITAL -->
+        <section>
+            <h2>Hadiah Digital</h2>
+            <p>Doa restu Anda merupakan karunia yang terindah bagi kami. Namun jika Anda ingin memberi hadiah, dapat melalui nomor rekening berikut:</p>
+            
+            <div class="event-card">
+                <p><strong>Bank BCA</strong></p>
+                <p style="font-size: 1.2rem; font-weight: bold; color: #1b365d;">1234 5678 90</p>
+                <p class="parents">a.n. Nawawi Iqbal</p>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <p>Terima kasih atas doa & restu Anda</p>
+            <p style="margin-top: 5px;"><strong>Nawawi Iqbal & Zikratul Aini</strong></p>
+        </footer>
+
     </div>
 
+    <!-- JAVASCRIPT UNTUK TOMBOL MUSIK -->
     <script>
-        // =========================================================
-        // TEMPAT SELIPKAN LINK FOTO GOOGLE DRIVE ANDA DI SINI
-        // Format link Direct Google Drive: https://lh3.googleusercontent.com/d/ID_FOTO_ANDA
-        // =========================================================
-        const fotoBackground = [
-            "https://lh3.googleusercontent.com/d/1q-kb-AhcOJwjmeH_-jszY-uL9hTba0zP",
-            "https://lh3.googleusercontent.com/d/1SMEpH0GLfWeL3NTMtRTBPPqu2noahlDZ",
-            "https://lh3.googleusercontent.com/d/1H9AZIR0mk8-kp2scNTYu8PCseQUur3-r",
-           
-            "https://lh3.googleusercontent.com/d/1JD0ja3uVTQPo9A9zYZfWen2jq3EJpq7x"
-            // Tambahkan foto lain di sini dipisahkan koma
-        ];
+        const music = document.getElementById('bg-music');
+        const btn = document.getElementById('musicToggleBtn');
+        let isPlaying = false;
 
-        // Durasi ganti foto (dalam milidetik) -> 5000 = 5 detik
-        const durasiSlide = 5000; 
-
-        // Fungsi Memuat Slide Background
-        function initSlideshow() {
-            const container = document.getElementById('slideshowContainer');
-            
-            fotoBackground.forEach((url, index) => {
-                const slide = document.createElement('div');
-                slide.className = `bg-slide ${index === 0 ? 'active' : ''}`;
-                slide.style.backgroundImage = `url('${url}')`;
-                container.appendChild(slide);
-            });
-
-            let currentIndex = 0;
-            const slides = document.querySelectorAll('.bg-slide');
-
-            if (slides.length > 1) {
-                setInterval(() => {
-                    slides[currentIndex].classList.remove('active');
-                    currentIndex = (currentIndex + 1) % slides.length;
-                    slides[currentIndex].classList.add('active');
-                }, durasiSlide);
+        function toggleMusic() {
+            if (isPlaying) {
+                music.pause();
+                btn.classList.remove('playing');
+            } else {
+                music.play().then(() => {
+                    btn.classList.add('playing');
+                }).catch(error => {
+                    console.log("Autoplay dibatasi browser:", error);
+                });
             }
-        }
-
-        // Jalankan Slideshow saat halaman selesai dimuat
-        document.addEventListener("DOMContentLoaded", initSlideshow);
-
-        // Fungsi Cek Tamu dari Apps Script
-        function prosesCek() {
-            var nama = document.getElementById('inputNama').value.trim();
-            var btn = document.getElementById('btnCek');
-            var resultArea = document.getElementById('resultArea');
-            var resNama = document.getElementById('resNama');
-            var resStatus = document.getElementById('resStatus');
-            var resMessage = document.getElementById('resMessage');
-
-            if (!nama) {
-                alert('Silakan masukkan nama terlebih dahulu.');
-                return;
-            }
-
-            btn.disabled = true;
-            btn.innerText = "Mencari...";
-            resultArea.classList.remove('hidden');
-            resultArea.className = "p-4 rounded-xl text-left border bg-slate-50 border-slate-200 block";
-            resNama.innerText = "Mencari data...";
-            resStatus.classList.add('hidden');
-            resMessage.innerText = "Mohon tunggu sebentar...";
-
-            google.script.run.withSuccessHandler(function(res) {
-                btn.disabled = false;
-                btn.innerText = "Cek Status Undangan";
-
-                if (res.found) {
-                    resNama.innerText = res.nama;
-                    resStatus.innerText = res.status;
-                    resStatus.classList.remove('hidden');
-
-                    if (res.status === 'VIP') {
-                        resultArea.className = "p-4 rounded-xl text-left border bg-amber-50 border-amber-300 block";
-                        resStatus.className = "inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide mb-3 bg-amber-600 text-white";
-                        resMessage.innerText = "Selamat Datang! Anda berada di area VIP. Silakan tunjukkan layar ini kepada petugas penerima tamu.";
-                    } else {
-                        resultArea.className = "p-4 rounded-xl text-left border bg-blue-50 border-blue-300 block";
-                        resStatus.className = "inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide mb-3 bg-blue-600 text-white";
-                        resMessage.innerText = "Selamat Datang! Anda terdaftar sebagai tamu REGULER. Terima kasih atas kehadiran Anda.";
-                    }
-                } else {
-                    resultArea.className = "p-4 rounded-xl text-left border bg-red-50 border-red-300 block";
-                    resNama.innerText = "Nama Tidak Ditemukan";
-                    resStatus.classList.add('hidden');
-                    resMessage.innerText = "Maaf, nama Anda tidak terdaftar di sistem. Mohon periksa kembali ejaan nama Anda.";
-                }
-            }).cekTamu(nama);
+            isPlaying = !isPlaying;
         }
     </script>
+
 </body>
 </html>
