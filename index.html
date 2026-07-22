@@ -134,6 +134,7 @@
             overflow: hidden;
             color: #ffffff;
             background-color: #0f2043;
+            border-bottom: none;
         }
 
         .hero-video {
@@ -148,13 +149,21 @@
             transform: scale(1.05);
         }
 
+        /* --- GRADIENT OVERLAY (PERHALUS TRANSIKSI BAWAH) --- */
         .hero-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(15, 32, 67, 0.55);
+            /* Memudar dari gelap ke warna putih transparan container bawah */
+            background: linear-gradient(
+                to bottom,
+                rgba(15, 32, 67, 0.55) 0%,
+                rgba(15, 32, 67, 0.65) 60%,
+                rgba(255, 255, 255, 0.85) 90%,
+                rgba(255, 255, 255, 0.95) 100%
+            );
             z-index: 2;
         }
 
@@ -186,6 +195,12 @@
             font-weight: 600;
             color: #ffffff !important;
             margin-bottom: 0 !important;
+        }
+
+        /* Adjust section pertama agar menyatu mulus */
+        #contentSection {
+            padding-top: 60px;
+            border-top: none;
         }
 
         /* --- FOTO DI ATAS AYAT --- */
@@ -485,21 +500,22 @@
 
             <h2 class="reveal">Mempelai Pria & Wanita</h2>
             
-<div>
-            <div class="couple-card reveal">
-                <img class="couple-img" src="https://lh3.googleusercontent.com/d/1MFiIDQrfpWc_8Iuz1rg6bT30dnn_-q_x" alt="Nawawi Iqbal">
-                <div class="couple-role">Mempelai Pria</div>
-                <div class="couple-name">Nawawi Iqbal, S.Pd.</div>
-                <div class="parents">Putra pertama dari Bapak Natip & Ibu Sri Mariatun</div>
-            </div>
+            <div>
+                <div class="couple-card reveal">
+                    <img class="couple-img" src="https://lh3.googleusercontent.com/d/1MFiIDQrfpWc_8Iuz1rg6bT30dnn_-q_x" alt="Nawawi Iqbal">
+                    <div class="couple-role">Mempelai Pria</div>
+                    <div class="couple-name">Nawawi Iqbal, S.Pd.</div>
+                    <div class="parents">Putra pertama dari Bapak Natip & Ibu Sri Mariatun</div>
+                </div>
 
-            <div class="script-font separator-amp reveal">&</div>
+                <div class="script-font separator-amp reveal">&</div>
 
-            <div class="couple-card reveal">
-                <img class="couple-img" src="https://lh3.googleusercontent.com/d/1m1Tt9j3QqLLKihLERTkkbiGOVd4cNvw2" alt="Zikratul Aini">
-                <div class="couple-role">Mempelai Wanita</div>
-                <div class="couple-name">Zikratul Aini, S.Pd.</div>
-                <div class="parents">Putri pertama dari Bapak Muhammad Zainuddin & Ibu Rati'ah</div>
+                <div class="couple-card reveal">
+                    <img class="couple-img" src="https://lh3.googleusercontent.com/d/1m1Tt9j3QqLLKihLERTkkbiGOVd4cNvw2" alt="Zikratul Aini">
+                    <div class="couple-role">Mempelai Wanita</div>
+                    <div class="couple-name">Zikratul Aini, S.Pd.</div>
+                    <div class="parents">Putri pertama dari Bapak Muhammad Zainuddin & Ibu Rati'ah</div>
+                </div>
             </div>
         </section>
 
