@@ -186,21 +186,67 @@
             margin-bottom: 0 !important;
         }
 
-        #contentSection {
-            padding-top: 60px;
-            border-top: none;
+        /* --- SECTION KUTIPAN BER-VIDEO PORTRAIT --- */
+        .quote-section {
+            position: relative;
+            height: 100vh; /* Menggunakan layar penuh agar video portrait tampil maksimal */
+            min-height: 500px;
+            display: flex;
+            align-items: flex-end; /* Memindahkan posisi teks ke paling bawah */
+            justify-content: flex-start; /* Memindahkan teks ke kiri */
+            padding: 30px 20px;
+            overflow: hidden;
+            color: #ffffff;
+            background-color: #0f2043;
+            border-bottom: 1px solid #e2e8f0;
+            text-align: left;
         }
 
-        .quote-photo {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid #1b365d;
-            box-shadow: 0 4px 15px rgba(27, 54, 93, 0.2);
-            margin-bottom: 20px;
+        .quote-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Menyesuaikan video portrait penuh di layar */
+            z-index: 1;
+        }
+
+        .quote-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Gradient transparan hitam dari bawah ke atas agar tulisan pojok bawah terbaca tajam */
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.2) 40%, rgba(0, 0, 0, 0) 100%);
+            z-index: 2;
+        }
+
+        .quote-content {
             position: relative;
             z-index: 3;
+            max-width: 80%; /* Agar teks tidak terlalu lebar sampai ke pojok kanan */
+            background: rgba(15, 32, 67, 0.35); /* Efek kaca halus di belakang teks */
+            backdrop-filter: blur(4px);
+            padding: 12px 15px;
+            border-radius: 10px;
+            border-left: 3px solid #ffffff;
+        }
+
+        .quote-text {
+            font-style: italic;
+            font-size: 0.75rem; /* Ukuran Teks Lebih Kecil */
+            line-height: 1.5;
+            color: #ffffff;
+            margin-bottom: 6px;
+        }
+
+        .quote-author {
+            display: block;
+            font-size: 0.7rem;
+            color: #dbebe9;
+            font-weight: 600;
         }
 
         /* --- FLOATING MUSIC BUTTON --- */
@@ -512,15 +558,19 @@
             </div>
         </section>
 
-        <!-- KUTIPAN -->
-        <section id="contentSection" class="reveal">
-            <svg class="floral-corner floral-top-left"><use href="#rich-floral-corner"/></svg>
-            <svg class="floral-corner floral-top-right"><use href="#rich-floral-corner"/></svg>
-            <img class="quote-photo" src="https://lh3.googleusercontent.com/d/1q-kb-AhcOJwjmeH_-jszY-uL9hTba0zP" alt="Foto Pasangan">
-            <p style="font-style: italic; position: relative; z-index: 3;">
-                "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir."
-            </p>
-            <strong style="font-size: 0.85rem; color: #1b365d; position: relative; z-index: 3;">- Ar-Rum: 21 -</strong>
+        <!-- KUTIPAN BER-BACKGROUND VIDEO PORTRAIT (TEKS POJOK KIRI BAWAH) -->
+        <section id="contentSection" class="quote-section reveal">
+            <!-- Nanti Anda tinggal mengganti 'video pantai.mp4' dengan nama file video portrait Anda -->
+            <video class="quote-video" autoplay loop muted playsinline>
+                <source src="video pantai.mp4" type="video/mp4">
+            </video>
+            <div class="quote-overlay"></div>
+            <div class="quote-content">
+                <p class="quote-text">
+                    "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu..."
+                </p>
+                <span class="quote-author">- Ar-Rum: 21 -</span>
+            </div>
         </section>
 
         <!-- PROFIL MEMPELAI -->
@@ -583,7 +633,7 @@
             </div>
         </section>
 
-        <!-- DENAH & LOKASI ACARA (DIPISAHKAN DI ATAS MOMEN BAHAGIA) -->
+        <!-- DENAH & LOKASI ACARA -->
         <section>
             <svg class="floral-corner floral-top-left"><use href="#rich-floral-corner"/></svg>
             <svg class="floral-corner floral-top-right"><use href="#rich-floral-corner"/></svg>
@@ -592,12 +642,12 @@
             <div class="map-card reveal">
                 <!-- EMBED DENAH GOOGLE MAPS -->
                 <div class="map-frame-wrapper">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d586.3838872561934!2d116.25003209039228!3d-8.624306091500973!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sid!2sid!4v1784716796837!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d465.413459782759!2d116.25026045123631!3d-8.624092419176506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcdb70068b9c2c5%3A0xab45ef6350c3c680!2sPrisma%20Maggot!5e0!3m2!1sid!2sid!4v1784718098024!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
                 
                 <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 10px;">Klik tombol di bawah ini untuk membuka navigasi menuju lokasi acara via Google Maps:</p>
                 
-                <a href="https://maps.app.goo.gl/T2gomrC5u6ixGKYw6" target="_blank" class="btn">📍 Buka Google Maps</a>
+                <a href="https://maps.app.goo.gl/bZ5hsPj6sQD1Jvjq8" target="_blank" class="btn">📍 Buka Google Maps</a>
             </div>
         </section>
 
