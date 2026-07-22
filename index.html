@@ -186,14 +186,14 @@
             margin-bottom: 0 !important;
         }
 
-        /* --- SECTION KUTIPAN BER-VIDEO PORTRAIT --- */
+        /* --- SECTION KUTIPAN BER-VIDEO PORTRAIT DENGAN GRADASI SAMPUL --- */
         .quote-section {
             position: relative;
-            height: 100vh; /* Menggunakan layar penuh agar video portrait tampil maksimal */
+            height: 100vh;
             min-height: 500px;
             display: flex;
-            align-items: flex-end; /* Memindahkan posisi teks ke paling bawah */
-            justify-content: flex-start; /* Memindahkan teks ke kiri */
+            align-items: flex-end;
+            justify-content: flex-start;
             padding: 30px 20px;
             overflow: hidden;
             color: #ffffff;
@@ -208,35 +208,45 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Menyesuaikan video portrait penuh di layar */
+            object-fit: cover;
             z-index: 1;
+            filter: blur(1px);
+            transform: scale(1.05);
         }
 
+        /* Gradasi serupa dengan bagian sampul (hero section) */
         .quote-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            /* Gradient transparan hitam dari bawah ke atas agar tulisan pojok bawah terbaca tajam */
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.2) 40%, rgba(0, 0, 0, 0) 100%);
+            background: linear-gradient(
+                to bottom,
+                rgba(15, 32, 67, 0.55) 0%,
+                rgba(15, 32, 67, 0.65) 50%,
+                rgba(15, 32, 67, 0.85) 80%,
+                rgba(255, 255, 255, 0.95) 100%
+            );
             z-index: 2;
         }
 
         .quote-content {
             position: relative;
             z-index: 3;
-            max-width: 80%; /* Agar teks tidak terlalu lebar sampai ke pojok kanan */
-            background: rgba(15, 32, 67, 0.35); /* Efek kaca halus di belakang teks */
-            backdrop-filter: blur(4px);
-            padding: 12px 15px;
-            border-radius: 10px;
+            max-width: 85%;
+            background: rgba(15, 32, 67, 0.45);
+            backdrop-filter: blur(6px);
+            padding: 14px 18px;
+            border-radius: 12px;
             border-left: 3px solid #ffffff;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .quote-text {
             font-style: italic;
-            font-size: 0.75rem; /* Ukuran Teks Lebih Kecil */
+            font-size: 0.8rem;
             line-height: 1.5;
             color: #ffffff;
             margin-bottom: 6px;
@@ -244,7 +254,7 @@
 
         .quote-author {
             display: block;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             color: #dbebe9;
             font-weight: 600;
         }
@@ -538,7 +548,7 @@
             </svg>
         </div>
 
-        <!-- HERO SECTION -->
+        <!-- HERO SECTION (SAMPUL) -->
         <section class="hero">
             <video class="hero-video" id="heroVideo" autoplay loop muted playsinline>
                 <source src="video pantai.mp4" type="video/mp4">
@@ -558,9 +568,8 @@
             </div>
         </section>
 
-        <!-- KUTIPAN BER-BACKGROUND VIDEO PORTRAIT (TEKS POJOK KIRI BAWAH) -->
+        <!-- KUTIPAN BER-BACKGROUND VIDEO PORTRAIT DENGAN GRADASI MANIS SAMA DENGAN SAMPUL -->
         <section id="contentSection" class="quote-section reveal">
-            <!-- Nanti Anda tinggal mengganti 'video pantai.mp4' dengan nama file video portrait Anda -->
             <video class="quote-video" autoplay loop muted playsinline>
                 <source src="video pantai.mp4" type="video/mp4">
             </video>
@@ -825,13 +834,9 @@
         });
 
         function openInvitation() {
-            // Membuka kunci scroll pada body
             document.body.classList.remove('no-scroll');
-
-            // Scroll halus menuju konten utama
             document.getElementById('contentSection').scrollIntoView({ behavior: 'smooth' });
 
-            // Putar musik jika belum berputar
             if (!isPlaying) {
                 music.play().then(() => {
                     isPlaying = true;
