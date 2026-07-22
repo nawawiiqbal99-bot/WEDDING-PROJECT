@@ -47,6 +47,7 @@
             background-color: rgba(255, 255, 255, 0.95);
             box-shadow: 0 10px 30px rgba(27, 54, 93, 0.12);
             position: relative;
+            overflow: hidden;
         }
         section {
             padding: 50px 20px;
@@ -56,24 +57,24 @@
         /* --- HERO / COVER SECTION DENGAN VIDEO BACKGROUND --- */
         .hero {
             position: relative;
+            height: 100vh; /* Penuh satu layar */
+            display: flex;
+            align-items: center;
+            justify-content: center;
             overflow: hidden;
-            padding: 120px 20px;
             color: #ffffff;
-            background-color: #0f2043; /* Fallback warna jika video belum termuat */
+            background-color: #0f2043;
         }
 
         /* Styling Video Background */
         .hero-video {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Agar video selalu proporsional memenuhi layar */
             z-index: 1;
-            transform: translate(-50%, -50%);
-            object-fit: cover;
         }
 
         /* Overlay Gelap agar Teks Terbaca Jelas */
@@ -83,7 +84,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(15, 32, 67, 0.60);
+            background: rgba(15, 32, 67, 0.55);
             z-index: 2;
         }
 
@@ -91,6 +92,7 @@
         .hero-content {
             position: relative;
             z-index: 3;
+            padding: 0 20px;
         }
         .hero-content h1, .hero-content p { color: #ffffff; }
         .hero-content .subtitle { font-size: 1.1rem; letter-spacing: 2px; text-transform: uppercase; color: #dbebe9; }
@@ -119,7 +121,7 @@
             transform: scale(1.1);
         }
         .music-btn.playing {
-            animation: spin 3s linear infinite;
+            animation: spin 4s linear infinite;
         }
         @keyframes spin {
             0% { transform: rotate(0deg); }
@@ -245,8 +247,8 @@
 
     <div class="container">
         
-        <!-- AUDIO ELEMENT (FILE DARI GITHUB) -->
-        <audio id="bg-music" loop>
+        <!-- AUDIO ELEMENT -->
+        <audio id="bg-music" loop preload="auto">
             <source src="You're Still The One.mp3" type="audio/mpeg">
         </audio>
 
@@ -261,25 +263,26 @@
 
         <!-- COVER / HERO SECTION DENGAN VIDEO BACKGROUND -->
         <section class="hero">
-            <!-- Video dari GitHub -->
-            <video class="hero-video" autoplay loop muted playsinline>
+            <video class="hero-video" id="heroVideo" autoplay loop muted playsinline>
                 <source src="assets/video.mp4" type="video/mp4">
                 Browser Anda tidak mendukung tag video.
             </video>
 
-            <!-- Layer Gelap Transparan -->
             <div class="hero-overlay"></div>
 
-            <!-- Konten Teks Hero -->
             <div class="hero-content">
                 <p class="subtitle">The Wedding of</p>
                 <h1>Iqbal & Ira</h1>
                 <p>25 Oktober 2026</p>
+                <!-- Tombol Buka Undangan untuk memicu autoplay audio -->
+                <button class="btn" id="openBtn" onclick="openInvitation()" style="margin-top: 20px; background-color: rgba(255, 255, 255, 0.2); border: 1px solid #fff; backdrop-filter: blur(5px);">
+                    ✉️ Buka Undangan
+                </button>
             </div>
         </section>
 
         <!-- KUTIPAN / AYAT -->
-        <section>
+        <section id="contentSection">
             <p style="font-style: italic;">
                 "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya."
             </p>
@@ -290,7 +293,7 @@
         <section>
             <h2>Mempelai Pria & Wanita</h2>
             
-            <!-- MEMPELAI PRIA (GROOM) -->
+            <!-- MEMPELAI PRIA -->
             <div class="couple-card">
                 <img class="couple-img" src="nawawi iqbal.jpeg" alt="Nawawi Iqbal">
                 <div class="couple-role">Mempelai Pria</div>
@@ -300,7 +303,7 @@
 
             <div class="script-font separator-amp">&</div>
 
-            <!-- MEMPELAI WANITA (BRIDE) -->
+            <!-- MEMPELAI WANITA -->
             <div class="couple-card">
                 <img class="couple-img" src="https://lh3.googleusercontent.com/d/FILE_ID_BRIDE" alt="Zikratul Aini">
                 <div class="couple-role">Mempelai Wanita</div>
@@ -366,8 +369,9 @@
             
             <div class="event-card">
                 <p><strong>Bank BCA</strong></p>
-                <p style="font-size: 1.2rem; font-weight: bold; color: #1b365d;">1234 5678 90</p>
+                <p id="rekeningBCA" style="font-size: 1.2rem; font-weight: bold; color: #1b365d;">1234 5678 90</p>
                 <p class="parents">a.n. Nawawi Iqbal</p>
+                <button class="btn" onclick="copyRekening()" style="padding: 5px 15px; font-size: 0.8rem; margin-top: 8px;">📋 Salin Rekening</button>
             </div>
         </section>
 
@@ -379,12 +383,29 @@
 
     </div>
 
-    <!-- JAVASCRIPT UNTUK TOMBOL MUSIK -->
+    <!-- JAVASCRIPT -->
     <script>
         const music = document.getElementById('bg-music');
         const btn = document.getElementById('musicToggleBtn');
         let isPlaying = false;
 
+        // Fungsi Buka Undangan & Autoplay Musik
+        function openInvitation() {
+            // Scroll halus ke bagian konten bawah hero
+            document.getElementById('contentSection').scrollIntoView({ behavior: 'smooth' });
+            
+            // Putar audio setelah gesture interaksi pengguna
+            if (!isPlaying) {
+                music.play().then(() => {
+                    isPlaying = true;
+                    btn.classList.add('playing');
+                }).catch(err => {
+                    console.log("Autoplay error: ", err);
+                });
+            }
+        }
+
+        // Toggle manual musik (Play/Pause)
         function toggleMusic() {
             if (isPlaying) {
                 music.pause();
@@ -397,6 +418,14 @@
                 });
             }
             isPlaying = !isPlaying;
+        }
+
+        // Fungsi Salin Rekening
+        function copyRekening() {
+            const rek = document.getElementById('rekeningBCA').innerText;
+            navigator.clipboard.writeText(rek.replace(/\s+/g, '')).then(() => {
+                alert('Nomor rekening berhasil disalin!');
+            });
         }
     </script>
 
