@@ -75,8 +75,8 @@
             height: 100%;
             object-fit: cover;
             z-index: 1;
-            filter: blur(2px); /* Efek Blur */
-            transform: scale(1.05); /* Memperbesar sedikit agar pinggiran blur tidak terpotong */
+            filter: blur(1px);
+            transform: scale(1.05);
         }
 
         /* Overlay Gelap agar Teks Terbaca Jelas */
@@ -98,6 +98,29 @@
         }
         .hero-content h1, .hero-content p { color: #ffffff; }
         .hero-content .subtitle { font-size: 1.1rem; letter-spacing: 2px; text-transform: uppercase; color: #dbebe9; }
+
+        /* KOTAK TAMU UNDANGAN DI HERO */
+        .guest-box {
+            margin-top: 25px;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            display: inline-block;
+        }
+        .guest-title {
+            font-size: 0.8rem !important;
+            margin-bottom: 4px !important;
+            color: #e2e8f0 !important;
+            letter-spacing: 1px;
+        }
+        .guest-name {
+            font-size: 1.2rem !important;
+            font-weight: 600;
+            color: #ffffff !important;
+            margin-bottom: 0 !important;
+        }
 
         /* --- FLOATING MUSIC BUTTON --- */
         .music-btn {
@@ -288,10 +311,17 @@
                 <p class="subtitle">The Wedding of</p>
                 <h1>Iqbal & Ira</h1>
                 <p>25 Oktober 2026</p>
+                
                 <!-- Tombol Buka Undangan -->
                 <button class="btn" id="openBtn" onclick="openInvitation()" style="margin-top: 20px; background-color: rgba(255, 255, 255, 0.2); border: 1px solid #fff; backdrop-filter: blur(5px);">
                     ✉️ Buka Undangan
                 </button>
+
+                <!-- KOTAK NAMA TAMU UNDANGAN -->
+                <div class="guest-box">
+                    <p class="guest-title">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
+                    <p class="guest-name" id="guestName">Tamu Undangan</p>
+                </div>
             </div>
         </section>
 
@@ -332,10 +362,10 @@
             <p class="reveal">Galeri Foto Prewedding</p>
 
             <div class="gallery-grid reveal">
-                <img class="gallery-item" src="https://lh3.googleusercontent.com/d/1q-kb-AhcOJwjmeH_-jszY-uL9hTba0zP" alt="Foto Prewedding 1">
-                <img class="gallery-item" src="https://lh3.googleusercontent.com/d/1JD0ja3uVTQPo9A9zYZfWen2jq3EJpq7x" alt="Foto Prewedding 2">
-                <img class="gallery-item" src="https://lh3.googleusercontent.com/d/1Lbhshf_koNJ9QigLkHPnIhIc_4fHdO0c" alt="Foto Prewedding 3">
-                <img class="gallery-item" src="https://lh3.googleusercontent.com/d/18alPCSnVsHiYz6NJA6ghSrXjHQFe6tQg" alt="Foto Prewedding 4">
+                <img class="gallery-item" src="https://lh3.googleusercontent.com/d/FILE_ID_1" alt="Foto Prewedding 1">
+                <img class="gallery-item" src="https://lh3.googleusercontent.com/d/FILE_ID_2" alt="Foto Prewedding 2">
+                <img class="gallery-item" src="https://lh3.googleusercontent.com/d/FILE_ID_3" alt="Foto Prewedding 3">
+                <img class="gallery-item" src="https://lh3.googleusercontent.com/d/FILE_ID_4" alt="Foto Prewedding 4">
             </div>
         </section>
 
@@ -364,7 +394,7 @@
             <p class="reveal">Mohon isi formulir di bawah ini untuk mengonfirmasi kehadiran:</p>
             
             <form class="reveal" onsubmit="event.preventDefault(); alert('Terima kasih atas konfirmasinya!');">
-                <input type="text" placeholder="Nama Lengkap" required>
+                <input type="text" id="rsvpName" placeholder="Nama Lengkap" required>
                 <select required>
                     <option value="">Konfirmasi Kehadiran</option>
                     <option value="hadir">Hadir</option>
@@ -402,6 +432,20 @@
         const music = document.getElementById('bg-music');
         const btn = document.getElementById('musicToggleBtn');
         let isPlaying = false;
+
+        // FUNGSI MENGAMBIL NAMA TAMU DARI URL PARAMETER (?to=Nama+Tamu)
+        document.addEventListener("DOMContentLoaded", function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const guest = urlParams.get('to');
+            
+            if (guest) {
+                // Tampilkan nama tamu pada sampul
+                document.getElementById('guestName').innerText = guest;
+                // Otomatis isikan nama tamu ke input RSVP
+                const rsvpInput = document.getElementById('rsvpName');
+                if (rsvpInput) rsvpInput.value = guest;
+            }
+        });
 
         // Fungsi Buka Undangan & Autoplay Musik
         function openInvitation() {
@@ -453,7 +497,7 @@
                     }
                 });
             }, {
-                threshold: 0.15 // Terpemicu saat 15% elemen masuk layar
+                threshold: 0.15
             });
 
             reveals.forEach(reveal => observer.observe(reveal));
