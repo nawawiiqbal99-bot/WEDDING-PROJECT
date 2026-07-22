@@ -25,6 +25,12 @@
             overflow-x: hidden;
         }
 
+        /* --- LOCK SCROLL AWAL --- */
+        body.no-scroll {
+            overflow: hidden;
+            height: 100vh;
+        }
+
         @keyframes gradientBG {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -394,7 +400,7 @@
         }
     </style>
 </head>
-<body>
+<body class="no-scroll">
 
     <div class="petal-container">
         <div class="petal"></div>
@@ -468,7 +474,7 @@
             <svg class="floral-corner floral-top-right"><use href="#rich-floral-corner"/></svg>
             <img class="quote-photo" src="https://lh3.googleusercontent.com/d/1q-kb-AhcOJwjmeH_-jszY-uL9hTba0zP" alt="Foto Pasangan">
             <p style="font-style: italic; position: relative; z-index: 3;">
-                "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri..."
+                "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir."
             </p>
             <strong style="font-size: 0.85rem; color: #1b365d; position: relative; z-index: 3;">- Ar-Rum: 21 -</strong>
         </section>
@@ -587,14 +593,12 @@
 
     <!-- JAVASCRIPT -->
     <script>
-        // GANTI DENGAN URL GOOGLE APPS SCRIPT ANDA
         const scriptURL = 'https://script.google.com/macros/s/AKfycbyTQG64yXQH0z1c9RuOHI9jZuAsnREFmeP-z9k9f15Pjk-Lt6YcHQfQz53qk6RVIP0u/exec';
         
         const rsvpForm = document.getElementById('rsvpForm');
         const submitBtn = document.getElementById('submitBtn');
         const wishesBox = document.getElementById('wishesBox');
 
-        // FUNGSI UNTUK MENYALIN NOMOR REKENING
         function copyToClipboard(elementId, btnElement) {
             const textToCopy = document.getElementById(elementId).innerText;
             navigator.clipboard.writeText(textToCopy).then(() => {
@@ -613,7 +617,6 @@
             });
         }
 
-        // Fungsi memuat ucapan dari Google Sheets
         function loadWishes() {
             fetch(scriptURL)
                 .then(response => response.json())
@@ -650,7 +653,6 @@
                 .replace(/'/g, "&#039;");
         }
 
-        // Submit form RSVP
         rsvpForm.addEventListener('submit', e => {
             e.preventDefault();
             
@@ -692,7 +694,13 @@
         });
 
         function openInvitation() {
+            // Membuka kunci scroll pada body
+            document.body.classList.remove('no-scroll');
+
+            // Scroll halus menuju konten utama
             document.getElementById('contentSection').scrollIntoView({ behavior: 'smooth' });
+
+            // Putar musik jika belum berputar
             if (!isPlaying) {
                 music.play().then(() => {
                     isPlaying = true;
