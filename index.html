@@ -66,15 +66,17 @@
             background-color: #0f2043;
         }
 
-        /* Styling Video Background */
+        /* Styling Video Background dengan Efek Blur */
         .hero-video {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Agar video selalu proporsional memenuhi layar */
+            object-fit: cover;
             z-index: 1;
+            filter: blur(8px); /* Efek Blur */
+            transform: scale(1.05); /* Memperbesar sedikit agar pinggiran blur tidak terpotong */
         }
 
         /* Overlay Gelap agar Teks Terbaca Jelas */
@@ -241,6 +243,18 @@
             color: #64748b;
             background-color: #f8fafc;
         }
+
+        /* --- ANIMASI SCROLL (FADE IN SLIDE UP) --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
@@ -274,7 +288,7 @@
                 <p class="subtitle">The Wedding of</p>
                 <h1>Iqbal & Ira</h1>
                 <p>25 Oktober 2026</p>
-                <!-- Tombol Buka Undangan untuk memicu autoplay audio -->
+                <!-- Tombol Buka Undangan -->
                 <button class="btn" id="openBtn" onclick="openInvitation()" style="margin-top: 20px; background-color: rgba(255, 255, 255, 0.2); border: 1px solid #fff; backdrop-filter: blur(5px);">
                     ✉️ Buka Undangan
                 </button>
@@ -282,7 +296,7 @@
         </section>
 
         <!-- KUTIPAN / AYAT -->
-        <section id="contentSection">
+        <section id="contentSection" class="reveal">
             <p style="font-style: italic;">
                 "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya."
             </p>
@@ -291,20 +305,20 @@
 
         <!-- PROFIL MEMPELAI -->
         <section>
-            <h2>Mempelai Pria & Wanita</h2>
+            <h2 class="reveal">Mempelai Pria & Wanita</h2>
             
             <!-- MEMPELAI PRIA -->
-            <div class="couple-card">
+            <div class="couple-card reveal">
                 <img class="couple-img" src="iqbal.jpeg" alt="Nawawi Iqbal">
                 <div class="couple-role">Mempelai Pria</div>
                 <div class="couple-name">Nawawi Iqbal, S.Pd.</div>
                 <div class="parents">Putra pertama dari Bapak Natip & Ibu Sri Mariatun</div>
             </div>
 
-            <div class="script-font separator-amp">&</div>
+            <div class="script-font separator-amp reveal">&</div>
 
             <!-- MEMPELAI WANITA -->
-            <div class="couple-card">
+            <div class="couple-card reveal">
                 <img class="couple-img" src="https://lh3.googleusercontent.com/d/FILE_ID_BRIDE" alt="Zikratul Aini">
                 <div class="couple-role">Mempelai Wanita</div>
                 <div class="couple-name">Zikratul Aini, S.Pd.</div>
@@ -314,42 +328,42 @@
 
         <!-- GALERI FOTO -->
         <section>
-            <h2>Momen Bahagia</h2>
-            <p>Galeri Foto Prewedding</p>
+            <h2 class="reveal">Momen Bahagia</h2>
+            <p class="reveal">Galeri Foto Prewedding</p>
 
-            <div class="gallery-grid">
-                <img class="gallery-item" src="https://lh3.googleusercontent.com/d/FILE_ID_1" alt="Foto Prewedding 1">
-                <img class="gallery-item" src="https://lh3.googleusercontent.com/d/FILE_ID_2" alt="Foto Prewedding 2">
-                <img class="gallery-item" src="https://lh3.googleusercontent.com/d/FILE_ID_3" alt="Foto Prewedding 3">
-                <img class="gallery-item" src="https://lh3.googleusercontent.com/d/FILE_ID_4" alt="Foto Prewedding 4">
+            <div class="gallery-grid reveal">
+                <img class="gallery-item" src="https://lh3.googleusercontent.com/d/1q-kb-AhcOJwjmeH_-jszY-uL9hTba0zP" alt="Foto Prewedding 1">
+                <img class="gallery-item" src="https://lh3.googleusercontent.com/d/1JD0ja3uVTQPo9A9zYZfWen2jq3EJpq7x" alt="Foto Prewedding 2">
+                <img class="gallery-item" src="https://lh3.googleusercontent.com/d/1Lbhshf_koNJ9QigLkHPnIhIc_4fHdO0c" alt="Foto Prewedding 3">
+                <img class="gallery-item" src="https://lh3.googleusercontent.com/d/18alPCSnVsHiYz6NJA6ghSrXjHQFe6tQg" alt="Foto Prewedding 4">
             </div>
         </section>
 
         <!-- RANGKAIAN ACARA -->
         <section>
-            <h2>Jadwal Acara</h2>
+            <h2 class="reveal">Jadwal Acara</h2>
             
-            <div class="event-card">
+            <div class="event-card reveal">
                 <h3>Akad Nikah</h3>
                 <p><strong>Minggu, 25 Oktober 2026</strong><br>Pukul 08.00 - 10.00 WITA</p>
                 <p class="parents">Gedung Grand Ballroom, Lantai 2<br>Jl. Mawar No. 123, Mataram</p>
             </div>
 
-            <div class="event-card">
+            <div class="event-card reveal">
                 <h3>Resepsi</h3>
                 <p><strong>Minggu, 25 Oktober 2026</strong><br>Pukul 11.00 - selesai</p>
                 <p class="parents">Gedung Grand Ballroom, Lantai 2<br>Jl. Mawar No. 123, Mataram</p>
             </div>
 
-            <a href="https://maps.google.com" target="_blank" class="btn">Buka Google Maps</a>
+            <a href="https://maps.google.com" target="_blank" class="btn reveal">Buka Google Maps</a>
         </section>
 
         <!-- RSVP / UCAPAN -->
         <section>
-            <h2>Konfirmasi Kehadiran</h2>
-            <p>Mohon isi formulir di bawah ini untuk mengonfirmasi kehadiran:</p>
+            <h2 class="reveal">Konfirmasi Kehadiran</h2>
+            <p class="reveal">Mohon isi formulir di bawah ini untuk mengonfirmasi kehadiran:</p>
             
-            <form onsubmit="event.preventDefault(); alert('Terima kasih atas konfirmasinya!');">
+            <form class="reveal" onsubmit="event.preventDefault(); alert('Terima kasih atas konfirmasinya!');">
                 <input type="text" placeholder="Nama Lengkap" required>
                 <select required>
                     <option value="">Konfirmasi Kehadiran</option>
@@ -364,10 +378,10 @@
 
         <!-- AMPLOP DIGITAL -->
         <section>
-            <h2>Hadiah Digital</h2>
-            <p>Doa restu Anda merupakan karunia yang terindah bagi kami. Namun jika Anda ingin memberi hadiah, dapat melalui nomor rekening berikut:</p>
+            <h2 class="reveal">Hadiah Digital</h2>
+            <p class="reveal">Doa restu Anda merupakan karunia yang terindah bagi kami. Namun jika Anda ingin memberi hadiah, dapat melalui nomor rekening berikut:</p>
             
-            <div class="event-card">
+            <div class="event-card reveal">
                 <p><strong>Bank BCA</strong></p>
                 <p id="rekeningBCA" style="font-size: 1.2rem; font-weight: bold; color: #1b365d;">1234 5678 90</p>
                 <p class="parents">a.n. Nawawi Iqbal</p>
@@ -376,7 +390,7 @@
         </section>
 
         <!-- FOOTER -->
-        <footer>
+        <footer class="reveal">
             <p>Terima kasih atas doa & restu Anda</p>
             <p style="margin-top: 5px;"><strong>Nawawi Iqbal & Zikratul Aini</strong></p>
         </footer>
@@ -427,6 +441,23 @@
                 alert('Nomor rekening berhasil disalin!');
             });
         }
+
+        // Animasi Scroll (Intersection Observer)
+        document.addEventListener("DOMContentLoaded", function () {
+            const reveals = document.querySelectorAll(".reveal");
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                    }
+                });
+            }, {
+                threshold: 0.15 // Terpemicu saat 15% elemen masuk layar
+            });
+
+            reveals.forEach(reveal => observer.observe(reveal));
+        });
     </script>
 
 </body>
