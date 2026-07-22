@@ -227,7 +227,7 @@
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
         /* --- CARD & GALLERY --- */
-        .couple-card, .event-card, .bank-card {
+        .couple-card, .event-card, .bank-card, .map-card {
             background-color: #ffffff;
             border: 1px solid #cbd5e1;
             border-radius: 12px;
@@ -249,6 +249,50 @@
         .couple-name { font-size: 1.4rem; font-weight: 600; color: #1b365d; margin: 5px 0; }
         .parents { font-size: 0.85rem; color: #64748b; }
         .separator-amp { font-size: 2.5rem; color: #1b365d; margin: 15px 0; }
+
+        /* --- COUNTDOWN TIMER STYLES --- */
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0 5px 0;
+        }
+        .countdown-item {
+            background-color: #1b365d;
+            color: #ffffff;
+            padding: 10px;
+            border-radius: 8px;
+            min-width: 60px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .countdown-item span {
+            display: block;
+            font-size: 1.2rem;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+        .countdown-item .label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 2px;
+            opacity: 0.85;
+        }
+
+        /* --- DENAH LOKASI / MAP FRAME --- */
+        .map-frame-wrapper {
+            width: 100%;
+            height: 250px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #cbd5e1;
+            margin-bottom: 15px;
+        }
+        .map-frame-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
 
         .gallery-grid {
             display: grid;
@@ -516,7 +560,44 @@
                 <p><strong>Minggu, 25 Oktober 2026</strong></p>
                 <p>Pukul 11.00 WIB - Selesai</p>
                 <p style="font-size: 0.85rem; color: #64748b;">Gedung Serbaguna</p>
-                <a href="https://maps.google.com" target="_blank" class="btn" style="margin-top: 15px;">📍 Buka Google Maps</a>
+                
+                <!-- COUNTDOWN TIMER -->
+                <div class="countdown-container" id="countdown">
+                    <div class="countdown-item">
+                        <span id="days">0</span>
+                        <div class="label">Hari</div>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="hours">0</span>
+                        <div class="label">Jam</div>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="minutes">0</span>
+                        <div class="label">Menit</div>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="seconds">0</span>
+                        <div class="label">Detik</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DENAH & LOKASI ACARA (DIPISAHKAN DI ATAS MOMEN BAHAGIA) -->
+        <section>
+            <svg class="floral-corner floral-top-left"><use href="#rich-floral-corner"/></svg>
+            <svg class="floral-corner floral-top-right"><use href="#rich-floral-corner"/></svg>
+            <h2 class="reveal">Lokasi Acara</h2>
+            
+            <div class="map-card reveal">
+                <!-- EMBED DENAH GOOGLE MAPS -->
+                <div class="map-frame-wrapper">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3944.381313627063!2d116.1165!3d-8.5833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOMKwMzUnNDkuOCJTIDExNsKwMDYnNTkuNCJF!5e0!3m2!1sid!2sid!4v1600000000000!5m2!1sid!2sid" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                
+                <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 10px;">Klik tombol di bawah ini untuk membuka navigasi menuju lokasi acara via Google Maps:</p>
+                
+                <a href="https://maps.google.com" target="_blank" class="btn">📍 Buka Google Maps</a>
             </div>
         </section>
 
@@ -729,6 +810,29 @@
 
             reveals.forEach(reveal => observer.observe(reveal));
         });
+
+        // --- SCRIPT COUNTDOWN TIMER ---
+        const eventDate = new Date("October 25, 2026 08:00:00").getTime();
+
+        const countdownFunction = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days >= 0 ? days : 0;
+            document.getElementById("hours").innerText = hours >= 0 ? hours : 0;
+            document.getElementById("minutes").innerText = minutes >= 0 ? minutes : 0;
+            document.getElementById("seconds").innerText = seconds >= 0 ? seconds : 0;
+
+            if (distance < 0) {
+                clearInterval(countdownFunction);
+                document.getElementById("countdown").innerHTML = "<p style='font-weight: 600; color: #1b365d;'>Acara Telah Berlangsung</p>";
+            }
+        }, 1000);
     </script>
 
 </body>
