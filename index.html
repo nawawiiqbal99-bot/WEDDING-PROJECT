@@ -14,7 +14,6 @@
             box-sizing: border-box;
         }
 
-        /* --- ANIMATED BACKGROUND --- */
         body {
             font-family: 'Poppins', sans-serif;
             color: #2c3e50;
@@ -32,7 +31,7 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* --- EFEK KELOPAK BUNGA BERJATUHAN --- */
+        /* --- KELOPAK BUNGA GUGUR --- */
         .petal-container {
             position: fixed;
             top: 0;
@@ -98,8 +97,6 @@
         }
         .floral-top-left { top: -10px; left: -10px; }
         .floral-top-right { top: -10px; right: -10px; transform: scaleX(-1); }
-        .floral-bottom-left { bottom: -10px; left: -10px; transform: scaleY(-1); }
-        .floral-bottom-right { bottom: -10px; right: -10px; transform: scale(-1); }
 
         .floral-header-banner {
             width: 100%;
@@ -219,20 +216,12 @@
             z-index: 999;
             transition: transform 0.3s ease, background-color 0.3s;
         }
-        .music-btn:hover {
-            background-color: #0f2043;
-            transform: scale(1.1);
-        }
-        .music-btn.playing {
-            animation: spin 4s linear infinite;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+        .music-btn:hover { background-color: #0f2043; transform: scale(1.1); }
+        .music-btn.playing { animation: spin 4s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
         /* --- CARD & GALLERY --- */
-        .couple-card, .event-card {
+        .couple-card, .event-card, .bank-card {
             background-color: #ffffff;
             border: 1px solid #cbd5e1;
             border-radius: 12px;
@@ -272,6 +261,41 @@
             transition: transform 0.3s ease;
         }
         .gallery-item:hover { transform: scale(1.03); }
+
+        /* --- HADIAH DIGITAL --- */
+        .bank-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1b365d;
+            margin-bottom: 5px;
+        }
+        .bank-number {
+            font-size: 1.25rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: #0f2043;
+            margin: 8px 0;
+        }
+        .bank-holder {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-bottom: 12px;
+        }
+        .btn-copy {
+            background-color: #f1f5f9;
+            color: #1b365d;
+            border: 1px solid #cbd5e1;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-copy:hover {
+            background-color: #1b365d;
+            color: #ffffff;
+        }
 
         /* --- BUTTONS --- */
         .btn {
@@ -313,6 +337,41 @@
             outline: none;
             border-color: #1b365d;
         }
+
+        /* --- DAFTAR UCAPAN & DOA --- */
+        .wishes-container {
+            max-width: 400px;
+            margin: 30px auto 0 auto;
+            max-height: 320px;
+            overflow-y: auto;
+            text-align: left;
+            padding-right: 5px;
+            position: relative;
+            z-index: 3;
+        }
+        .wish-card {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-left: 4px solid #1b365d;
+            border-radius: 8px;
+            padding: 12px 15px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+        .wish-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #1b365d;
+            margin-bottom: 4px;
+        }
+        .wish-text {
+            font-size: 0.85rem;
+            color: #475569;
+            margin-bottom: 0;
+            white-space: pre-line;
+        }
+        .wishes-container::-webkit-scrollbar { width: 5px; }
+        .wishes-container::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
 
         /* --- FOOTER --- */
         footer {
@@ -359,14 +418,11 @@
             <circle cx="30" cy="90" r="8" fill="#1b365d" opacity="0.3"/>
             <path d="M0,0 Q 80,10 120,40 C 90,50 60,60 0,0 Z" fill="#1b365d" opacity="0.2"/>
             <path d="M0,0 Q 10,80 40,120 C 50,90 60,60 0,0 Z" fill="#1b365d" opacity="0.2"/>
-            <path d="M15,15 Q 100,20 135,10" fill="none" stroke="#1b365d" stroke-width="2" opacity="0.35"/>
-            <path d="M15,15 Q 20,100 10,135" fill="none" stroke="#1b365d" stroke-width="2" opacity="0.35"/>
         </symbol>
         <symbol id="floral-banner" viewBox="0 0 300 50">
             <path d="M150,25 C120,5 80,15 30,25 C80,35 120,45 150,25 Z" fill="#1b365d" opacity="0.15"/>
             <path d="M150,25 C180,5 220,15 270,25 C220,35 180,45 150,25 Z" fill="#1b365d" opacity="0.15"/>
             <circle cx="150" cy="25" r="10" fill="#1b365d" opacity="0.3"/>
-            <path d="M10,25 Q 140,5 290,25" fill="none" stroke="#1b365d" stroke-width="1.5" opacity="0.3"/>
         </symbol>
     </svg>
 
@@ -436,7 +492,66 @@
             </div>
         </section>
 
-        <!-- RSVP (TERHUBUNG KE GOOGLE SHEETS) -->
+        <!-- JADWAL ACARA -->
+        <section>
+            <svg class="floral-corner floral-top-left"><use href="#rich-floral-corner"/></svg>
+            <svg class="floral-corner floral-top-right"><use href="#rich-floral-corner"/></svg>
+            <h2 class="reveal">Jadwal Acara</h2>
+            
+            <div class="event-card reveal">
+                <h3 style="color: #1b365d; margin-bottom: 10px;">Akad Nikah</h3>
+                <p><strong>Minggu, 25 Oktober 2026</strong></p>
+                <p>Pukul 08.00 WIB - Selesai</p>
+                <p style="font-size: 0.85rem; color: #64748b;">Kediaman Mempelai Wanita</p>
+            </div>
+
+            <div class="event-card reveal">
+                <h3 style="color: #1b365d; margin-bottom: 10px;">Resepsi Pernikahan</h3>
+                <p><strong>Minggu, 25 Oktober 2026</strong></p>
+                <p>Pukul 11.00 WIB - Selesai</p>
+                <p style="font-size: 0.85rem; color: #64748b;">Gedung Serbaguna</p>
+                <a href="https://maps.google.com" target="_blank" class="btn" style="margin-top: 15px;">📍 Buka Google Maps</a>
+            </div>
+        </section>
+
+        <!-- MOMEN BAHAGIA (GALERI FOTO) -->
+        <section>
+            <svg class="floral-header-banner"><use href="#floral-banner"/></svg>
+            <h2 class="reveal">Momen Bahagia</h2>
+            <p class="reveal">Kenangan manis perjalanan cinta kami</p>
+            
+            <div class="gallery-grid reveal">
+                <img class="gallery-item" src="https://lh3.googleusercontent.com/d/1q-kb-AhcOJwjmeH_-jszY-uL9hTba0zP" alt="Foto Galeri 1">
+                <img class="gallery-item" src="https://lh3.googleusercontent.com/d/1MFiIDQrfpWc_8Iuz1rg6bT30dnn_-q_x" alt="Foto Galeri 2">
+                <img class="gallery-item" src="https://lh3.googleusercontent.com/d/1m1Tt9j3QqLLKihLERTkkbiGOVd4cNvw2" alt="Foto Galeri 3">
+            </div>
+        </section>
+
+        <!-- HADIAH DIGITAL / AMPLOP DIGITAL -->
+        <section>
+            <svg class="floral-corner floral-top-left"><use href="#rich-floral-corner"/></svg>
+            <svg class="floral-corner floral-top-right"><use href="#rich-floral-corner"/></svg>
+            <h2 class="reveal">Hadiah Digital</h2>
+            <p class="reveal">Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Namun jika Anda ingin memberi hadiah, Anda dapat menggunakan amplop digital di bawah ini:</p>
+
+            <!-- KARTU REKENING 1 -->
+            <div class="bank-card reveal">
+                <div class="bank-title">Bank BCA</div>
+                <div class="bank-number" id="rekening1">1234567890</div>
+                <div class="bank-holder">a.n. Nawawi Iqbal</div>
+                <button class="btn-copy" onclick="copyToClipboard('rekening1', this)">📋 Salin No. Rekening</button>
+            </div>
+
+            <!-- KARTU REKENING 2 / E-WALLET -->
+            <div class="bank-card reveal">
+                <div class="bank-title">Bank Mandiri / DANA</div>
+                <div class="bank-number" id="rekening2">0987654321</div>
+                <div class="bank-holder">a.n. Zikratul Aini</div>
+                <button class="btn-copy" onclick="copyToClipboard('rekening2', this)">📋 Salin No. Rekening</button>
+            </div>
+        </section>
+
+        <!-- RSVP & KOTAK UCAPAN -->
         <section>
             <svg class="floral-corner floral-top-left"><use href="#rich-floral-corner"/></svg>
             <svg class="floral-corner floral-top-right"><use href="#rich-floral-corner"/></svg>
@@ -455,6 +570,11 @@
                 <textarea name="pesan" rows="3" placeholder="Ucapan & Doa"></textarea>
                 <button type="submit" id="submitBtn" class="btn">Kirim RSVP</button>
             </form>
+
+            <!-- KOTAK PESAN DAN DOA TAMU -->
+            <div class="wishes-container reveal" id="wishesBox">
+                <p style="font-size: 0.85rem; color: #64748b; text-align: center;">Memuat ucapan...</p>
+            </div>
         </section>
 
         <!-- FOOTER -->
@@ -467,12 +587,70 @@
 
     <!-- JAVASCRIPT -->
     <script>
-        // GANTI URL DI BAWAH INI DENGAN URL WEB APP GOOGLE APPS SCRIPT ANDA
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbw6fgrx0tiMMGfxnneZpmDSSQCc5_O_SHkvwzu5k2HQwJqOttecMT0GgikICNume5Tw/exec';
+        // GANTI DENGAN URL GOOGLE APPS SCRIPT ANDA
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyTQG64yXQH0z1c9RuOHI9jZuAsnREFmeP-z9k9f15Pjk-Lt6YcHQfQz53qk6RVIP0u/exec';
         
         const rsvpForm = document.getElementById('rsvpForm');
         const submitBtn = document.getElementById('submitBtn');
+        const wishesBox = document.getElementById('wishesBox');
 
+        // FUNGSI UNTUK MENYALIN NOMOR REKENING
+        function copyToClipboard(elementId, btnElement) {
+            const textToCopy = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const originalText = btnElement.innerText;
+                btnElement.innerText = '✅ Tersalin!';
+                btnElement.style.backgroundColor = '#1b365d';
+                btnElement.style.color = '#ffffff';
+                
+                setTimeout(() => {
+                    btnElement.innerText = originalText;
+                    btnElement.style.backgroundColor = '#f1f5f9';
+                    btnElement.style.color = '#1b365d';
+                }, 2000);
+            }).catch(err => {
+                console.error('Gagal menyalin text: ', err);
+            });
+        }
+
+        // Fungsi memuat ucapan dari Google Sheets
+        function loadWishes() {
+            fetch(scriptURL)
+                .then(response => response.json())
+                .then(data => {
+                    wishesBox.innerHTML = '';
+                    if (!data || data.length === 0) {
+                        wishesBox.innerHTML = '<p style="font-size: 0.85rem; color: #64748b; text-align: center;">Belum ada ucapan. Jadilah yang pertama memberikan ucapan!</p>';
+                        return;
+                    }
+
+                    data.forEach(item => {
+                        const card = document.createElement('div');
+                        card.className = 'wish-card';
+                        card.innerHTML = `
+                            <div class="wish-name">${escapeHtml(item.nama)}</div>
+                            <div class="wish-text">${escapeHtml(item.pesan)}</div>
+                        `;
+                        wishesBox.appendChild(card);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error memuat ucapan:', error);
+                    wishesBox.innerHTML = '<p style="font-size: 0.85rem; color: #ef4444; text-align: center;">Gagal memuat ucapan.</p>';
+                });
+        }
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            return text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        // Submit form RSVP
         rsvpForm.addEventListener('submit', e => {
             e.preventDefault();
             
@@ -481,10 +659,11 @@
 
             fetch(scriptURL, { method: 'POST', body: new FormData(rsvpForm) })
                 .then(response => {
-                    alert('Terima kasih! Konfirmasi kehadiran Anda berhasil dikirim.');
+                    alert('Terima kasih! Konfirmasi dan ucapan Anda berhasil dikirim.');
                     submitBtn.disabled = false;
                     submitBtn.innerText = 'Kirim RSVP';
                     rsvpForm.reset();
+                    loadWishes();
                 })
                 .catch(error => {
                     alert('Maaf, terjadi kesalahan saat mengirim data.');
@@ -494,12 +673,14 @@
                 });
         });
 
-        // --- SCRIPT LAINNYA ---
+        // --- SCRIPT MUSIK & INTERAKSI HALAMAN ---
         const music = document.getElementById('bg-music');
         const btn = document.getElementById('musicToggleBtn');
         let isPlaying = false;
 
         document.addEventListener("DOMContentLoaded", function () {
+            loadWishes();
+
             const urlParams = new URLSearchParams(window.location.search);
             const guest = urlParams.get('to');
             
