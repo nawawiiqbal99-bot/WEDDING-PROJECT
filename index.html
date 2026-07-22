@@ -23,6 +23,7 @@
             animation: gradientBG 12s ease infinite;
             line-height: 1.6;
             text-align: center;
+            overflow-x: hidden;
         }
 
         @keyframes gradientBG {
@@ -31,13 +32,56 @@
             100% { background-position: 0% 50%; }
         }
 
+        /* --- EFEK KELOPAK BUNGA BERJATUHAN (FALLING PETALS) --- */
+        .petal-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 99;
+            overflow: hidden;
+        }
+        .petal {
+            position: absolute;
+            background: rgba(27, 54, 93, 0.25);
+            border-radius: 150% 0 150% 0;
+            animation: animate-petals 10s linear infinite;
+        }
+        .petal:nth-child(1) { left: 10%; width: 15px; height: 15px; animation-duration: 8s; animation-delay: 0s; }
+        .petal:nth-child(2) { left: 25%; width: 20px; height: 20px; animation-duration: 12s; animation-delay: 2s; }
+        .petal:nth-child(3) { left: 40%; width: 12px; height: 12px; animation-duration: 9s; animation-delay: 4s; }
+        .petal:nth-child(4) { left: 60%; width: 18px; height: 18px; animation-duration: 11s; animation-delay: 1s; }
+        .petal:nth-child(5) { left: 75%; width: 14px; height: 14px; animation-duration: 7s; animation-delay: 3s; }
+        .petal:nth-child(6) { left: 90%; width: 16px; height: 16px; animation-duration: 10s; animation-delay: 5s; }
+
+        @keyframes animate-petals {
+            0% {
+                opacity: 0;
+                top: -10%;
+                transform: translateX(0) rotate(0deg);
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                opacity: 0;
+                top: 110%;
+                transform: translateX(100px) rotate(360deg);
+            }
+        }
+
         /* --- TYPOGRAPHY --- */
         h1, h2, .script-font {
             font-family: 'Great Vibes', cursive;
             color: #1b365d;
         }
         h1 { font-size: 3.5rem; margin-bottom: 10px; }
-        h2 { font-size: 2.5rem; margin-bottom: 20px; }
+        h2 { font-size: 2.5rem; margin-bottom: 20px; position: relative; z-index: 3; }
         p { font-size: 0.95rem; margin-bottom: 15px; }
 
         /* --- CONTAINER & SECTIONS --- */
@@ -52,12 +96,38 @@
         section {
             padding: 50px 20px;
             border-bottom: 1px solid #e2e8f0;
+            position: relative;
         }
 
-        /* --- HERO / COVER SECTION DENGAN VIDEO BACKGROUND --- */
+        /* --- ORNAMEN BUNGA LEBIH RAMAI (SUDUT & HEADER) --- */
+        .floral-corner {
+            position: absolute;
+            width: 130px;
+            height: 130px;
+            pointer-events: none;
+            opacity: 0.75;
+            z-index: 2;
+        }
+        .floral-top-left { top: -10px; left: -10px; }
+        .floral-top-right { top: -10px; right: -10px; transform: scaleX(-1); }
+        .floral-bottom-left { bottom: -10px; left: -10px; transform: scaleY(-1); }
+        .floral-bottom-right { bottom: -10px; right: -10px; transform: scale(-1); }
+
+        .floral-header-banner {
+            width: 100%;
+            max-width: 280px;
+            height: auto;
+            margin: 0 auto 15px auto;
+            display: block;
+            opacity: 0.75;
+            position: relative;
+            z-index: 3;
+        }
+
+        /* --- HERO / COVER SECTION --- */
         .hero {
             position: relative;
-            height: 100vh; /* Penuh satu layar */
+            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -66,7 +136,6 @@
             background-color: #0f2043;
         }
 
-        /* Styling Video Background dengan Efek Blur */
         .hero-video {
             position: absolute;
             top: 0;
@@ -79,7 +148,6 @@
             transform: scale(1.05);
         }
 
-        /* Overlay Gelap agar Teks Terbaca Jelas */
         .hero-overlay {
             position: absolute;
             top: 0;
@@ -90,7 +158,6 @@
             z-index: 2;
         }
 
-        /* Konten Teks Hero */
         .hero-content {
             position: relative;
             z-index: 3;
@@ -99,7 +166,6 @@
         .hero-content h1, .hero-content p { color: #ffffff; }
         .hero-content .subtitle { font-size: 1.1rem; letter-spacing: 2px; text-transform: uppercase; color: #dbebe9; }
 
-        /* KOTAK TAMU UNDANGAN DI HERO */
         .guest-box {
             margin-top: 25px;
             padding: 12px 20px;
@@ -122,7 +188,7 @@
             margin-bottom: 0 !important;
         }
 
-        /* --- STYLING FOTO DI ATAS AYAT --- */
+        /* --- FOTO DI ATAS AYAT --- */
         .quote-photo {
             width: 140px;
             height: 140px;
@@ -131,6 +197,8 @@
             border: 4px solid #1b365d;
             box-shadow: 0 4px 15px rgba(27, 54, 93, 0.2);
             margin-bottom: 20px;
+            position: relative;
+            z-index: 3;
         }
 
         /* --- FLOATING MUSIC BUTTON --- */
@@ -172,6 +240,8 @@
             padding: 25px 20px;
             margin: 20px 0;
             box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            position: relative;
+            z-index: 3;
         }
         .couple-img {
             width: 110px;
@@ -210,6 +280,8 @@
             grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
             gap: 12px;
             margin-top: 20px;
+            position: relative;
+            z-index: 3;
         }
         .gallery-item {
             width: 100%;
@@ -230,6 +302,8 @@
             border-radius: 8px;
             margin: 15px 0;
             border: 1px solid #cbd5e1;
+            position: relative;
+            z-index: 3;
         }
 
         /* --- BUTTONS --- */
@@ -245,6 +319,8 @@
             transition: background 0.3s;
             border: none;
             cursor: pointer;
+            position: relative;
+            z-index: 3;
         }
         .btn:hover {
             background-color: #0f2043;
@@ -257,6 +333,8 @@
             gap: 12px;
             max-width: 400px;
             margin: 0 auto;
+            position: relative;
+            z-index: 3;
         }
         input, select, textarea {
             width: 100%;
@@ -276,9 +354,10 @@
             font-size: 0.8rem;
             color: #64748b;
             background-color: #f8fafc;
+            position: relative;
         }
 
-        /* --- ANIMASI SCROLL (FADE IN SLIDE UP) --- */
+        /* --- ANIMASI SCROLL --- */
         .reveal {
             opacity: 0;
             transform: translateY(40px);
@@ -292,6 +371,51 @@
     </style>
 </head>
 <body>
+
+    <!-- CONTAINER ANIMAIS KELOPAK BUNGA GUGUR -->
+    <div class="petal-container">
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+    </div>
+
+    <!-- SVG VECTOR BUNGA SUDUT (SANGAT DETAIL & MEKAR) -->
+    <svg style="display: none;">
+        <symbol id="rich-floral-corner" viewBox="0 0 150 150">
+            <!-- Bunga Utama Mekar -->
+            <circle cx="45" cy="45" r="16" fill="#1b365d" opacity="0.3"/>
+            <circle cx="35" cy="45" r="12" fill="#1b365d" opacity="0.25"/>
+            <circle cx="55" cy="45" r="12" fill="#1b365d" opacity="0.25"/>
+            <circle cx="45" cy="35" r="12" fill="#1b365d" opacity="0.25"/>
+            <circle cx="45" cy="55" r="12" fill="#1b365d" opacity="0.25"/>
+            <circle cx="45" cy="45" r="6" fill="#1b365d" opacity="0.5"/>
+            <!-- Bunga Kecil Pendamping -->
+            <circle cx="90" cy="30" r="8" fill="#1b365d" opacity="0.3"/>
+            <circle cx="30" cy="90" r="8" fill="#1b365d" opacity="0.3"/>
+            <!-- Dedaunan dan Sulur Bunga -->
+            <path d="M0,0 Q 80,10 120,40 C 90,50 60,60 0,0 Z" fill="#1b365d" opacity="0.2"/>
+            <path d="M0,0 Q 10,80 40,120 C 50,90 60,60 0,0 Z" fill="#1b365d" opacity="0.2"/>
+            <path d="M15,15 Q 100,20 135,10" fill="none" stroke="#1b365d" stroke-width="2" opacity="0.35"/>
+            <path d="M15,15 Q 20,100 10,135" fill="none" stroke="#1b365d" stroke-width="2" opacity="0.35"/>
+            <circle cx="120" cy="40" r="3" fill="#1b365d" opacity="0.4"/>
+            <circle cx="40" cy="120" r="3" fill="#1b365d" opacity="0.4"/>
+            <circle cx="135" cy="10" r="4" fill="#1b365d" opacity="0.4"/>
+            <circle cx="10" cy="135" r="4" fill="#1b365d" opacity="0.4"/>
+        </symbol>
+
+        <!-- BANNER/HEADER BUNGA HORIZONTAL -->
+        <symbol id="floral-banner" viewBox="0 0 300 50">
+            <path d="M150,25 C120,5 80,15 30,25 C80,35 120,45 150,25 Z" fill="#1b365d" opacity="0.15"/>
+            <path d="M150,25 C180,5 220,15 270,25 C220,35 180,45 150,25 Z" fill="#1b365d" opacity="0.15"/>
+            <circle cx="150" cy="25" r="10" fill="#1b365d" opacity="0.3"/>
+            <circle cx="130" cy="25" r="6" fill="#1b365d" opacity="0.25"/>
+            <circle cx="170" cy="25" r="6" fill="#1b365d" opacity="0.25"/>
+            <path d="M10,25 Q 140,5 290,25" fill="none" stroke="#1b365d" stroke-width="1.5" opacity="0.3"/>
+        </symbol>
+    </svg>
 
     <div class="container">
         
@@ -309,11 +433,10 @@
             </svg>
         </div>
 
-        <!-- COVER / HERO SECTION DENGAN VIDEO BACKGROUND -->
+        <!-- COVER / HERO SECTION -->
         <section class="hero">
             <video class="hero-video" id="heroVideo" autoplay loop muted playsinline>
                 <source src="video pantai.mp4" type="video/mp4">
-                Browser Anda tidak mendukung tag video.
             </video>
 
             <div class="hero-overlay"></div>
@@ -323,12 +446,10 @@
                 <h1>Iqbal & Ira</h1>
                 <p>25 Oktober 2026</p>
                 
-                <!-- Tombol Buka Undangan -->
                 <button class="btn" id="openBtn" onclick="openInvitation()" style="margin-top: 20px; background-color: rgba(255, 255, 255, 0.2); border: 1px solid #fff; backdrop-filter: blur(5px);">
                     ✉️ Buka Undangan
                 </button>
 
-                <!-- KOTAK NAMA TAMU UNDANGAN -->
                 <div class="guest-box">
                     <p class="guest-title">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
                     <p class="guest-name" id="guestName">Tamu Undangan</p>
@@ -336,22 +457,34 @@
             </div>
         </section>
 
-        <!-- KUTIPAN / AYAT (DENGAN FOTO DI ATASNYA) -->
+        <!-- KUTIPAN / AYAT -->
         <section id="contentSection" class="reveal">
-            <!-- Tempat Foto di Atas Kutipan Ayat -->
-            <img class="quote-photo" src="https://lh3.googleusercontent.com/d/1H9AZIR0mk8-kp2scNTYu8PCseQUur3-r" alt="Foto Pasangan">
+            <!-- Ornamen Bunga Sudut Ramai -->
+            <svg class="floral-corner floral-top-left"><use href="#rich-floral-corner"/></svg>
+            <svg class="floral-corner floral-top-right"><use href="#rich-floral-corner"/></svg>
+            <svg class="floral-corner floral-bottom-left"><use href="#rich-floral-corner"/></svg>
+            <svg class="floral-corner floral-bottom-right"><use href="#rich-floral-corner"/></svg>
 
-            <p style="font-style: italic;">
+            <img class="quote-photo" src="https://lh3.googleusercontent.com/d/1q-kb-AhcOJwjmeH_-jszY-uL9hTba0zP" alt="Foto Pasangan">
+
+            <p style="font-style: italic; position: relative; z-index: 3;">
                 "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir."
             </p>
-            <strong style="font-size: 0.85rem; color: #1b365d;">- Ar-Rum: 21 -</strong>
+            <strong style="font-size: 0.85rem; color: #1b365d; position: relative; z-index: 3;">- Ar-Rum: 21 -</strong>
         </section>
 
         <!-- PROFIL MEMPELAI -->
         <section>
+            <svg class="floral-corner floral-top-left"><use href="#rich-floral-corner"/></svg>
+            <svg class="floral-corner floral-top-right"><use href="#rich-floral-corner"/></svg>
+            <svg class="floral-corner floral-bottom-left"><use href="#rich-floral-corner"/></svg>
+            <svg class="floral-corner floral-bottom-right"><use href="#rich-floral-corner"/></svg>
+
+            <!-- Banner Bunga Atas Judul -->
+            <svg class="floral-header-banner"><use href="#floral-banner"/></svg>
+
             <h2 class="reveal">Mempelai Pria & Wanita</h2>
             
-            <!-- MEMPELAI PRIA -->
             <div class="couple-card reveal">
                 <img class="couple-img" src="iqbal.jpeg" alt="Nawawi Iqbal">
                 <div class="couple-role">Mempelai Pria</div>
@@ -361,7 +494,6 @@
 
             <div class="script-font separator-amp reveal">&</div>
 
-            <!-- MEMPELAI WANITA -->
             <div class="couple-card reveal">
                 <img class="couple-img" src="https://lh3.googleusercontent.com/d/FILE_ID_BRIDE" alt="Zikratul Aini">
                 <div class="couple-role">Mempelai Wanita</div>
@@ -372,6 +504,11 @@
 
         <!-- GALERI FOTO -->
         <section>
+            <svg class="floral-corner floral-top-left"><use href="#rich-floral-corner"/></svg>
+            <svg class="floral-corner floral-top-right"><use href="#rich-floral-corner"/></svg>
+
+            <svg class="floral-header-banner"><use href="#floral-banner"/></svg>
+
             <h2 class="reveal">Momen Bahagia</h2>
             <p class="reveal">Galeri Foto Prewedding</p>
 
@@ -385,6 +522,11 @@
 
         <!-- RANGKAIAN ACARA -->
         <section>
+            <svg class="floral-corner floral-bottom-left"><use href="#rich-floral-corner"/></svg>
+            <svg class="floral-corner floral-bottom-right"><use href="#rich-floral-corner"/></svg>
+
+            <svg class="floral-header-banner"><use href="#floral-banner"/></svg>
+
             <h2 class="reveal">Jadwal Acara</h2>
             
             <div class="event-card reveal">
@@ -404,6 +546,9 @@
 
         <!-- RSVP / UCAPAN -->
         <section>
+            <svg class="floral-corner floral-top-left"><use href="#rich-floral-corner"/></svg>
+            <svg class="floral-corner floral-top-right"><use href="#rich-floral-corner"/></svg>
+
             <h2 class="reveal">Konfirmasi Kehadiran</h2>
             <p class="reveal">Mohon isi formulir di bawah ini untuk mengonfirmasi kehadiran:</p>
             
@@ -422,6 +567,9 @@
 
         <!-- AMPLOP DIGITAL -->
         <section>
+            <svg class="floral-corner floral-bottom-left"><use href="#rich-floral-corner"/></svg>
+            <svg class="floral-corner floral-bottom-right"><use href="#rich-floral-corner"/></svg>
+
             <h2 class="reveal">Hadiah Digital</h2>
             <p class="reveal">Doa restu Anda merupakan karunia yang terindah bagi kami. Namun jika Anda ingin memberi hadiah, dapat melalui nomor rekening berikut:</p>
             
@@ -435,6 +583,7 @@
 
         <!-- FOOTER -->
         <footer class="reveal">
+            <svg class="floral-header-banner" style="margin-bottom: 10px;"><use href="#floral-banner"/></svg>
             <p>Terima kasih atas doa & restu Anda</p>
             <p style="margin-top: 5px;"><strong>Nawawi Iqbal & Zikratul Aini</strong></p>
         </footer>
@@ -447,26 +596,20 @@
         const btn = document.getElementById('musicToggleBtn');
         let isPlaying = false;
 
-        // FUNGSI MENGAMBIL NAMA TAMU DARI URL PARAMETER (?to=Nama+Tamu)
         document.addEventListener("DOMContentLoaded", function () {
             const urlParams = new URLSearchParams(window.location.search);
             const guest = urlParams.get('to');
             
             if (guest) {
-                // Tampilkan nama tamu pada sampul
                 document.getElementById('guestName').innerText = guest;
-                // Otomatis isikan nama tamu ke input RSVP
                 const rsvpInput = document.getElementById('rsvpName');
                 if (rsvpInput) rsvpInput.value = guest;
             }
         });
 
-        // Fungsi Buka Undangan & Autoplay Musik
         function openInvitation() {
-            // Scroll halus ke bagian konten bawah hero
             document.getElementById('contentSection').scrollIntoView({ behavior: 'smooth' });
             
-            // Putar audio setelah gesture interaksi pengguna
             if (!isPlaying) {
                 music.play().then(() => {
                     isPlaying = true;
@@ -477,7 +620,6 @@
             }
         }
 
-        // Toggle manual musik (Play/Pause)
         function toggleMusic() {
             if (isPlaying) {
                 music.pause();
@@ -492,7 +634,6 @@
             isPlaying = !isPlaying;
         }
 
-        // Fungsi Salin Rekening
         function copyRekening() {
             const rek = document.getElementById('rekeningBCA').innerText;
             navigator.clipboard.writeText(rek.replace(/\s+/g, '')).then(() => {
@@ -500,7 +641,6 @@
             });
         }
 
-        // Animasi Scroll (Intersection Observer)
         document.addEventListener("DOMContentLoaded", function () {
             const reveals = document.querySelectorAll(".reveal");
 
