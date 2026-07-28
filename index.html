@@ -11,6 +11,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
     <style>
+        /* ==========================================================================
+           PENGATURAN KECEPATAN ANIMASI & TRANSISI (UBAH SESUAI KEINGINAN DI SINI)
+           ========================================================================== */
+        :root {
+            /* Kecepatan animasi tulisan/elemen saat muncul ketika di-scroll */
+            --speed-text-reveal: 5.8s; 
+
+            /* Kecepatan transisi pergerakan foto background antar-section */
+            --speed-bg-transition: 7.5s;
+
+            /* Kecepatan saat tombol "Open Invitation" ditekan (Slide Cover) */
+            --speed-cover-slide: 7.2s;
+
+            /* Kurva Kehalusan Pergerakan (Easing) */
+            --ease-smooth: cubic-bezier(0.1, 1, 0.1, 1);
+        }
+
         /* --- RESET & BASIC STYLES --- */
         * {
             margin: 0;
@@ -32,6 +49,25 @@
             overflow-x: hidden;
             font-size: 14px;
             -webkit-overflow-scrolling: touch;
+        }
+
+        /* --- BACKGROUND UTAMA FIXED (TETAP MENEMPEL DIBALAKANG) --- */
+        .main-fixed-bg {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 480px;
+            height: 100vh;
+            /* Ganti gambar di bawah ini untuk background utama yang diam */
+            background-image: url('./bg-event.png.png'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: 0; /* Tetap berada di lapisan paling bawah */
+            pointer-events: none;
+            opacity: 0.4; /* Atur transparansi background utama jika perlu */
         }
 
         /* --- LOCK SCROLL AWAL --- */
@@ -85,10 +121,11 @@
         .container {
             max-width: 480px;
             margin: 0 auto;
-            background-color: #1a0a10;
+            background-color: rgba(26, 10, 16, 0.7); /* Dibuat semi transparan agar fixed bg terlihat */
             box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
             position: relative;
             min-height: 100vh;
+            z-index: 1;
         }
         
         section {
@@ -124,14 +161,14 @@
             transform: translateX(-50%);
             z-index: 9999;
             overflow: hidden;
-            transition: transform 2.2s cubic-bezier(0.1, 1, 0.1, 1);
+            transition: transform var(--speed-cover-slide) var(--ease-smooth);
         }
 
         .hero-cover.slide-up {
             transform: translate(-50%, -100%) !important;
             pointer-events: none;
             visibility: hidden;
-            transition: transform 2.2s cubic-bezier(0.1, 1, 0.1, 1), visibility 0s 2.2s;
+            transition: transform var(--speed-cover-slide) var(--ease-smooth), visibility 0s var(--speed-cover-slide);
         }
 
         /* --- BACKGROUND LAYER --- */
@@ -145,8 +182,8 @@
             background-position: center;
             background-repeat: no-repeat;
             z-index: 1;
-            /* Durasi background dibuat sangat lambat (4.5 detik) */
-            transition: transform 4.5s cubic-bezier(0.1, 1, 0.1, 1), opacity 3.5s ease;
+            /* Menggunakan variabel durasi background */
+            transition: transform var(--speed-bg-transition) var(--ease-smooth), opacity var(--speed-bg-transition) ease;
             will-change: transform, opacity;
         }
 
@@ -160,7 +197,7 @@
             filter: none !important;
         }
 
-        /* PERGERAKAN BACKGROUND BERVARIASI & AESTHETIC (JARAK DIPERHALUS) */
+        /* PERGERAKAN BACKGROUND BERVARIASI */
         .bg-zoom-in { transform: scale(1.12); }
         section.active .bg-zoom-in, .hero-cover.active .bg-zoom-in { transform: scale(1); opacity: 0.9; }
 
@@ -675,14 +712,14 @@
             z-index: 3;
         }
 
-        /* --- ANIMASI SCROLL REVEAL (LEBIH PELAN, HALUS, DAN ANGGUN) --- */
+        /* --- ANIMASI SCROLL REVEAL (MENGGUNAKAN VARIABEL KECEPATAN DARI :ROOT) --- */
         .reveal {
             opacity: 0;
             transform: translateY(25px) scale(0.98);
             filter: blur(5px);
-            transition: opacity 2.8s cubic-bezier(0.1, 1, 0.1, 1), 
-                        transform 2.8s cubic-bezier(0.1, 1, 0.1, 1), 
-                        filter 2.8s cubic-bezier(0.1, 1, 0.1, 1);
+            transition: opacity var(--speed-text-reveal) var(--ease-smooth), 
+                        transform var(--speed-text-reveal) var(--ease-smooth), 
+                        filter var(--speed-text-reveal) var(--ease-smooth);
             will-change: transform, opacity, filter;
         }
         .reveal.active {
@@ -696,9 +733,9 @@
             opacity: 0;
             transform: translateX(-30px) scale(0.98);
             filter: blur(5px);
-            transition: opacity 3.0s cubic-bezier(0.1, 1, 0.1, 1), 
-                        transform 3.0s cubic-bezier(0.1, 1, 0.1, 1), 
-                        filter 3.0s cubic-bezier(0.1, 1, 0.1, 1);
+            transition: opacity var(--speed-text-reveal) var(--ease-smooth), 
+                        transform var(--speed-text-reveal) var(--ease-smooth), 
+                        filter var(--speed-text-reveal) var(--ease-smooth);
             will-change: transform, opacity, filter;
         }
         .reveal-left.active {
@@ -711,9 +748,9 @@
             opacity: 0;
             transform: translateX(30px) scale(0.98);
             filter: blur(5px);
-            transition: opacity 3.0s cubic-bezier(0.1, 1, 0.1, 1), 
-                        transform 3.0s cubic-bezier(0.1, 1, 0.1, 1), 
-                        filter 3.0s cubic-bezier(0.1, 1, 0.1, 1);
+            transition: opacity var(--speed-text-reveal) var(--ease-smooth), 
+                        transform var(--speed-text-reveal) var(--ease-smooth), 
+                        filter var(--speed-text-reveal) var(--ease-smooth);
             will-change: transform, opacity, filter;
         }
         .reveal-right.active {
@@ -726,9 +763,9 @@
             opacity: 0;
             transform: scale(0.92);
             filter: blur(6px);
-            transition: opacity 3.2s cubic-bezier(0.1, 1, 0.1, 1), 
-                        transform 3.2s cubic-bezier(0.1, 1, 0.1, 1), 
-                        filter 3.2s cubic-bezier(0.1, 1, 0.1, 1);
+            transition: opacity var(--speed-text-reveal) var(--ease-smooth), 
+                        transform var(--speed-text-reveal) var(--ease-smooth), 
+                        filter var(--speed-text-reveal) var(--ease-smooth);
             will-change: transform, opacity, filter;
         }
         .reveal-zoom.active {
@@ -737,7 +774,7 @@
             filter: blur(0);
         }
 
-        /* STAGGER EFFECT DELAY (INTERVAL DIPERLEBAR AGAR MASUKNYA BERTAHAP) */
+        /* STAGGER EFFECT DELAY */
         .reveal:nth-child(2), .reveal-left:nth-child(2), .reveal-right:nth-child(2) { transition-delay: 0.4s; }
         .reveal:nth-child(3), .reveal-left:nth-child(3), .reveal-right:nth-child(3) { transition-delay: 0.8s; }
         .reveal:nth-child(4), .reveal-left:nth-child(4), .reveal-right:nth-child(4) { transition-delay: 1.2s; }
@@ -796,11 +833,14 @@
 
         #coverOverlay .hero-content {
             transform: translateY(0) !important;
-            transition: transform 2.5s cubic-bezier(0.1, 1, 0.1, 1), opacity 2.5s ease;
+            transition: transform var(--speed-cover-slide) var(--ease-smooth), opacity var(--speed-cover-slide) ease;
         }
     </style>
 </head>
 <body class="no-scroll">
+
+    <!-- FOTO BACKGROUND UTAMA (STAY / DIAM TIDAK BERGESER SAAT DI-SCROLL) -->
+    <div class="main-fixed-bg"></div>
 
     <!-- OVERLAY SAMPUL DEPAN -->
     <div class="hero-cover" id="coverOverlay">
@@ -1278,7 +1318,7 @@
 
             generateGuestQRCode(guestName);
 
-            /* OBSERVER DIPERHALUS UNTUK MEMicu ANIMASI SEBELUM TERLALU JAUH DI-SCROLL */
+            /* OBSERVER DIPERHALUS UNTUK MEMICU ANIMASI */
             const reveals = document.querySelectorAll(".reveal, .reveal-left, .reveal-right, .reveal-zoom");
             const revealObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
