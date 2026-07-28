@@ -18,8 +18,8 @@
         html, body {
             width: 100%;
             font-family: 'Plus Jakarta Sans', sans-serif;
-            color: #f8fafc;
-            background: #0f172a;
+            color: #fce7f3;
+            background: #231118; /* Tema Sunset (Warm Dark) */
             line-height: 1.5;
             text-align: center;
             overflow-x: hidden;
@@ -68,7 +68,7 @@
         p {
             font-size: 0.8rem;
             margin-bottom: 8px;
-            color: #e2e8f0;
+            color: #fbcfe8;
             font-weight: 300;
         }
 
@@ -76,7 +76,7 @@
         .container {
             max-width: 480px;
             margin: 0 auto;
-            background-color: #0d1322;
+            background-color: #1a0a10;
             box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
             position: relative;
             min-height: 100vh;
@@ -95,7 +95,7 @@
             overflow: hidden;
         }
 
-        /* --- ANIMASI COVER/SAMPUL DEPAN --- */
+        /* --- COVER / SAMPUL DEPAN (POSISI DITURUNKAN) --- */
         .hero-cover {
             position: fixed;
             top: 0;
@@ -109,7 +109,7 @@
             align-items: flex-start;
             justify-content: center;
             overflow: hidden;
-            padding: 15vh 20px 30px 20px;
+            padding: 42vh 20px 30px 20px; 
             transition: transform 3.2s cubic-bezier(0.65, 0, 0.25, 1);
         }
 
@@ -131,7 +131,7 @@
             z-index: 1;
             transition: transform 3.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 3.5s ease;
             opacity: 0.85;
-            filter: brightness(0.7) contrast(1.05);
+            filter: brightness(0.75) contrast(1.05);
             will-change: transform, opacity;
         }
 
@@ -160,7 +160,7 @@
         .bg-slide-right { transform: translateX(5%) scale(1.03); }
         section.active .bg-slide-right { transform: translateX(0) scale(1); }
 
-        /* OVERLAY GRADIENT */
+        /* OVERLAY GRADIENT (SUNSET PALETTE) */
         section::before, .hero-cover::before {
             content: '';
             position: absolute;
@@ -170,9 +170,9 @@
             height: 100%;
             background: linear-gradient(
                 to bottom,
-                rgba(13, 19, 34, 0.3) 0%,
-                rgba(13, 19, 34, 0.7) 60%,
-                rgba(13, 19, 34, 0.9) 100%
+                rgba(35, 17, 24, 0.3) 0%,
+                rgba(35, 17, 24, 0.7) 60%,
+                rgba(35, 17, 24, 0.9) 100%
             );
             z-index: 2;
         }
@@ -181,17 +181,17 @@
             background: linear-gradient(
                 to bottom,
                 rgba(0, 0, 0, 0) 40%,
-                rgba(0, 0, 0, 0.55) 75%,
-                rgba(0, 0, 0, 0.85) 100%
+                rgba(26, 10, 16, 0.6) 75%,
+                rgba(26, 10, 16, 0.9) 100%
             ) !important;
         }
 
         section.lovestory-section::before {
             background: linear-gradient(
                 to bottom,
-                rgba(0, 0, 0, 0.85) 0%,
-                rgba(0, 0, 0, 0.65) 50%,
-                rgba(0, 0, 0, 0.3) 100%
+                rgba(26, 10, 16, 0.9) 0%,
+                rgba(26, 10, 16, 0.7) 50%,
+                rgba(26, 10, 16, 0.3) 100%
             ) !important;
         }
 
@@ -212,10 +212,10 @@
 
         .hero-subtitle {
             font-family: 'Alex Brush', cursive;
-            font-size: 1.7rem;
-            color: #ffffff;
+            font-size: 2.1rem;
+            color: #fde68a;
             margin-bottom: 2px;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+            text-shadow: 0 2px 8px rgba(0,0,0,0.7);
         }
 
         .hero-title {
@@ -230,7 +230,7 @@
 
         .guest-title-text {
             font-size: 0.78rem !important;
-            color: #f1f5f9 !important;
+            color: #fce7f3 !important;
             margin-bottom: 4px !important;
             font-weight: 300;
         }
@@ -250,10 +250,10 @@
             justify-content: center;
             gap: 6px;
             padding: 8px 20px;
-            background: rgba(255, 255, 255, 0.12);
+            background: rgba(251, 146, 60, 0.25);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(253, 186, 116, 0.5);
             border-radius: 6px;
             color: #ffffff;
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -262,13 +262,13 @@
             letter-spacing: 0.5px;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
             position: relative;
             z-index: 10;
         }
 
         .btn-open:hover {
-            background: rgba(255, 255, 255, 0.25);
+            background: rgba(251, 146, 60, 0.45);
             border-color: #ffffff;
         }
 
@@ -289,7 +289,7 @@
         .couple-subtitle {
             font-family: 'Alex Brush', cursive;
             font-size: 1.8rem;
-            color: #ffffff;
+            color: #fde68a;
             margin-bottom: 0px;
             text-shadow: 0 2px 6px rgba(0,0,0,0.6);
         }
@@ -307,7 +307,7 @@
 
         .couple-parents-text {
             font-size: 0.78rem;
-            color: #e2e8f0;
+            color: #fbcfe8;
             font-weight: 300;
             line-height: 1.45;
             margin-bottom: 14px;
@@ -319,10 +319,10 @@
             align-items: center;
             gap: 6px;
             padding: 6px 15px;
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(251, 146, 60, 0.2);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(253, 186, 116, 0.4);
             border-radius: 6px;
             color: #ffffff;
             text-decoration: none;
@@ -343,7 +343,7 @@
         .lovestory-title {
             font-family: 'Alex Brush', cursive;
             font-size: 2.2rem;
-            color: #ffffff;
+            color: #fde68a;
             margin-bottom: 16px;
             text-shadow: 0 2px 8px rgba(0,0,0,0.7);
             position: relative;
@@ -361,7 +361,7 @@
 
         .story-item {
             font-size: 0.78rem;
-            color: #f1f5f9;
+            color: #fce7f3;
             line-height: 1.5;
             font-weight: 300;
             text-shadow: 0 1px 4px rgba(0,0,0,0.8);
@@ -372,7 +372,7 @@
             color: #ffffff;
         }
 
-        /* --- KUTIPAN --- */
+        /* --- KUTIPAN (TANPA BACKGROUND & KOTAK) --- */
         .quote-section {
             justify-content: flex-end;
             padding-bottom: 40px;
@@ -382,30 +382,29 @@
             position: relative;
             z-index: 3;
             max-width: 95%;
-            background: rgba(13, 19, 34, 0.75);
-            backdrop-filter: blur(8px);
-            padding: 15px 18px;
-            border-radius: 10px;
-            border-left: 2px solid #ffffff;
+            background: transparent; /* Menghilangkan background */
+            padding: 0; /* Menghilangkan padding internal */
+            border: none; /* Menghilangkan border */
             text-align: left;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
         }
 
         .quote-text {
             font-family: 'Cormorant Garamond', serif;
             font-style: italic;
-            font-size: 0.92rem;
+            font-size: 0.95rem;
             line-height: 1.5;
-            color: #f1f5f9;
+            color: #fce7f3;
             margin-bottom: 6px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.8); /* Ditambahkan shadow agar tulisan polos tetap terbaca jelas */
         }
 
         .quote-author {
             display: block;
             font-family: 'Cinzel', serif;
-            font-size: 0.68rem;
-            color: #94a3b8;
+            font-size: 0.72rem;
+            color: #fdba74;
             letter-spacing: 1px;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.8);
         }
 
         /* --- FLOATING MUSIC BUTTON --- */
@@ -415,10 +414,10 @@
             right: 15px;
             width: 38px;
             height: 38px;
-            background-color: rgba(13, 19, 34, 0.85);
+            background-color: rgba(35, 17, 24, 0.85);
             backdrop-filter: blur(5px);
             color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(253, 186, 116, 0.4);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -431,13 +430,13 @@
         .music-btn.playing { animation: spin 5s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        /* --- CARDS (JADWAL, LOKASI, HADIAH) --- */
+        /* --- CARDS --- */
         .event-card, .bank-card, .map-card {
-            background-color: rgba(255, 255, 255, 0.05);
+            background-color: rgba(255, 255, 255, 0.06);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(253, 186, 116, 0.2);
             border-radius: 10px;
             padding: 16px 14px;
             margin: 10px 0;
@@ -456,8 +455,8 @@
             z-index: 3;
         }
         .countdown-item {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.25);
+            background: rgba(251, 146, 60, 0.15);
+            border: 1px solid rgba(253, 186, 116, 0.3);
             backdrop-filter: blur(6px);
             color: #ffffff;
             padding: 8px 12px;
@@ -471,13 +470,14 @@
             font-size: 1.15rem;
             font-weight: 600;
             line-height: 1.1;
+            color: #fde68a;
         }
         .countdown-item .label {
             font-size: 0.6rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             margin-top: 4px;
-            color: #cbd5e1;
+            color: #fbcfe8;
         }
 
         /* --- MAP FRAME --- */
@@ -486,7 +486,7 @@
             height: 180px;
             border-radius: 6px;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(253, 186, 116, 0.3);
             margin-bottom: 10px;
         }
         .map-frame-wrapper iframe {
@@ -508,7 +508,7 @@
             height: 130px;
             object-fit: cover;
             border-radius: 6px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(253, 186, 116, 0.3);
         }
 
         /* --- HADIAH DIGITAL --- */
@@ -523,18 +523,18 @@
             font-size: 1rem;
             font-weight: 500;
             letter-spacing: 1.5px;
-            color: #cbd5e1;
+            color: #fde68a;
             margin: 4px 0;
         }
         .bank-holder {
             font-size: 0.72rem;
-            color: #94a3b8;
+            color: #fbcfe8;
             margin-bottom: 10px;
         }
         .btn-copy {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(251, 146, 60, 0.2);
             color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(253, 186, 116, 0.4);
             padding: 6px 14px;
             border-radius: 16px;
             font-size: 0.72rem;
@@ -546,7 +546,7 @@
         .btn {
             display: inline-block;
             padding: 8px 18px;
-            background-color: rgba(255, 255, 255, 0.15);
+            background-color: rgba(251, 146, 60, 0.25);
             backdrop-filter: blur(5px);
             color: #ffffff;
             text-decoration: none;
@@ -554,12 +554,12 @@
             font-size: 0.75rem;
             margin-top: 6px;
             transition: all 0.3s;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(253, 186, 116, 0.4);
             cursor: pointer;
             position: relative;
             z-index: 3;
         }
-        .btn:hover { background-color: #ffffff; color: #0f172a; }
+        .btn:hover { background-color: #f97316; color: #ffffff; }
 
         /* --- FORM (RSVP) --- */
         form {
@@ -576,14 +576,14 @@
             width: 100%;
             padding: 10px;
             background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(253, 186, 116, 0.3);
             border-radius: 6px;
             color: #ffffff;
             font-family: inherit;
             font-size: 0.78rem;
         }
-        input::placeholder, textarea::placeholder { color: #94a3b8; }
-        select option { background: #0f172a; color: #ffffff; }
+        input::placeholder, textarea::placeholder { color: #fbcfe8; opacity: 0.7; }
+        select option { background: #231118; color: #ffffff; }
 
         /* --- DAFTAR UCAPAN --- */
         .wishes-container {
@@ -599,7 +599,7 @@
         }
         .wish-card {
             background-color: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(253, 186, 116, 0.2);
             border-radius: 6px;
             padding: 10px 12px;
             margin-bottom: 8px;
@@ -607,12 +607,12 @@
         .wish-name {
             font-family: 'Cinzel', serif;
             font-size: 0.78rem;
-            color: #ffffff;
+            color: #fde68a;
             margin-bottom: 2px;
         }
         .wish-text {
             font-size: 0.72rem;
-            color: #cbd5e1;
+            color: #fce7f3;
             margin-bottom: 0;
             white-space: pre-line;
         }
@@ -621,8 +621,8 @@
         footer {
             padding: 24px 15px;
             font-size: 0.72rem;
-            color: #64748b;
-            background-color: #080d18;
+            color: #fbcfe8;
+            background-color: #14080e;
             position: relative;
             z-index: 3;
         }
@@ -698,7 +698,7 @@
         <div class="bg-layer bg-zoom-in" id="bgCover"></div>
         <div class="hero-content">
             <div class="hero-subtitle">The Wedding of</div>
-            <div class="hero-title">Talitha & Dimas</div>
+            <div class="hero-title">Iqbal & Ira</div>
             
             <div class="guest-title-text">Dear</div>
             <div class="guest-name-text" id="guestName">Tamu Undangan</div>
@@ -732,11 +732,11 @@
             <div class="bg-layer bg-zoom-in" id="bgOpening"></div>
             <div class="hero-content" style="margin-bottom: 0;">
                 <div class="hero-subtitle">The Wedding of</div>
-                <div class="hero-title" style="margin-bottom: 0;">Talitha & Dimas</div>
+                <div class="hero-title" style="margin-bottom: 0;">Nawawi Iqbal & Zikratul Aini</div>
             </div>
         </section>
 
-        <!-- 2. KUTIPAN -->
+        <!-- 2. KUTIPAN POLOS (TANPA BACKGROUND KOTAK) -->
         <section id="contentSection" class="quote-section">
             <div class="bg-layer bg-zoom-in" id="bgQuote"></div>
             <div class="quote-content reveal">
@@ -769,7 +769,7 @@
             <div class="bg-layer-clear bg-slide-right" id="bgBride"></div>
             <div class="couple-details reveal">
                 <div class="couple-subtitle">The Bride</div>
-                <div class="couple-full-name">Zikratul Aini, S.Pd.</div>
+                <div class="couple-full-name">Ira</div>
                 <div class="couple-parents-text">
                     Putri dari<br>
                     Bapak Muhammad Zainuddin & Ibu Rati'ah
@@ -830,7 +830,7 @@
                     <div class="event-date-clean">Minggu, 25 Oktober 2026</div>
                     <div class="event-time-clean">18.00 - 21.00 WIB</div>
 
-                    <!-- COUNTDOWN TIMER REALTIME DITAROH DI BAWAH TANGGAL RESEPSI -->
+                    <!-- COUNTDOWN TIMER REALTIME -->
                     <div class="countdown-container">
                         <div class="countdown-item">
                             <span id="days">0</span>
@@ -865,7 +865,7 @@
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d465.413459782759!2d116.25026045123631!3d-8.624092419176506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcdb70068b9c2c5%3A0xab45ef6350c3c680!2sPrisma%20Maggot!5e0!3m2!1sid!2sid!4v1784718098024!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                     </div>
                     
-                    <p style="font-size: 0.75rem; color: #cbd5e1; margin-bottom: 8px;">Klik tombol di bawah ini untuk peta lokasi acara:</p>
+                    <p style="font-size: 0.75rem; color: #fbcfe8; margin-bottom: 8px;">Klik tombol di bawah ini untuk peta lokasi acara:</p>
                     
                     <a href="https://maps.app.goo.gl/bZ5hsPj6sQD1Jvjq8" target="_blank" class="btn">📍 Google Maps</a>
                 </div>
@@ -877,7 +877,7 @@
             <div class="bg-layer bg-zoom-in" id="bgGallery"></div>
             <div class="section-content">
                 <h2 class="reveal">Momen Bahagia</h2>
-                <p class="reveal" style="font-size: 0.78rem; color: #cbd5e1;">Kenangan manis perjalanan cinta kami</p>
+                <p class="reveal" style="font-size: 0.78rem; color: #fbcfe8;">Kenangan manis perjalanan cinta kami</p>
                 
                 <div class="gallery-grid reveal">
                     <img class="gallery-item" src="https://lh3.googleusercontent.com/d/1q-kb-AhcOJwjmeH_-jszY-uL9hTba0zP" alt="Galeri 1">
@@ -892,7 +892,7 @@
             <div class="bg-layer bg-slide-left" id="bgGift"></div>
             <div class="section-content">
                 <h2 class="reveal">Hadiah Digital</h2>
-                <p class="reveal" style="font-size: 0.78rem; color: #cbd5e1; margin-bottom: 14px;">
+                <p class="reveal" style="font-size: 0.78rem; color: #fbcfe8; margin-bottom: 14px;">
                     Doa restu Anda merupakan karunia indah bagi kami. Namun jika Anda ingin memberi hadiah, Anda dapat menggunakan amplop digital di bawah ini:
                 </p>
 
@@ -906,7 +906,7 @@
                 <div class="bank-card reveal">
                     <div class="bank-title">Bank Mandiri / DANA</div>
                     <div class="bank-number" id="rekening2">0987654321</div>
-                    <div class="bank-holder">a.n. Zikratul Aini</div>
+                    <div class="bank-holder">a.n. Ira</div>
                     <button class="btn-copy" onclick="copyToClipboard('rekening2', this)">📋 Salin Rekening</button>
                 </div>
             </div>
@@ -917,7 +917,7 @@
             <div class="bg-layer bg-slide-right" id="bgRsvp"></div>
             <div class="section-content">
                 <h2 class="reveal">Konfirmasi Kehadiran</h2>
-                <p class="reveal" style="font-size: 0.78rem; color: #cbd5e1; margin-bottom: 14px;">Mohon konfirmasi kehadiran Anda:</p>
+                <p class="reveal" style="font-size: 0.78rem; color: #fbcfe8; margin-bottom: 14px;">Mohon konfirmasi kehadiran Anda:</p>
                 
                 <form id="rsvpForm" class="reveal">
                     <input type="text" name="nama" id="rsvpName" placeholder="Nama Lengkap" required>
@@ -932,15 +932,15 @@
                 </form>
 
                 <div class="wishes-container reveal" id="wishesBox">
-                    <p style="font-size: 0.75rem; color: #94a3b8; text-align: center;">Memuat ucapan...</p>
+                    <p style="font-size: 0.75rem; color: #fbcfe8; text-align: center;">Memuat ucapan...</p>
                 </div>
             </div>
         </section>
 
         <!-- FOOTER -->
         <footer class="reveal">
-            <p style="font-size: 0.75rem; color: #94a3b8;">Terima kasih atas doa & restu Anda</p>
-            <p style="margin-top: 4px; font-family: 'Cinzel', serif; color: #ffffff; letter-spacing: 0.8px;">Nawawi Iqbal & Zikratul Aini</p>
+            <p style="font-size: 0.75rem; color: #fbcfe8;">Terima kasih atas doa & restu Anda</p>
+            <p style="margin-top: 4px; font-family: 'Cinzel', serif; color: #fde68a; letter-spacing: 0.8px;">Iqbal & Ira</p>
         </footer>
 
     </div>
@@ -1022,11 +1022,11 @@
                 const originalText = btnElement.innerText;
                 btnElement.innerText = '✅ Tersalin';
                 btnElement.style.backgroundColor = '#ffffff';
-                btnElement.style.color = '#0f172a';
+                btnElement.style.color = '#231118';
                 
                 setTimeout(() => {
                     btnElement.innerText = originalText;
-                    btnElement.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+                    btnElement.style.backgroundColor = 'rgba(251, 146, 60, 0.2)';
                     btnElement.style.color = '#ffffff';
                 }, 2000);
             }).catch(err => console.error('Gagal menyalin:', err));
@@ -1039,7 +1039,7 @@
                 .then(data => {
                     wishesBox.innerHTML = '';
                     if (!data || data.length === 0) {
-                        wishesBox.innerHTML = '<p style="font-size: 0.75rem; color: #94a3b8; text-align: center;">Belum ada ucapan.</p>';
+                        wishesBox.innerHTML = '<p style="font-size: 0.75rem; color: #fbcfe8; text-align: center;">Belum ada ucapan.</p>';
                         return;
                     }
 
@@ -1115,7 +1115,7 @@
             sections.forEach(section => sectionObserver.observe(section));
         });
 
-        // --- 5. COUNTDOWN TIMER REALTIME (TARGET 25 OKTOBER 2026 18:00 WIB) ---
+        // --- 5. COUNTDOWN TIMER REALTIME ---
         const eventDate = new Date("October 25, 2026 18:00:00").getTime();
         
         function updateCountdown() {
