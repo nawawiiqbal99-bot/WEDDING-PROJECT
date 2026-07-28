@@ -124,14 +124,14 @@
             transform: translateX(-50%);
             z-index: 9999;
             overflow: hidden;
-            transition: transform 1.2s ease-in-out;
+            transition: transform 1.6s cubic-bezier(0.77, 0, 0.175, 1);
         }
 
         .hero-cover.slide-up {
             transform: translate(-50%, -100%) !important;
             pointer-events: none;
             visibility: hidden;
-            transition: transform 1.2s ease-in-out, visibility 0s 1.2s;
+            transition: transform 1.6s cubic-bezier(0.77, 0, 0.175, 1), visibility 0s 1.6s;
         }
 
         /* --- BACKGROUND LAYER --- */
@@ -145,9 +145,10 @@
             background-position: center;
             background-repeat: no-repeat;
             z-index: 1;
-            transition: transform 2s ease-out, opacity 2s ease;
+            transition: transform 3s cubic-bezier(0.16, 1, 0.3, 1), opacity 2.5s ease;
             opacity: 0.85;
             filter: brightness(0.75) contrast(1.05);
+            will-change: transform, opacity;
         }
 
         .bg-layer-clear {
@@ -160,19 +161,27 @@
             background-position: center;
             background-repeat: no-repeat;
             z-index: 1;
-            transition: transform 2s ease-out, opacity 2s ease;
+            transition: transform 3s cubic-bezier(0.16, 1, 0.3, 1), opacity 2.5s ease;
             opacity: 1 !important;
             filter: none !important;
+            will-change: transform, opacity;
         }
 
-        .bg-zoom-in { transform: scale(1.08); }
+        /* PERGERAKAN BACKGROUND BERVARIASI & AESTHETIC */
+        .bg-zoom-in { transform: scale(1.22); }
         section.active .bg-zoom-in, .hero-cover.active .bg-zoom-in { transform: scale(1); opacity: 0.9; }
 
-        .bg-slide-left { transform: translateX(-5%) scale(1.03); }
+        .bg-slide-left { transform: translateX(-12%) scale(1.12); }
         section.active .bg-slide-left { transform: translateX(0) scale(1); }
 
-        .bg-slide-right { transform: translateX(5%) scale(1.03); }
+        .bg-slide-right { transform: translateX(12%) scale(1.12); }
         section.active .bg-slide-right { transform: translateX(0) scale(1); }
+
+        .bg-slide-up { transform: translateY(12%) scale(1.12); }
+        section.active .bg-slide-up { transform: translateY(0) scale(1); }
+
+        .bg-zoom-out { transform: scale(0.92); }
+        section.active .bg-zoom-out { transform: scale(1.05); }
 
         /* OVERLAY GRADIENT */
         section::before, .hero-cover::before {
@@ -287,7 +296,7 @@
             font-weight: 400;
             letter-spacing: 0.5px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.5s ease;
             box-shadow: 0 4px 12px rgba(0,0,0,0.4);
             position: relative;
             z-index: 10;
@@ -352,7 +361,7 @@
             text-decoration: none;
             font-size: 0.75rem;
             font-weight: 400;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
 
@@ -448,7 +457,7 @@
             cursor: pointer;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
             z-index: 999;
-            transition: transform 0.3s ease;
+            transition: transform 0.4s ease;
         }
         .music-btn.playing { animation: spin 5s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
@@ -586,7 +595,7 @@
             border-radius: 16px;
             font-size: 0.72rem;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
         }
 
         /* --- BUTTONS --- */
@@ -599,7 +608,7 @@
             border-radius: 16px;
             font-size: 0.75rem;
             margin-top: 6px;
-            transition: all 0.3s;
+            transition: all 0.4s;
             border: 1px solid rgba(253, 186, 116, 0.5);
             cursor: pointer;
             position: relative;
@@ -673,16 +682,72 @@
             z-index: 3;
         }
 
-        /* --- ANIMASI SCROLL REVEAL --- */
+        /* --- ANIMASI SCROLL REVEAL (SANGAT HALUS, PELAN, & BERVARIASI PER SLIDE) --- */
         .reveal {
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transform: translateY(45px) scale(0.96);
+            filter: blur(4px);
+            transition: opacity 1.6s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 1.6s cubic-bezier(0.16, 1, 0.3, 1), 
+                        filter 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform, opacity, filter;
         }
         .reveal.active {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
+            filter: blur(0);
         }
+
+        /* VARIASI REVEAL DENGAN ARAH & EFEK BERBEDA PER SLIDE */
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-50px) scale(0.96);
+            filter: blur(4px);
+            transition: opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 1.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                        filter 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform, opacity, filter;
+        }
+        .reveal-left.active {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+            filter: blur(0);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(50px) scale(0.96);
+            filter: blur(4px);
+            transition: opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 1.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                        filter 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform, opacity, filter;
+        }
+        .reveal-right.active {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+            filter: blur(0);
+        }
+
+        .reveal-zoom {
+            opacity: 0;
+            transform: scale(0.85);
+            filter: blur(6px);
+            transition: opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 1.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                        filter 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform, opacity, filter;
+        }
+        .reveal-zoom.active {
+            opacity: 1;
+            transform: scale(1);
+            filter: blur(0);
+        }
+
+        /* STAGGER EFFECT UNTUK ELEMEN BERURUTAN DALAM SLIDE */
+        .reveal:nth-child(2), .reveal-left:nth-child(2), .reveal-right:nth-child(2) { transition-delay: 0.25s; }
+        .reveal:nth-child(3), .reveal-left:nth-child(3), .reveal-right:nth-child(3) { transition-delay: 0.45s; }
+        .reveal:nth-child(4), .reveal-left:nth-child(4), .reveal-right:nth-child(4) { transition-delay: 0.65s; }
 
         /* STYLING KHUSUS SECTION EVENT */
         .event-section-clean {
@@ -737,7 +802,8 @@
         }
 
         #coverOverlay .hero-content {
-            transform: translateY(60px) !important;
+            transform: translateY(0) !important;
+            transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.8s ease;
         }
     </style>
 </head>
@@ -746,7 +812,7 @@
     <!-- OVERLAY SAMPUL DEPAN -->
     <div class="hero-cover" id="coverOverlay">
         <div class="bg-layer bg-zoom-in" id="bgCover"></div>
-        <div class="hero-content">
+        <div class="hero-content reveal-zoom">
             <div class="hero-subtitle">The Wedding of</div>
             <div class="hero-title">Iqbal & Ira</div>
             
@@ -780,7 +846,7 @@
         <!-- 1. SLIDE PERTAMA: PEMBUKAAN UNDANGAN -->
         <section id="secOpening">
             <div class="bg-layer bg-zoom-in" id="bgOpening"></div>
-            <div class="hero-content">
+            <div class="hero-content reveal-zoom">
                 <div class="hero-subtitle">The Wedding of</div>
                 <div class="hero-title">Iqbal & Ira</div>
             </div>
@@ -788,7 +854,7 @@
 
         <!-- 2. KUTIPAN POLOS -->
         <section id="contentSection" class="quote-section">
-            <div class="bg-layer bg-zoom-in" id="bgQuote"></div>
+            <div class="bg-layer bg-slide-up" id="bgQuote"></div>
             <div class="quote-content reveal">
                 <p class="quote-text">
                     "Di antara tanda-tanda (kebesaran)-Nya ialah bahwa Dia menciptakan pasangan-pasangan untukmu dari (jenis) dirimu sendiri agar kamu merasa tenteram kepadanya. Dia menjadikan di antaramu rasa cinta dan kasih sayang.."
@@ -800,7 +866,7 @@
         <!-- 3. SLIDE MEMPELAI PRIA -->
         <section id="secGroom" class="couple-section">
             <div class="bg-layer-clear bg-slide-left" id="bgGroom"></div>
-            <div class="couple-details reveal">
+            <div class="couple-details reveal-left">
                 <div class="couple-subtitle">The Groom</div>
                 <div class="couple-full-name">Nawawi Iqbal, S.Pd.</div>
                 <div class="couple-parents-text">
@@ -817,7 +883,7 @@
         <!-- 4. SLIDE MEMPELAI WANITA -->
         <section id="secBride" class="couple-section">
             <div class="bg-layer-clear bg-slide-right" id="bgBride"></div>
-            <div class="couple-details reveal">
+            <div class="couple-details reveal-right">
                 <div class="couple-subtitle">The Bride</div>
                 <div class="couple-full-name">Zikratul Aini, S.Pd.</div>
                 <div class="couple-parents-text">
@@ -833,7 +899,7 @@
 
         <!-- 5. SLIDE LOVE STORY -->
         <section id="secLoveStory" class="lovestory-section">
-            <div class="bg-layer-clear bg-zoom-in" id="bgLoveStory"></div>
+            <div class="bg-layer-clear bg-zoom-out" id="bgLoveStory"></div>
             <div class="lovestory-title reveal">Love Story</div>
             <div class="story-container reveal">
                 <div class="story-item">
@@ -855,7 +921,7 @@
             <div class="event-section-clean">
                 
                 <!-- BLOCK AKAD NIKAH -->
-                <div class="event-block reveal">
+                <div class="event-block reveal-left">
                     <svg class="event-icon" viewBox="0 0 64 64" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="26" cy="36" r="16" />
                         <circle cx="38" cy="36" r="16" />
@@ -868,7 +934,7 @@
                 </div>
 
                 <!-- BLOCK RESEPSI -->
-                <div class="event-block reveal">
+                <div class="event-block reveal-right">
                     <svg class="event-icon" viewBox="0 0 64 64" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M18 12 L30 12 L24 32 L24 48 M16 48 L32 48" />
                         <path d="M46 12 L34 12 L40 32 L40 48 M32 48 L48 48" />
@@ -910,7 +976,7 @@
             <div class="section-content">
                 <h2 class="reveal"></h2>
                 
-                <div class="map-card reveal">
+                <div class="map-card reveal-zoom">
                     <div style="margin-bottom: 16px; text-align: center;">
                         <h3 class="title-serif" style="font-size: 1.1rem; color: #fde68a; margin-bottom: 6px; font-weight: 600; letter-spacing: 1px;">
                             Tempat Acara
@@ -951,12 +1017,12 @@
 
         <!-- 8. MOMEN BAHAGIA -->
         <section id="secGallery">
-            <div class="bg-layer bg-zoom-in" id="bgGallery"></div>
+            <div class="bg-layer bg-slide-up" id="bgGallery"></div>
             <div class="section-content">
                 <h2 class="reveal">Momen Bahagia</h2>
                 <p class="reveal" style="font-size: 0.78rem; color: #fbcfe8;">Kenangan manis perjalanan cinta kami</p>
                 
-                <div class="gallery-grid reveal">
+                <div class="gallery-grid reveal-zoom">
                     <img class="gallery-item" src="gallery1.png.png" alt="Galeri 1">
                     <img class="gallery-item" src="gallery2.png.png" alt="Galeri 2">
                     <img class="gallery-item landscape" src="gallery3.png.png" alt="Galeri 3">
@@ -973,14 +1039,14 @@
                     Doa restu Anda merupakan karunia indah bagi kami. Namun jika Anda ingin memberi hadiah, Anda dapat menggunakan amplop digital di bawah ini:
                 </p>
 
-                <div class="bank-card reveal">
+                <div class="bank-card reveal-left">
                     <div class="bank-title">Bank Mandiri</div>
                     <div class="bank-number" id="rekening1">1610015264489</div>
                     <div class="bank-holder">a.n. Nawawi Iqbal</div>
                     <button class="btn-copy" onclick="copyToClipboard('rekening1', this)">📋 Salin Rekening</button>
                 </div>
 
-                <div class="bank-card reveal">
+                <div class="bank-card reveal-right">
                     <div class="bank-title">Bank BRI</div>
                     <div class="bank-number" id="rekening2">474301051906538</div>
                     <div class="bank-holder">a.n. Zikratul Aini</div>
@@ -996,7 +1062,7 @@
                 <h2 class="reveal">Konfirmasi Kehadiran</h2>
                 <p class="reveal" style="font-size: 0.78rem; color: #fbcfe8; margin-bottom: 14px;">Mohon konfirmasi kehadiran Anda:</p>
                 
-                <form id="rsvpForm" class="reveal">
+                <form id="rsvpForm" class="reveal-zoom">
                     <input type="text" name="nama" id="rsvpName" placeholder="Nama Lengkap" required>
                     <select name="kehadiran" required>
                         <option value="">Konfirmasi Kehadiran</option>
@@ -1023,7 +1089,7 @@
                     Tunjukkan QR Code ini kepada penerima tamu saat tiba di lokasi acara:
                 </p>
 
-                <div class="qr-card reveal">
+                <div class="qr-card reveal-zoom">
                     <div id="qrcode"></div>
                     <div style="font-size: 0.85rem; font-weight: 500; color: #fde68a;" id="qrGuestName">
                         Tamu Undangan
@@ -1183,15 +1249,12 @@
 
         /* --- GENERATE QR CODE DINAMIS --- */
         function generateGuestQRCode(guestIdentifier) {
-            // UBAH URL INI DENGAN LINK GITHUB PAGES UNTUK FILE DAFTAR TAMU ANDA
             const GUEST_CHECKER_URL = "https://nawawiiqbal99-bot.github.io/GuestChecker.github.io/";
-            
-            // Menggabungkan URL web Daftar Tamu dengan parameter nama tamu
             const checkinData = `${GUEST_CHECKER_URL}?nama=${encodeURIComponent(guestIdentifier)}`;
 
             const qrContainer = document.getElementById("qrcode");
             if (qrContainer) {
-                qrContainer.innerHTML = ""; // Reset QR sebelumnya
+                qrContainer.innerHTML = "";
                 new QRCode(qrContainer, {
                     text: checkinData,
                     width: 150,
@@ -1206,41 +1269,41 @@
         document.addEventListener("DOMContentLoaded", function () {
             loadWishes();
 
-            // Membaca parameter ?to=NamaTamu dari URL
             const urlParams = new URLSearchParams(window.location.search);
             const guestName = urlParams.get('to') || urlParams.get('id') || "Tamu Undangan";
 
-            // Tampilkan Nama Tamu pada Sampul Depan
             const guestElem = document.getElementById('guestName');
             if(guestElem) guestElem.innerText = guestName;
             
-            // Tampilkan Nama Tamu di bawah QR Code
             const qrGuestElem = document.getElementById('qrGuestName');
             if(qrGuestElem) qrGuestElem.innerText = guestName;
 
-            // Isikan nama tamu secara otomatis di form RSVP
             const rsvpInput = document.getElementById('rsvpName');
             if (rsvpInput && guestName !== "Tamu Undangan") {
                 rsvpInput.value = guestName;
             }
 
-            // Generate QR Code dinamis sesuai Nama Tamu
             generateGuestQRCode(guestName);
 
-            const reveals = document.querySelectorAll(".reveal");
+            // OBSERVER UNTUK ANIMASI REVEAL TEKS & BACKGROUND DENGAN TRANSISI HALUS KETIKA DISCROLL
+            const reveals = document.querySelectorAll(".reveal, .reveal-left, .reveal-right, .reveal-zoom");
             const revealObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting) entry.target.classList.add("active");
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                    }
                 });
-            }, { threshold: 0.1 });
+            }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
             reveals.forEach(reveal => revealObserver.observe(reveal));
 
             const sections = document.querySelectorAll("section");
             const sectionObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting) entry.target.classList.add("active");
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                    }
                 });
-            }, { threshold: 0.1 });
+            }, { threshold: 0.15 });
             sections.forEach(section => sectionObserver.observe(section));
         });
 
