@@ -15,27 +15,21 @@
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
+        html, body {
             width: 100%;
             font-family: 'Plus Jakarta Sans', sans-serif;
             color: #fce7f3;
-            background: #231118;
+            background: #231118; /* Tema Sunset (Warm Dark) */
             line-height: 1.5;
             text-align: center;
             overflow-x: hidden;
             font-size: 14px;
-            -webkit-overflow-scrolling: touch;
         }
 
         /* --- LOCK SCROLL AWAL --- */
         body.no-scroll {
             overflow: hidden !important;
             height: 100vh !important;
-            touch-action: none;
         }
 
         /* --- TYPOGRAPHY MODERN ELEGAN --- */
@@ -116,14 +110,12 @@
             justify-content: center;
             overflow: hidden;
             padding: 50vh 20px 30px 20px; 
-            transition: transform 1.2s ease-in-out;
+            transition: transform 3.2s cubic-bezier(0.65, 0, 0.25, 1);
         }
 
         .hero-cover.slide-up {
             transform: translate(-50%, -100%) !important;
             pointer-events: none;
-            visibility: hidden;
-            transition: transform 1.2s ease-in-out, visibility 0s 1.2s;
         }
 
         /* --- BACKGROUND LAYER --- */
@@ -137,9 +129,10 @@
             background-position: center;
             background-repeat: no-repeat;
             z-index: 1;
-            transition: transform 2s ease-out, opacity 2s ease;
+            transition: transform 3.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 3.5s ease;
             opacity: 0.85;
             filter: brightness(0.75) contrast(1.05);
+            will-change: transform, opacity;
         }
 
         .bg-layer-clear {
@@ -152,9 +145,10 @@
             background-position: center;
             background-repeat: no-repeat;
             z-index: 1;
-            transition: transform 2s ease-out, opacity 2s ease;
+            transition: transform 3.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 3.5s ease;
             opacity: 1 !important;
             filter: none !important;
+            will-change: transform, opacity;
         }
 
         .bg-zoom-in { transform: scale(1.08); }
@@ -166,7 +160,7 @@
         .bg-slide-right { transform: translateX(5%) scale(1.03); }
         section.active .bg-slide-right { transform: translateX(0) scale(1); }
 
-        /* OVERLAY GRADIENT */
+        /* OVERLAY GRADIENT (SUNSET PALETTE) */
         section::before, .hero-cover::before {
             content: '';
             position: absolute;
@@ -256,8 +250,10 @@
             justify-content: center;
             gap: 6px;
             padding: 8px 20px;
-            background: rgba(251, 146, 60, 0.4);
-            border: 1px solid rgba(253, 186, 116, 0.6);
+            background: rgba(251, 146, 60, 0.25);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(253, 186, 116, 0.5);
             border-radius: 6px;
             color: #ffffff;
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -272,7 +268,7 @@
         }
 
         .btn-open:hover {
-            background: rgba(251, 146, 60, 0.7);
+            background: rgba(251, 146, 60, 0.45);
             border-color: #ffffff;
         }
 
@@ -323,8 +319,10 @@
             align-items: center;
             gap: 6px;
             padding: 6px 15px;
-            background: rgba(251, 146, 60, 0.35);
-            border: 1px solid rgba(253, 186, 116, 0.5);
+            background: rgba(251, 146, 60, 0.2);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(253, 186, 116, 0.4);
             border-radius: 6px;
             color: #ffffff;
             text-decoration: none;
@@ -416,7 +414,8 @@
             right: 15px;
             width: 38px;
             height: 38px;
-            background-color: rgba(35, 17, 24, 0.95);
+            background-color: rgba(35, 17, 24, 0.85);
+            backdrop-filter: blur(5px);
             color: #ffffff;
             border: 1px solid rgba(253, 186, 116, 0.4);
             border-radius: 50%;
@@ -433,9 +432,11 @@
 
         /* --- CARDS --- */
         .event-card, .bank-card, .map-card {
-            background-color: rgba(35, 17, 24, 0.7);
+            background-color: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             color: #ffffff;
-            border: 1px solid rgba(253, 186, 116, 0.3);
+            border: 1px solid rgba(253, 186, 116, 0.2);
             border-radius: 10px;
             padding: 16px 14px;
             margin: 10px 0;
@@ -454,8 +455,9 @@
             z-index: 3;
         }
         .countdown-item {
-            background: rgba(251, 146, 60, 0.25);
-            border: 1px solid rgba(253, 186, 116, 0.4);
+            background: rgba(251, 146, 60, 0.15);
+            border: 1px solid rgba(253, 186, 116, 0.3);
+            backdrop-filter: blur(6px);
             color: #ffffff;
             padding: 8px 12px;
             border-radius: 8px;
@@ -478,10 +480,10 @@
             color: #fbcfe8;
         }
 
-        /* --- MAP FRAME --- */
+        /* --- MAP FRAME (UKURAN DIKECILKAN PADA HEIGHT) --- */
         .map-frame-wrapper {
             width: 100%;
-            height: 120px;
+            height: 120px; /* Ukuran peta dibuat lebih kecil */
             border-radius: 6px;
             overflow: hidden;
             border: 1px solid rgba(253, 186, 116, 0.3);
@@ -493,7 +495,7 @@
             border: 0;
         }
 
-        /* --- GALLERY STYLING (ADAPTIF LANDSCAPE/PORTRAIT) --- */
+        /* --- GALLERY STYLING --- */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -505,16 +507,14 @@
         }
         .gallery-item {
             width: 100%;
-            height: 200px;
+            height: 220px;
             object-fit: cover;
             border-radius: 6px;
             border: 1px solid rgba(253, 186, 116, 0.3);
-            display: block;
         }
-        /* Tambahkan class .landscape pada tag <img> jika gambarnya landscape */
         .gallery-item.landscape {
             grid-column: span 2;
-            height: 220px;
+            height: 180px;
         }
 
         /* --- HADIAH DIGITAL --- */
@@ -538,9 +538,9 @@
             margin-bottom: 10px;
         }
         .btn-copy {
-            background-color: rgba(251, 146, 60, 0.3);
+            background-color: rgba(251, 146, 60, 0.2);
             color: #ffffff;
-            border: 1px solid rgba(253, 186, 116, 0.5);
+            border: 1px solid rgba(253, 186, 116, 0.4);
             padding: 6px 14px;
             border-radius: 16px;
             font-size: 0.72rem;
@@ -552,14 +552,15 @@
         .btn {
             display: inline-block;
             padding: 8px 18px;
-            background-color: rgba(251, 146, 60, 0.35);
+            background-color: rgba(251, 146, 60, 0.25);
+            backdrop-filter: blur(5px);
             color: #ffffff;
             text-decoration: none;
             border-radius: 16px;
             font-size: 0.75rem;
             margin-top: 6px;
             transition: all 0.3s;
-            border: 1px solid rgba(253, 186, 116, 0.5);
+            border: 1px solid rgba(253, 186, 116, 0.4);
             cursor: pointer;
             position: relative;
             z-index: 3;
@@ -580,7 +581,7 @@
         input, select, textarea {
             width: 100%;
             padding: 10px;
-            background: rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(253, 186, 116, 0.3);
             border-radius: 6px;
             color: #ffffff;
@@ -603,7 +604,7 @@
             z-index: 3;
         }
         .wish-card {
-            background-color: rgba(255, 255, 255, 0.08);
+            background-color: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(253, 186, 116, 0.2);
             border-radius: 6px;
             padding: 10px 12px;
@@ -636,7 +637,7 @@
         .reveal {
             opacity: 0;
             transform: translateY(20px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transition: opacity 1s ease-out, transform 1s ease-out;
         }
         .reveal.active {
             opacity: 1;
@@ -859,7 +860,7 @@
             </div>
         </section>
 
-        <!-- 7. DENAH & LOKASI ACARA -->
+        <!-- 7. DENAH & LOKASI ACARA (POSISI DIATAS MOMEN BAHAGIA DENGAN MAP DILIHAT LEBIH KECIL) -->
         <section id="secLocation">
             <div class="bg-layer bg-slide-right" id="bgLocation"></div>
             <div class="section-content">
@@ -877,19 +878,17 @@
             </div>
         </section>
 
-        <!-- 8. MOMEN BAHAGIA (GALERI FOTO PNG) -->
+        <!-- 8. MOMEN BAHAGIA (GALERI FOTO) -->
         <section id="secGallery">
             <div class="bg-layer bg-zoom-in" id="bgGallery"></div>
             <div class="section-content">
                 <h2 class="reveal">Momen Bahagia</h2>
                 <p class="reveal" style="font-size: 0.78rem; color: #fbcfe8;">Kenangan manis perjalanan cinta kami</p>
                 
-                <!-- GALERI FOTO (TAMBAHKAN CLASS 'landscape' JIKA FOTO BERBENTUK LANDSCAPE) -->
                 <div class="gallery-grid reveal">
-                    <img class="gallery-item" src="gallery1.png.PNG" alt="Galeri 1">
-                    <img class="gallery-item" src="gallery2.png.PNG" alt="Galeri 2">
-                    <!-- Contoh foto landscape melebarkan 1 baris penuh: -->
-                    <img class="gallery-item landscape" src="gallery3.png.PNG" alt="Galeri 3">
+                    <img class="gallery-item" src="https://lh3.googleusercontent.com/d/1q-kb-AhcOJwjmeH_-jszY-uL9hTba0zP" alt="Galeri 1">
+                    <img class="gallery-item" src="https://lh3.googleusercontent.com/d/1MFiIDQrfpWc_8Iuz1rg6bT30dnn_-q_x" alt="Galeri 2">
+                    <img class="gallery-item" src="https://lh3.googleusercontent.com/d/1m1Tt9j3QqLLKihLERTkkbiGOVd4cNvw2" alt="Galeri 3">
                 </div>
             </div>
         </section>
@@ -954,21 +953,19 @@
 
     <!-- JAVASCRIPT -->
     <script>
-        // --- 1. ATUR GAMBAR BACKGROUND FORMAT .PNG ---
-        const BASE_PATH = "./";
-
+        // --- 1. ATUR GAMBAR BACKGROUND ---
         const SECTION_BACKGROUNDS = {
-            cover: BASE_PATH + "bg-cover.png.PNG",
-            opening: BASE_PATH + "bg-opening.png.PNG",
-            quote: BASE_PATH + "bg-quote.png.PNG",
-            groom: BASE_PATH + "bg-groom.png",
-            bride: BASE_PATH + "bg-bride.png",
-            lovestory: BASE_PATH + "bg-lovestory.png.PNG",
-            event: BASE_PATH + "bg-event.png.PNG",
-            location: BASE_PATH + "bg-location.png.PNG",
-            gallery: BASE_PATH + "bg-gallery.png.PNG",
-            gift: BASE_PATH + "bg-gift.png",
-            rsvp: BASE_PATH + "bg-rsvp.png"
+            cover: "https://lh3.googleusercontent.com/d/1uqJ4wp4j1w9Jz_5wIU5sYAKJ9x0-TZcn",
+            opening: "https://lh3.googleusercontent.com/d/1uqJ4wp4j1w9Jz_5wIU5sYAKJ9x0-TZcn",
+            quote: "https://lh3.googleusercontent.com/d/1VKNSugAzAfb3H-mjF0zuQLD5BNYER0Y5",
+            groom: "https://lh3.googleusercontent.com/d/1MFiIDQrfpWc_8Iuz1rg6bT30dnn_-q_x",
+            bride: "https://lh3.googleusercontent.com/d/1m1Tt9j3QqLLKihLERTkkbiGOVd4cNvw2",
+            lovestory: "https://lh3.googleusercontent.com/d/1ypGt5YIIQa54w2rkIw-OyByw0Jgbgfiq",
+            event: "https://lh3.googleusercontent.com/d/1UcOyLxjrtWVesxR7YASrjgq9HA5bL499",
+            location: "https://lh3.googleusercontent.com/d/1aYiX7M2iTaAtHZQqCyNvO2rvfHmpbl9A",
+            gallery: "https://lh3.googleusercontent.com/d/1hJ5Cr0j20fCfZ9Lzsb7bR__NbeLB_0rQ",
+            gift: "https://lh3.googleusercontent.com/d/1JD0ja3uVTQPo9A9zYZfWen2jq3EJpq7x",
+            rsvp: "https://lh3.googleusercontent.com/d/1q-kb-AhcOJwjmeH_-jszY-uL9hTba0zP"
         };
 
         document.getElementById('bgCover').style.backgroundImage = `url('${SECTION_BACKGROUNDS.cover}')`;
@@ -996,7 +993,6 @@
                 cover.classList.add('slide-up');
             }
 
-            // Membuka lock scroll secara penuh
             document.body.classList.remove('no-scroll');
 
             if (!isPlaying && music) {
@@ -1036,7 +1032,7 @@
                 
                 setTimeout(() => {
                     btnElement.innerText = originalText;
-                    btnElement.style.backgroundColor = 'rgba(251, 146, 60, 0.3)';
+                    btnElement.style.backgroundColor = 'rgba(251, 146, 60, 0.2)';
                     btnElement.style.color = '#ffffff';
                 }, 2000);
             }).catch(err => console.error('Gagal menyalin:', err));
@@ -1121,7 +1117,7 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) entry.target.classList.add("active");
                 });
-            }, { threshold: 0.1 });
+            }, { threshold: 0.15 });
             sections.forEach(section => sectionObserver.observe(section));
         });
 
