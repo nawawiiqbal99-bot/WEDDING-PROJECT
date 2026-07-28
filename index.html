@@ -95,7 +95,7 @@
             overflow: hidden;
         }
 
-        /* --- COVER / SAMPUL DEPAN (POSISI DITURUNKAN) --- */
+        /* --- COVER / SAMPUL DEPAN --- */
         .hero-cover {
             position: fixed;
             top: 0;
@@ -372,7 +372,7 @@
             color: #ffffff;
         }
 
-        /* --- KUTIPAN (TANPA BACKGROUND & KOTAK) --- */
+        /* --- KUTIPAN --- */
         .quote-section {
             justify-content: start;
             padding-bottom: 50px;
@@ -382,9 +382,9 @@
             position: relative;
             z-index: 3;
             max-width: 95%;
-            background: transparent; /* Menghilangkan background */
-            padding: 0; /* Menghilangkan padding internal */
-            border: none; /* Menghilangkan border */
+            background: transparent;
+            padding: 0;
+            border: none;
             text-align: left;
         }
 
@@ -395,7 +395,7 @@
             line-height: 1.5;
             color: #fce7f3;
             margin-bottom: 6px;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.8); /* Ditambahkan shadow agar tulisan polos tetap terbaca jelas */
+            text-shadow: 0 2px 8px rgba(0,0,0,0.8);
         }
 
         .quote-author {
@@ -483,7 +483,7 @@
         /* --- MAP FRAME --- */
         .map-frame-wrapper {
             width: 100%;
-            height: 180px;
+            height: 120px;
             border-radius: 6px;
             overflow: hidden;
             border: 1px solid rgba(253, 186, 116, 0.3);
@@ -495,17 +495,19 @@
             border: 0;
         }
 
+        /* --- GALLERY STYLING --- */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-            gap: 8px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
             margin-top: 14px;
             position: relative;
             z-index: 3;
+            width: 100%;
         }
         .gallery-item {
             width: 100%;
-            height: 130px;
+            height: 220px;
             object-fit: cover;
             border-radius: 6px;
             border: 1px solid rgba(253, 186, 116, 0.3);
@@ -736,7 +738,7 @@
             </div>
         </section>
 
-        <!-- 2. KUTIPAN POLOS (TANPA BACKGROUND KOTAK) -->
+        <!-- 2. KUTIPAN POLOS -->
         <section id="contentSection" class="quote-section">
             <div class="bg-layer bg-zoom-in" id="bgQuote"></div>
             <div class="quote-content reveal">
@@ -872,17 +874,18 @@
             </div>
         </section>
 
-        <!-- 8. MOMEN BAHAGIA (GALERI FOTO) -->
+        <!-- 8. MOMEN BAHAGIA (GALERI FOTO PNG) -->
         <section id="secGallery">
             <div class="bg-layer bg-zoom-in" id="bgGallery"></div>
             <div class="section-content">
                 <h2 class="reveal">Momen Bahagia</h2>
                 <p class="reveal" style="font-size: 0.78rem; color: #fbcfe8;">Kenangan manis perjalanan cinta kami</p>
                 
+                <!-- GALERI FOTO MENGGUNAKAN PATH RELATIF (.PNG) -->
                 <div class="gallery-grid reveal">
-                    <img class="gallery-item" src="https://lh3.googleusercontent.com/d/1q-kb-AhcOJwjmeH_-jszY-uL9hTba0zP" alt="Galeri 1">
-                    <img class="gallery-item" src="https://lh3.googleusercontent.com/d/1MFiIDQrfpWc_8Iuz1rg6bT30dnn_-q_x" alt="Galeri 2">
-                    <img class="gallery-item" src="https://lh3.googleusercontent.com/d/1m1Tt9j3QqLLKihLERTkkbiGOVd4cNvw2" alt="Galeri 3">
+                    <img class="gallery-item" src="gallery1.png" alt="Galeri 1">
+                    <img class="gallery-item" src="gallery2.png" alt="Galeri 2">
+                    <img class="gallery-item" src="gallery3.png" alt="Galeri 3">
                 </div>
             </div>
         </section>
@@ -947,19 +950,22 @@
 
     <!-- JAVASCRIPT -->
     <script>
-        // --- 1. ATUR GAMBAR BACKGROUND ---
+        // --- 1. ATUR GAMBAR BACKGROUND FORMAT .PNG ---
+        // Karena ditaruh di main repository bersama index.html, gunakan './'
+        const BASE_PATH = "./";
+
         const SECTION_BACKGROUNDS = {
-            cover: "https://lh3.googleusercontent.com/d/1uqJ4wp4j1w9Jz_5wIU5sYAKJ9x0-TZcn",
-            opening: "https://lh3.googleusercontent.com/d/1uqJ4wp4j1w9Jz_5wIU5sYAKJ9x0-TZcn",
-            quote: "https://lh3.googleusercontent.com/d/1VKNSugAzAfb3H-mjF0zuQLD5BNYER0Y5",
-            groom: "https://lh3.googleusercontent.com/d/1MFiIDQrfpWc_8Iuz1rg6bT30dnn_-q_x",
-            bride: "https://lh3.googleusercontent.com/d/1m1Tt9j3QqLLKihLERTkkbiGOVd4cNvw2",
-            lovestory: "https://lh3.googleusercontent.com/d/1ypGt5YIIQa54w2rkIw-OyByw0Jgbgfiq",
-            event: "https://lh3.googleusercontent.com/d/1UcOyLxjrtWVesxR7YASrjgq9HA5bL499",
-            location: "https://lh3.googleusercontent.com/d/1aYiX7M2iTaAtHZQqCyNvO2rvfHmpbl9A",
-            gallery: "https://lh3.googleusercontent.com/d/1hJ5Cr0j20fCfZ9Lzsb7bR__NbeLB_0rQ",
-            gift: "https://lh3.googleusercontent.com/d/1JD0ja3uVTQPo9A9zYZfWen2jq3EJpq7x",
-            rsvp: "https://lh3.googleusercontent.com/d/1q-kb-AhcOJwjmeH_-jszY-uL9hTba0zP"
+            cover: BASE_PATH + "bg-cover.png",
+            opening: BASE_PATH + "bg-opening.png",
+            quote: BASE_PATH + "bg-quote.png",
+            groom: BASE_PATH + "bg-groom.png",
+            bride: BASE_PATH + "bg-bride.png",
+            lovestory: BASE_PATH + "bg-lovestory.png",
+            event: BASE_PATH + "bg-event.png",
+            location: BASE_PATH + "bg-location.png",
+            gallery: BASE_PATH + "bg-gallery.png",
+            gift: BASE_PATH + "bg-gift.png",
+            rsvp: BASE_PATH + "bg-rsvp.png"
         };
 
         document.getElementById('bgCover').style.backgroundImage = `url('${SECTION_BACKGROUNDS.cover}')`;
