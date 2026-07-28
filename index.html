@@ -863,16 +863,46 @@
         <section id="secLocation">
             <div class="bg-layer bg-slide-right" id="bgLocation"></div>
             <div class="section-content">
-                <h2 class="reveal">Lokasi Acara</h2>
+                <h2 class="reveal"></h2>
                 
                 <div class="map-card reveal">
-                    <div class="map-frame-wrapper">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d465.413459782759!2d116.25026045123631!3d-8.624092419176506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcdb70068b9c2c5%3A0xab45ef6350c3c680!2sPrisma%20Maggot!5e0!3m2!1sid!2sid!4v1784718098024!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    <!-- Detail Nama Tempat & Alamat Lengkap -->
+                    <div style="margin-bottom: 16px; text-align: center;">
+                        <h3 class="title-serif" style="font-size: 1.1rem; color: #fde68a; margin-bottom: 6px; font-weight: 600; letter-spacing: 1px;">
+                            Tempat Acara
+                        </h3>
+                        <p style="font-size: 0.8rem; color: #fce7f3; margin-bottom: 4px; line-height: 1.4;">
+                            Jurang Nangka, Dusun Gunung Agung,Desa Pringgarata, Kecamatan Pringgarata,Kabupaten Lombok Tengah
+                        </p>
+                        <p style="font-size: 0.72rem; color: #fdba74; font-style: italic;">
+                            (Patokan: Belakang SDN 2 Pringgarata)
+                        </p>
+                    </div>
+
+                    <!-- Frame Peta Interaktif Aesthetic -->
+                    <div class="map-frame-wrapper" style="height: 220px; border-radius: 12px; border: 1px solid rgba(253, 186, 116, 0.4); box-shadow: inset 0 0 15px rgba(0,0,0,0.5); position: relative; overflow: hidden; margin-bottom: 16px;">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d465.413459782759!2d116.25026045123631!3d-8.624092419176506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcdb70068b9c2c5%3A0xab45ef6350c3c680!2sPrisma%20Maggot!5e0!3m2!1sid!2sid!4v1784718098024!5m2!1sid!2sid" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0; filter: contrast(1.05) saturate(0.9);" 
+                            allowfullscreen="" 
+                            loading="lazy">
+                        </iframe>
                     </div>
                     
-                    <p style="font-size: 0.75rem; color: #fbcfe8; margin-bottom: 8px;">Klik tombol di bawah ini untuk peta lokasi acara:</p>
+                    <p style="font-size: 0.75rem; color: #fbcfe8; margin-bottom: 12px;">
+                        Petunjuk arah menuju lokasi dapat diakses melalui tombol di bawah ini:
+                    </p>
                     
-                    <a href="https://maps.app.goo.gl/bZ5hsPj6sQD1Jvjq8" target="_blank" class="btn">📍 Google Maps</a>
+                    <!-- Tombol Google Maps Elegan -->
+                    <a href="https://maps.app.goo.gl/bZ5hsPj6sQD1Jvjq8" target="_blank" class="btn-open" style="text-decoration: none; display: inline-flex; width: 100%; justify-content: center; box-shadow: 0 4px 15px rgba(251, 146, 60, 0.25);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        Buka Google Maps
+                    </a>
                 </div>
             </div>
         </section>
@@ -904,16 +934,16 @@
                 </p>
 
                 <div class="bank-card reveal">
-                    <div class="bank-title">Bank BCA</div>
-                    <div class="bank-number" id="rekening1">1234567890</div>
+                    <div class="bank-title">Bank Mandiri</div>
+                    <div class="bank-number" id="rekening1">1610015264489</div>
                     <div class="bank-holder">a.n. Nawawi Iqbal</div>
                     <button class="btn-copy" onclick="copyToClipboard('rekening1', this)">📋 Salin Rekening</button>
                 </div>
 
                 <div class="bank-card reveal">
-                    <div class="bank-title">Bank Mandiri / DANA</div>
-                    <div class="bank-number" id="rekening2">0987654321</div>
-                    <div class="bank-holder">a.n. Ira</div>
+                    <div class="bank-title">Bank BRI</div>
+                    <div class="bank-number" id="rekening2">474301051906538</div>
+                    <div class="bank-holder">a.n. Zikratul Aini</div>
                     <button class="btn-copy" onclick="copyToClipboard('rekening2', this)">📋 Salin Rekening</button>
                 </div>
             </div>
