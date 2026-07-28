@@ -23,7 +23,7 @@
             line-height: 1.5;
             text-align: center;
             overflow-x: hidden;
-            font-size: 14px; /* Base size lebih kecil untuk HP */
+            font-size: 14px;
         }
 
         /* --- LOCK SCROLL AWAL --- */
@@ -32,7 +32,7 @@
             height: 100vh !important;
         }
 
-        /* --- TYPOGRAPHY MODERN ELEGAN (UKURAN DIPERKECIL) --- */
+        /* --- TYPOGRAPHY MODERN ELEGAN --- */
         .title-serif {
             font-family: 'Cinzel', serif;
             font-weight: 500;
@@ -74,7 +74,7 @@
 
         /* --- CONTAINER & SECTIONS --- */
         .container {
-            max-width: 480px; /* Lebar HP presisi */
+            max-width: 480px;
             margin: 0 auto;
             background-color: #0d1322;
             box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
@@ -95,7 +95,7 @@
             overflow: hidden;
         }
 
-        /* --- ANIMASI COVER/SAMPUL NAIK PELAN (3.2 DETIK) --- */
+        /* --- ANIMASI COVER/SAMPUL DEPAN --- */
         .hero-cover {
             position: fixed;
             top: 0;
@@ -106,10 +106,10 @@
             height: 100vh;
             z-index: 9999;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
             overflow: hidden;
-            padding: 30px 20px;
+            padding: 15vh 20px 30px 20px;
             transition: transform 3.2s cubic-bezier(0.65, 0, 0.25, 1);
         }
 
@@ -129,9 +129,10 @@
             background-position: center;
             background-repeat: no-repeat;
             z-index: 1;
-            transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.8s ease;
+            transition: transform 3.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 3.5s ease;
             opacity: 0.85;
             filter: brightness(0.7) contrast(1.05);
+            will-change: transform, opacity;
         }
 
         .bg-layer-clear {
@@ -144,18 +145,19 @@
             background-position: center;
             background-repeat: no-repeat;
             z-index: 1;
-            transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.8s ease;
+            transition: transform 3.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 3.5s ease;
             opacity: 1 !important;
             filter: none !important;
+            will-change: transform, opacity;
         }
 
-        .bg-zoom-in { transform: scale(1.18); }
+        .bg-zoom-in { transform: scale(1.08); }
         section.active .bg-zoom-in, .hero-cover.active .bg-zoom-in { transform: scale(1); opacity: 0.9; }
 
-        .bg-slide-left { transform: translateX(-12%) scale(1.05); }
+        .bg-slide-left { transform: translateX(-5%) scale(1.03); }
         section.active .bg-slide-left { transform: translateX(0) scale(1); }
 
-        .bg-slide-right { transform: translateX(12%) scale(1.05); }
+        .bg-slide-right { transform: translateX(5%) scale(1.03); }
         section.active .bg-slide-right { transform: translateX(0) scale(1); }
 
         /* OVERLAY GRADIENT */
@@ -204,8 +206,8 @@
             position: relative;
             z-index: 3;
             width: 100%;
-            margin-top: auto;
-            margin-bottom: 25px;
+            margin-top: 0;
+            margin-bottom: 0;
         }
 
         .hero-subtitle {
@@ -261,6 +263,8 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 10;
         }
 
         .btn-open:hover {
@@ -268,7 +272,7 @@
             border-color: #ffffff;
         }
 
-        /* --- SLIDE MEMPELAI (UKURAN LEBIH COMPACT) --- */
+        /* --- SLIDE MEMPELAI --- */
         .couple-section {
             justify-content: flex-end;
             align-items: flex-start;
@@ -446,30 +450,34 @@
         .countdown-container {
             display: flex;
             justify-content: center;
-            gap: 8px;
-            margin: 14px 0 2px 0;
+            gap: 10px;
+            margin-top: 20px;
+            position: relative;
+            z-index: 3;
         }
         .countdown-item {
             background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(6px);
             color: #ffffff;
-            padding: 6px 8px;
-            border-radius: 6px;
-            min-width: 48px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            min-width: 58px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
         .countdown-item span {
             font-family: 'Cinzel', serif;
             display: block;
-            font-size: 1rem;
+            font-size: 1.15rem;
             font-weight: 600;
             line-height: 1.1;
         }
         .countdown-item .label {
-            font-size: 0.55rem;
+            font-size: 0.6rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            margin-top: 2px;
-            color: #94a3b8;
+            margin-top: 4px;
+            color: #cbd5e1;
         }
 
         /* --- MAP FRAME --- */
@@ -623,17 +631,69 @@
         .reveal {
             opacity: 0;
             transform: translateY(20px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transition: opacity 1s ease-out, transform 1s ease-out;
         }
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* STYLING KHUSUS SECTION EVENT */
+        .event-section-clean {
+            text-align: center;
+            padding: 50px 20px;
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            max-width: 420px;
+            margin: 0 auto;
+        }
+
+        .event-block {
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .event-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .event-icon {
+            width: 42px;
+            height: 42px;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .event-title-clean {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: #ffffff;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .event-date-clean {
+            font-size: 0.82rem;
+            color: #ffffff;
+            font-weight: 400;
+            margin-bottom: 2px;
+        }
+
+        .event-time-clean {
+            font-size: 0.8rem;
+            color: #ffffff;
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body class="no-scroll">
 
-    <!-- OVERLAY SAMPUL DEPAN (SLIDE UP 3.2 DETIK) -->
+    <!-- OVERLAY SAMPUL DEPAN -->
     <div class="hero-cover" id="coverOverlay">
         <div class="bg-layer bg-zoom-in" id="bgCover"></div>
         <div class="hero-content">
@@ -739,144 +799,60 @@
         </section>
 
         <!-- 6. JADWAL ACARA -->
-        <!-- CSS Tambahan / Perbaikan Khusus Section Event -->
-<style>
-    /* Styling khusus Jadwal Acara mengikuti gambar referensi */
-    .event-section-clean {
-        text-align: center;
-        padding: 50px 20px;
-        position: relative;
-        z-index: 3;
-        width: 100%;
-        max-width: 420px;
-        margin: 0 auto;
-    }
+        <section id="secEvent">
+            <div class="bg-layer bg-slide-left" id="bgEvent"></div>
+            
+            <div class="event-section-clean">
+                
+                <!-- BLOCK AKAD NIKAH -->
+                <div class="event-block reveal">
+                    <svg class="event-icon" viewBox="0 0 64 64" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="26" cy="36" r="16" />
+                        <circle cx="38" cy="36" r="16" />
+                        <path d="M22 18 L26 12 L30 18 Z" />
+                    </svg>
 
-    .event-block {
-        margin-bottom: 40px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+                    <h2 class="event-title-clean">Akad Nikah</h2>
+                    <div class="event-date-clean">Minggu, 25 Oktober 2026</div>
+                    <div class="event-time-clean">08.00 - selesai WIB</div>
+                </div>
 
-    .event-block:last-child {
-        margin-bottom: 0;
-    }
+                <!-- BLOCK RESEPSI -->
+                <div class="event-block reveal">
+                    <svg class="event-icon" viewBox="0 0 64 64" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 12 L30 12 L24 32 L24 48 M16 48 L32 48" />
+                        <path d="M46 12 L34 12 L40 32 L40 48 M32 48 L48 48" />
+                        <line x1="24" y1="22" x2="18" y2="22" />
+                        <line x1="40" y1="22" x2="46" y2="22" />
+                    </svg>
 
-    .event-icon {
-        width: 42px;
-        height: 42px;
-        margin-bottom: 10px;
-        opacity: 0.9;
-    }
+                    <h2 class="event-title-clean">Resepsi</h2>
+                    <div class="event-date-clean">Minggu, 25 Oktober 2026</div>
+                    <div class="event-time-clean">18.00 - 21.00 WIB</div>
 
-    .event-title-clean {
-        font-family: 'Cinzel', serif;
-        font-size: 1.5rem;
-        font-weight: 400;
-        color: #ffffff;
-        margin-bottom: 12px;
-        letter-spacing: 1px;
-    }
+                    <!-- COUNTDOWN TIMER REALTIME DITAROH DI BAWAH TANGGAL RESEPSI -->
+                    <div class="countdown-container">
+                        <div class="countdown-item">
+                            <span id="days">0</span>
+                            <div class="label">Hari</div>
+                        </div>
+                        <div class="countdown-item">
+                            <span id="hours">0</span>
+                            <div class="label">Jam</div>
+                        </div>
+                        <div class="countdown-item">
+                            <span id="minutes">0</span>
+                            <div class="label">Menit</div>
+                        </div>
+                        <div class="countdown-item">
+                            <span id="seconds">0</span>
+                            <div class="label">Detik</div>
+                        </div>
+                    </div>
+                </div>
 
-    .event-date-clean {
-        font-size: 0.82rem;
-        color: #ffffff;
-        font-weight: 400;
-        margin-bottom: 2px;
-    }
-
-    .event-time-clean {
-        font-size: 0.8rem;
-        color: #ffffff;
-        font-weight: 300;
-        margin-bottom: 16px;
-    }
-
-    .event-loc-icon {
-        width: 18px;
-        height: 18px;
-        margin-bottom: 8px;
-        color: #ffffff;
-    }
-
-    .event-venue-clean {
-        font-size: 0.85rem;
-        font-weight: 600;
-        letter-spacing: 1px;
-        color: #ffffff;
-        text-transform: uppercase;
-        margin-bottom: 4px;
-    }
-
-    .event-address-clean {
-        font-size: 0.78rem;
-        font-style: italic;
-        color: #e2e8f0;
-        font-weight: 300;
-        max-width: 280px;
-        line-height: 1.4;
-        margin-bottom: 16px;
-    }
-
-    .btn-maps-clean {
-        display: inline-block;
-        padding: 6px 20px;
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.4);
-        border-radius: 4px;
-        color: #ffffff;
-        text-decoration: none;
-        font-size: 0.75rem;
-        font-weight: 400;
-        letter-spacing: 0.5px;
-        transition: all 0.3s ease;
-        backdrop-filter: blur(4px);
-    }
-
-    .btn-maps-clean:hover {
-        background: rgba(255, 255, 255, 0.25);
-        border-color: #ffffff;
-    }
-</style>
-
-<!-- 6. JADWAL ACARA (STYLE SEPERTI GAMBAR REFERENSI) -->
-<section id="secEvent">
-    <div class="bg-layer bg-slide-left" id="bgEvent"></div>
-    
-    <div class="event-section-clean">
-        
-        <!-- BLOCK AKAD NIKAH -->
-        <div class="event-block reveal">
-            <!-- Ikon Cincin Pernikahan -->
-            <svg class="event-icon" viewBox="0 0 64 64" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="26" cy="36" r="16" />
-                <circle cx="38" cy="36" r="16" />
-                <path d="M22 18 L26 12 L30 18 Z" />
-            </svg>
-
-            <h2 class="event-title-clean">Akad Nikah</h2>
-            <div class="event-date-clean">Jum'at, 24 November 2025</div>
-            <div class="event-time-clean">08.00 - 09.00 WIB</div>
-        </div>
-
-        <!-- BLOCK RESEPSI -->
-        <div class="event-block reveal" style="margin-top: 20px;">
-            <!-- Ikon Gelas Toast -->
-            <svg class="event-icon" viewBox="0 0 64 64" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M18 12 L30 12 L24 32 L24 48 M16 48 L32 48" />
-                <path d="M46 12 L34 12 L40 32 L40 48 M32 48 L48 48" />
-                <line x1="24" y1="22" x2="18" y2="22" />
-                <line x1="40" y1="22" x2="46" y2="22" />
-            </svg>
-
-            <h2 class="event-title-clean">Resepsi</h2>
-            <div class="event-date-clean">Sabtu, 25 November 2025</div>
-            <div class="event-time-clean">18.00 - 21.00 WIB</div>
-        </div>
-
-    </div>
-</section>
+            </div>
+        </section>
 
         <!-- 7. DENAH & LOKASI ACARA -->
         <section id="secLocation">
@@ -1139,9 +1115,10 @@
             sections.forEach(section => sectionObserver.observe(section));
         });
 
-        // --- 5. COUNTDOWN TIMER ---
-        const eventDate = new Date("October 25, 2026 08:00:00").getTime();
-        setInterval(function() {
+        // --- 5. COUNTDOWN TIMER REALTIME (TARGET 25 OKTOBER 2026 18:00 WIB) ---
+        const eventDate = new Date("October 25, 2026 18:00:00").getTime();
+        
+        function updateCountdown() {
             const now = new Date().getTime();
             const distance = eventDate - now;
 
@@ -1152,12 +1129,15 @@
 
             const elemDays = document.getElementById("days");
             if(elemDays) {
-                elemDays.innerText = days >= 0 ? days : 0;
-                document.getElementById("hours").innerText = hours >= 0 ? hours : 0;
-                document.getElementById("minutes").innerText = minutes >= 0 ? minutes : 0;
-                document.getElementById("seconds").innerText = seconds >= 0 ? seconds : 0;
+                elemDays.innerText = distance > 0 ? days : 0;
+                document.getElementById("hours").innerText = distance > 0 ? hours : 0;
+                document.getElementById("minutes").innerText = distance > 0 ? minutes : 0;
+                document.getElementById("seconds").innerText = distance > 0 ? seconds : 0;
             }
-        }, 1000);
+        }
+        
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
     </script>
 
 </body>
