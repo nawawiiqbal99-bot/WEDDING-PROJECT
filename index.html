@@ -7,6 +7,9 @@
     <!-- GOOGLE FONTS -->
     <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     
+    <!-- QR CODE LIBRARY -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
     <style>
         /* --- RESET & BASIC STYLES --- */
         * {
@@ -451,16 +454,36 @@
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
         /* --- CARDS --- */
-        .event-card, .bank-card, .map-card {
+        .event-card, .bank-card, .map-card, .qr-card {
             background-color: rgba(35, 17, 24, 0.7);
             color: #ffffff;
             border: 1px solid rgba(253, 186, 116, 0.3);
             border-radius: 10px;
-            padding: 16px 14px;
+            padding: 20px 14px;
             margin: 10px 0;
             box-shadow: 0 8px 20px rgba(0,0,0,0.3);
             position: relative;
             z-index: 3;
+        }
+
+        /* --- QR CODE CARD --- */
+        .qr-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        #qrcode {
+            background: #ffffff;
+            padding: 12px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        #qrcode img {
+            display: block;
+            margin: 0 auto;
         }
 
         /* --- COUNTDOWN TIMER --- */
@@ -713,12 +736,6 @@
             margin-bottom: 10px;
         }
 
-        /* ============================================================
-           UNTUK MENGGESER POSISI KONTEN DI COVER SAMPUL 
-           Ubah nilai -50px di bawah ini:
-           - Ubah ke nilai minus yang lebih besar (-70px, -100px) untuk makin KE ATAS.
-           - Ubah ke nilai positif (30px, 50px) untuk menggeser KE BAWAH.
-           ============================================================ */
         #coverOverlay .hero-content {
             transform: translateY(60px) !important;
         }
@@ -997,6 +1014,24 @@
             </div>
         </section>
 
+        <!-- 11. CHECK-IN / QR CODE UNTUK TAMU -->
+        <section id="secQrCheckin">
+            <div class="bg-layer bg-zoom-in" id="bgQr"></div>
+            <div class="section-content">
+                <h2 class="reveal">Check-In Presensi</h2>
+                <p class="reveal" style="font-size: 0.78rem; color: #fbcfe8; margin-bottom: 14px;">
+                    Tunjukkan QR Code ini kepada penerima tamu saat tiba di lokasi acara:
+                </p>
+
+                <div class="qr-card reveal">
+                    <div id="qrcode"></div>
+                    <div style="font-size: 0.85rem; font-weight: 500; color: #fde68a;" id="qrGuestName">
+                        Tamu Undangan
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- FOOTER -->
         <footer class="reveal">
             <p style="font-size: 0.75rem; color: #fbcfe8;">Terima kasih atas doa & restu Anda</p>
@@ -1020,7 +1055,8 @@
             location: BASE_PATH + "bg-location.png.png",
             gallery: BASE_PATH + "bg-gallery.png.png",
             gift: BASE_PATH + "bg-gift.png",
-            rsvp: BASE_PATH + "bg-rsvp.png"
+            rsvp: BASE_PATH + "bg-rsvp.png",
+            qr: BASE_PATH + "bg-opening.png.png" // Menggunakan background yang serasi untuk QR
         };
 
         document.getElementById('bgCover').style.backgroundImage = `url('${SECTION_BACKGROUNDS.cover}')`;
@@ -1034,6 +1070,7 @@
         document.getElementById('bgGallery').style.backgroundImage = `url('${SECTION_BACKGROUNDS.gallery}')`;
         document.getElementById('bgGift').style.backgroundImage = `url('${SECTION_BACKGROUNDS.gift}')`;
         document.getElementById('bgRsvp').style.backgroundImage = `url('${SECTION_BACKGROUNDS.rsvp}')`;
+        document.getElementById('bgQr').style.backgroundImage = `url('${SECTION_BACKGROUNDS.qr}')`;
 
         document.getElementById('coverOverlay').classList.add('active');
 
@@ -1144,17 +1181,51 @@
             });
         }
 
+        /* --- GENERATE QR CODE DINAMIS --- */
+        function generateGuestQRCode(guestIdentifier) {
+            // URL dasar sistem Guest Checker / Scanner Anda
+            const GUEST_CHECKER_URL = "https://guestchecker-anda.com/checkin";
+            
+            // Format link QR code yang akan discan oleh scanner guest checker
+            const checkinData = `${GUEST_CHECKER_URL}?guest_id=${encodeURIComponent(guestIdentifier)}`;
+
+            const qrContainer = document.getElementById("qrcode");
+            if (qrContainer) {
+                qrContainer.innerHTML = ""; // Clear QR sebelumnya
+                new QRCode(qrContainer, {
+                    text: checkinData,
+                    width: 150,
+                    height: 150,
+                    colorDark : "#231118",
+                    colorLight : "#ffffff",
+                    correctLevel : QRCode.CorrectLevel.H
+                });
+            }
+        }
+
         document.addEventListener("DOMContentLoaded", function () {
             loadWishes();
 
             const urlParams = new URLSearchParams(window.location.search);
-            const guest = urlParams.get('to');
-            if (guest) {
+            // Mengambil 'id' unik (jika ada) atau 'to' (nama tamu)
+            const guestId = urlParams.get('id');
+            const guestName = urlParams.get('to');
+            
+            const identifier = guestId || guestName || "Guest_" + Math.floor(Math.random() * 1000);
+
+            if (guestName) {
                 const guestElem = document.getElementById('guestName');
-                if(guestElem) guestElem.innerText = guest;
+                if(guestElem) guestElem.innerText = guestName;
+                
+                const qrGuestElem = document.getElementById('qrGuestName');
+                if(qrGuestElem) qrGuestElem.innerText = guestName;
+
                 const rsvpInput = document.getElementById('rsvpName');
-                if (rsvpInput) rsvpInput.value = guest;
+                if (rsvpInput) rsvpInput.value = guestName;
             }
+
+            // Generate QR Code berdasarkan ID / nama tamu
+            generateGuestQRCode(identifier);
 
             const reveals = document.querySelectorAll(".reveal");
             const revealObserver = new IntersectionObserver((entries) => {
