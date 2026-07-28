@@ -249,7 +249,6 @@
             display: block;
         }
 
-        /* KHUSUS UNTUK MEMASTIKAN TEKS JUDUL DI SLIDE 1 KONSISTEN */
         #secOpening .hero-title {
             margin-bottom: 0 !important;
         }
@@ -713,6 +712,16 @@
             font-weight: 300;
             margin-bottom: 10px;
         }
+
+        /* ============================================================
+           UNTUK MENGGESER POSISI KONTEN DI COVER SAMPUL 
+           Ubah nilai -50px di bawah ini:
+           - Ubah ke nilai minus yang lebih besar (-70px, -100px) untuk makin KE ATAS.
+           - Ubah ke nilai positif (30px, 50px) untuk menggeser KE BAWAH.
+           ============================================================ */
+        #coverOverlay .hero-content {
+            transform: translateY(60px) !important;
+        }
     </style>
 </head>
 <body class="no-scroll">
@@ -885,7 +894,6 @@
                 <h2 class="reveal"></h2>
                 
                 <div class="map-card reveal">
-                    <!-- Detail Nama Tempat & Alamat Lengkap -->
                     <div style="margin-bottom: 16px; text-align: center;">
                         <h3 class="title-serif" style="font-size: 1.1rem; color: #fde68a; margin-bottom: 6px; font-weight: 600; letter-spacing: 1px;">
                             Tempat Acara
@@ -898,7 +906,6 @@
                         </p>
                     </div>
 
-                    <!-- Frame Peta Interaktif Aesthetic -->
                     <div class="map-frame-wrapper" style="height: 220px; border-radius: 12px; border: 1px solid rgba(253, 186, 116, 0.4); box-shadow: inset 0 0 15px rgba(0,0,0,0.5); position: relative; overflow: hidden; margin-bottom: 16px;">
                         <iframe 
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d465.413459782759!2d116.25026045123631!3d-8.624092419176506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcdb70068b9c2c5%3A0xab45ef6350c3c680!2sPrisma%20Maggot!5e0!3m2!1sid!2sid!4v1784718098024!5m2!1sid!2sid" 
@@ -914,7 +921,6 @@
                         Petunjuk arah menuju lokasi dapat diakses melalui tombol di bawah ini:
                     </p>
                     
-                    <!-- Tombol Google Maps Elegan -->
                     <a href="https://maps.app.goo.gl/bZ5hsPj6sQD1Jvjq8" target="_blank" class="btn-open" style="text-decoration: none; display: inline-flex; width: 100%; justify-content: center; box-shadow: 0 4px 15px rgba(251, 146, 60, 0.25);">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;">
                             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
@@ -926,7 +932,7 @@
             </div>
         </section>
 
-        <!-- 8. MOMEN BAHAGIA (GALERI FOTO PNG) -->
+        <!-- 8. MOMEN BAHAGIA -->
         <section id="secGallery">
             <div class="bg-layer bg-zoom-in" id="bgGallery"></div>
             <div class="section-content">
@@ -1001,7 +1007,6 @@
 
     <!-- JAVASCRIPT -->
     <script>
-        // --- 1. ATUR GAMBAR BACKGROUND FORMAT .PNG ---
         const BASE_PATH = "./";
 
         const SECTION_BACKGROUNDS = {
@@ -1032,7 +1037,6 @@
 
         document.getElementById('coverOverlay').classList.add('active');
 
-        // --- 2. KONTROL MUSIK & EFEK UNLOCK SLIDE UP ---
         const music = document.getElementById('bg-music');
         const btn = document.getElementById('musicToggleBtn');
         let isPlaying = false;
@@ -1043,7 +1047,6 @@
                 cover.classList.add('slide-up');
             }
 
-            // Membuka lock scroll secara penuh
             document.body.classList.remove('no-scroll');
 
             if (!isPlaying && music) {
@@ -1067,7 +1070,6 @@
             isPlaying = !isPlaying;
         }
 
-        // --- 3. FORM RSVP & REKENING ---
         const scriptURL = 'https://script.google.com/macros/s/AKfycbyTQG64yXQH0z1c9RuOHI9jZuAsnREFmeP-z9k9f15Pjk-Lt6YcHQfQz53qk6RVIP0u/exec';
         const rsvpForm = document.getElementById('rsvpForm');
         const submitBtn = document.getElementById('submitBtn');
@@ -1142,7 +1144,6 @@
             });
         }
 
-        // --- 4. INIT PAGE & OBSERVER ---
         document.addEventListener("DOMContentLoaded", function () {
             loadWishes();
 
@@ -1172,7 +1173,6 @@
             sections.forEach(section => sectionObserver.observe(section));
         });
 
-        // --- 5. COUNTDOWN TIMER REALTIME ---
         const eventDate = new Date("October 25, 2026 18:00:00").getTime();
         
         function updateCountdown() {
