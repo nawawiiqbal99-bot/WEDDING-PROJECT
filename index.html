@@ -1056,7 +1056,7 @@
             gallery: BASE_PATH + "bg-gallery.png.png",
             gift: BASE_PATH + "bg-gift.png",
             rsvp: BASE_PATH + "bg-rsvp.png",
-            qr: BASE_PATH + "bg-opening.png.png" // Menggunakan background yang serasi untuk QR
+            qr: BASE_PATH + "bg-opening.png.png"
         };
 
         document.getElementById('bgCover').style.backgroundImage = `url('${SECTION_BACKGROUNDS.cover}')`;
@@ -1182,50 +1182,50 @@
         }
 
         /* --- GENERATE QR CODE DINAMIS --- */
-function generateGuestQRCode(guestIdentifier) {
-    // 1. Tempelkan URL GitHub Pages untuk DAFTAR TAMU di sini
-    const GUEST_CHECKER_URL = "https://username-anda.github.io/nama-repo/DAFTAR TAMU.html";
-    
-    // 2. Format link agar membawa parameter 'nama' ke web DAFTAR TAMU
-    const checkinData = `${GUEST_CHECKER_URL}?nama=${encodeURIComponent(guestIdentifier)}`;
+        function generateGuestQRCode(guestIdentifier) {
+            // UBAH URL INI DENGAN LINK GITHUB PAGES UNTUK FILE DAFTAR TAMU ANDA
+            const GUEST_CHECKER_URL = "https://nawawiiqbal99-bot.github.io/GuestChecker.github.io/";
+            
+            // Menggabungkan URL web Daftar Tamu dengan parameter nama tamu
+            const checkinData = `${GUEST_CHECKER_URL}?nama=${encodeURIComponent(guestIdentifier)}`;
 
-    const qrContainer = document.getElementById("qrcode");
-    if (qrContainer) {
-        qrContainer.innerHTML = ""; // Clear QR sebelumnya
-        new QRCode(qrContainer, {
-            text: checkinData,
-            width: 150,
-            height: 150,
-            colorDark : "#231118",
-            colorLight : "#ffffff",
-            correctLevel : QRCode.CorrectLevel.H
-        });
-    }
-}
+            const qrContainer = document.getElementById("qrcode");
+            if (qrContainer) {
+                qrContainer.innerHTML = ""; // Reset QR sebelumnya
+                new QRCode(qrContainer, {
+                    text: checkinData,
+                    width: 150,
+                    height: 150,
+                    colorDark : "#231118",
+                    colorLight : "#ffffff",
+                    correctLevel : QRCode.CorrectLevel.H
+                });
+            }
+        }
 
         document.addEventListener("DOMContentLoaded", function () {
             loadWishes();
 
+            // Membaca parameter ?to=NamaTamu dari URL
             const urlParams = new URLSearchParams(window.location.search);
-            // Mengambil 'id' unik (jika ada) atau 'to' (nama tamu)
-            const guestId = urlParams.get('id');
-            const guestName = urlParams.get('to');
+            const guestName = urlParams.get('to') || urlParams.get('id') || "Tamu Undangan";
+
+            // Tampilkan Nama Tamu pada Sampul Depan
+            const guestElem = document.getElementById('guestName');
+            if(guestElem) guestElem.innerText = guestName;
             
-            const identifier = guestId || guestName || "Guest_" + Math.floor(Math.random() * 1000);
+            // Tampilkan Nama Tamu di bawah QR Code
+            const qrGuestElem = document.getElementById('qrGuestName');
+            if(qrGuestElem) qrGuestElem.innerText = guestName;
 
-            if (guestName) {
-                const guestElem = document.getElementById('guestName');
-                if(guestElem) guestElem.innerText = guestName;
-                
-                const qrGuestElem = document.getElementById('qrGuestName');
-                if(qrGuestElem) qrGuestElem.innerText = guestName;
-
-                const rsvpInput = document.getElementById('rsvpName');
-                if (rsvpInput) rsvpInput.value = guestName;
+            // Isikan nama tamu secara otomatis di form RSVP
+            const rsvpInput = document.getElementById('rsvpName');
+            if (rsvpInput && guestName !== "Tamu Undangan") {
+                rsvpInput.value = guestName;
             }
 
-            // Generate QR Code berdasarkan ID / nama tamu
-            generateGuestQRCode(identifier);
+            // Generate QR Code dinamis sesuai Nama Tamu
+            generateGuestQRCode(guestName);
 
             const reveals = document.querySelectorAll(".reveal");
             const revealObserver = new IntersectionObserver((entries) => {
