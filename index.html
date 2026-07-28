@@ -101,21 +101,26 @@
             overflow: hidden;
         }
 
-        /* --- COVER / SAMPUL DEPAN --- */
+        /* --- COVER & SLIDE 1 ALIGNMENT PRESISI --- */
+        .hero-cover, #secOpening {
+            height: 100vh;
+            width: 100%;
+            max-width: 480px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
         .hero-cover {
             position: fixed;
             top: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 100%;
-            max-width: 480px;
-            height: 100vh;
             z-index: 9999;
-            display: flex;
-            align-items: flex-start;
-            justify-content: center;
             overflow: hidden;
-            padding: 50vh 20px 30px 20px; 
             transition: transform 1.2s ease-in-out;
         }
 
@@ -207,21 +212,28 @@
             width: 100%;
         }
 
-        /* --- HERO & FIRST SLIDE CONTENT --- */
+        /* --- HERO CONTENT STRUCTURE --- */
         .hero-content {
             position: relative;
             z-index: 3;
             width: 100%;
-            margin-top: 0;
-            margin-bottom: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
         }
 
         .hero-subtitle {
             font-family: 'Alex Brush', cursive;
-            font-size: 2.1rem;
+            font-size: 2.2rem;
             color: #fde68a;
-            margin-bottom: 2px;
+            margin: 0 0 4px 0;
+            padding: 0;
+            line-height: 1;
             text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+            display: block;
         }
 
         .hero-title {
@@ -230,8 +242,16 @@
             font-weight: 500;
             letter-spacing: 1.5px;
             color: #ffffff;
-            margin-bottom: 25px;
+            margin: 0 0 16px 0;
+            padding: 0;
+            line-height: 1.2;
             text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+            display: block;
+        }
+
+        /* KHUSUS UNTUK MEMASTIKAN TEKS JUDUL DI SLIDE 1 KONSISTEN */
+        #secOpening .hero-title {
+            margin-bottom: 0 !important;
         }
 
         .guest-title-text {
@@ -493,7 +513,7 @@
             border: 0;
         }
 
-        /* --- GALLERY STYLING (ADAPTIF LANDSCAPE/PORTRAIT) --- */
+        /* --- GALLERY STYLING --- */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -511,7 +531,6 @@
             border: 1px solid rgba(253, 186, 116, 0.3);
             display: block;
         }
-        /* Tambahkan class .landscape pada tag <img> jika gambarnya landscape */
         .gallery-item.landscape {
             grid-column: span 2;
             height: 220px;
@@ -733,11 +752,11 @@
         </div>
 
         <!-- 1. SLIDE PERTAMA: PEMBUKAAN UNDANGAN -->
-        <section id="secOpening" style="justify-content: flex-end; padding-bottom: 150px;">
+        <section id="secOpening">
             <div class="bg-layer bg-zoom-in" id="bgOpening"></div>
-            <div class="hero-content" style="margin-bottom: 0;">
+            <div class="hero-content">
                 <div class="hero-subtitle">The Wedding of</div>
-                <div class="hero-title" style="margin-bottom: 0;">Iqbal & Ira</div>
+                <div class="hero-title">Iqbal & Ira</div>
             </div>
         </section>
 
@@ -914,11 +933,9 @@
                 <h2 class="reveal">Momen Bahagia</h2>
                 <p class="reveal" style="font-size: 0.78rem; color: #fbcfe8;">Kenangan manis perjalanan cinta kami</p>
                 
-                <!-- GALERI FOTO (TAMBAHKAN CLASS 'landscape' JIKA FOTO BERBENTUK LANDSCAPE) -->
                 <div class="gallery-grid reveal">
                     <img class="gallery-item" src="gallery1.png.png" alt="Galeri 1">
                     <img class="gallery-item" src="gallery2.png.png" alt="Galeri 2">
-                    <!-- Contoh foto landscape melebarkan 1 baris penuh: -->
                     <img class="gallery-item landscape" src="gallery3.png.png" alt="Galeri 3">
                 </div>
             </div>
@@ -963,7 +980,7 @@
                         <option value="Hadir">Hadir</option>
                         <option value="Tidak Hadir">Tidak Dapat Hadir</option>
                     </select>
-   
+                    
                     <textarea name="pesan" rows="3" placeholder="Ucapan & Doa Restu"></textarea>
                     <button type="submit" id="submitBtn" class="btn">Kirim Konfirmasi</button>
                 </form>
