@@ -167,7 +167,7 @@
             transition: transform var(--speed-cover-slide) var(--ease-smooth), visibility 0s var(--speed-cover-slide);
         }
 
-        /* --- MAIN HERO WRAPPER (MENYATUKAN SLIDE 1 & QUOTE MENUMPUK BEBAS SPACE) --- */
+        /* --- MAIN HERO WRAPPER --- */
         .main-hero-section {
             position: relative;
             width: 100%;
@@ -355,7 +355,7 @@
             border-color: #ffffff;
         }
 
-        /* --- STYLING KHUSUS QUOTE LANDSCAPE MENEMPEL PAS DI BAWAH SLIDE 1 --- */
+        /* --- QUOTE LANDSCAPE FRAME --- */
         .quote-landscape-frame {
             position: relative;
             width: 100%;
@@ -713,7 +713,7 @@
             border: 0;
         }
 
-        /* --- GALLERY STYLING (SESUAI GRID REFERENSI) --- */
+        /* --- GALLERY STYLING (GRID) --- */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -765,15 +765,17 @@
             transition: filter 0.3s ease;
         }
 
-        /* Lightbox Modal / Popup Galeri Fullscreen */
+        /* ==========================================================================
+           LIGHTBOX MODAL / POPUP GALERI FULLSCREEN (RESPONSIF - FOTO TAMPIL UTUH)
+           ========================================================================== */
         .lightbox-modal {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(15, 5, 10, 0.92);
-            backdrop-filter: blur(10px);
+            background: rgba(15, 5, 10, 0.94);
+            backdrop-filter: blur(12px);
             z-index: 99999;
             display: flex;
             align-items: center;
@@ -795,19 +797,20 @@
             align-items: center;
             justify-content: center;
             position: relative;
-            padding: 0;
-            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
             overflow: hidden;
         }
 
+        /* Penyesuaian Foto agar tidak terpotong di HP/Laptop */
         .lightbox-img {
-            max-width: 100%;
-            max-height: 100%;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            box-shadow: 0 0 30px rgba(0,0,0,0.8);
+            max-width: 90vw;
+            max-height: 90vh;
+            width: auto;
+            height: auto;
+            object-fit: contain; /* Menjaga rasio asli foto secara penuh */
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
             transition: transform 0.3s ease;
         }
 
@@ -815,27 +818,33 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            width: 36px;
-            height: 36px;
-            background: rgba(35, 17, 24, 0.8);
+            width: 40px;
+            height: 40px;
+            background: rgba(35, 17, 24, 0.85);
             border: 1px solid rgba(253, 186, 116, 0.6);
             color: #ffffff;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             cursor: pointer;
             z-index: 100000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            transition: background 0.3s;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(251, 146, 60, 0.8);
         }
 
         .lightbox-nav {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            width: 40px;
-            height: 40px;
-            background: rgba(35, 17, 24, 0.7);
+            width: 42px;
+            height: 42px;
+            background: rgba(35, 17, 24, 0.75);
             border: 1px solid rgba(253, 186, 116, 0.5);
             color: #ffffff;
             border-radius: 50%;
@@ -844,6 +853,12 @@
             justify-content: center;
             cursor: pointer;
             z-index: 100000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            transition: background 0.3s;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(251, 146, 60, 0.8);
         }
 
         .lightbox-prev { left: 15px; }
@@ -1095,7 +1110,7 @@
 </head>
 <body class="no-scroll">
 
-    <!-- FOTO BACKGROUND UTAMA (STAY / DIAM TIDAK BERGESER SAAT DI-SCROLL) -->
+    <!-- FOTO BACKGROUND UTAMA -->
     <div class="main-fixed-bg"></div>
 
     <!-- OVERLAY SAMPUL DEPAN -->
@@ -1132,9 +1147,8 @@
             </svg>
         </div>
 
-        <!-- 1 & 2. GABUNGAN SLIDE OPENING DENGAN FOTO QUOTE LANDSCAPE YANG MENEMPEL PERFEK -->
+        <!-- 1 & 2. GABUNGAN SLIDE OPENING DENGAN FOTO QUOTE LANDSCAPE -->
         <div class="main-hero-section">
-            <!-- Bagian Atas: Slide Pembukaan -->
             <div class="opening-part">
                 <div class="bg-layer bg-zoom-in" id="bgOpening"></div>
                 <div class="hero-content reveal-zoom">
@@ -1143,7 +1157,6 @@
                 </div>
             </div>
 
-            <!-- Bagian Bawah: Foto Quote Landscape Langsung Menempel -->
             <div class="quote-landscape-frame">
                 <div class="bg-layer bg-slide-right" id="bgQuote"></div>
                 <div class="quote-content-clean reveal-zoom">
@@ -1157,7 +1170,7 @@
             </div>
         </div>
 
-        <!-- 3. SLIDE MEMPELAI PRIA (GROOM) -->
+        <!-- 3. SLIDE MEMPELAI PRIA -->
         <section id="secGroom" class="couple-section">
             <div class="bg-layer-clear bg-slide-left" id="bgGroom"></div>
             <div class="couple-details reveal-left">
@@ -1332,7 +1345,7 @@
             </div>
         </section>
 
-        <!-- 8. MOMEN BAHAGIA (GRID SESUAI ACUAN GAMBAR REFERENSI) -->
+        <!-- 8. MOMEN BAHAGIA -->
         <section id="secGallery">
             <div class="bg-layer bg-slide-up" id="bgGallery"></div>
             <div class="section-content">
@@ -1370,10 +1383,10 @@
         </section>
 
         <!-- LIGHTBOX POPUP UNTUK GALERI FOTO INTERAKTIF -->
-        <div class="lightbox-modal" id="lightboxModal">
+        <div class="lightbox-modal" id="lightboxModal" onclick="closeLightboxOnBg(event)">
             <div class="lightbox-close" onclick="closeLightbox()">&times;</div>
-            <div class="lightbox-nav lightbox-prev" onclick="changeLightbox(-1)">&#10094;</div>
-            <div class="lightbox-nav lightbox-next" onclick="changeLightbox(1)">&#10095;</div>
+            <div class="lightbox-nav lightbox-prev" onclick="changeLightbox(-1, event)">&#10094;</div>
+            <div class="lightbox-nav lightbox-next" onclick="changeLightbox(1, event)">&#10095;</div>
             <div class="lightbox-content">
                 <img class="lightbox-img" id="lightboxImg" src="" alt="Full Photo">
             </div>
@@ -1615,7 +1628,7 @@
             }
         }
 
-        /* --- FITUR LIGHTBOX / POPUP GALERI --- */
+        /* --- FITUR LIGHTBOX / POPUP GALERI INTERAKTIF --- */
         let currentImageIndex = 0;
         let galleryImages = [];
 
@@ -1636,7 +1649,14 @@
             document.getElementById('lightboxModal').classList.remove('active');
         }
 
-        function changeLightbox(direction) {
+        function closeLightboxOnBg(e) {
+            if (e.target.id === 'lightboxModal' || e.target.classList.contains('lightbox-content')) {
+                closeLightbox();
+            }
+        }
+
+        function changeLightbox(direction, event) {
+            if(event) event.stopPropagation();
             currentImageIndex = (currentImageIndex + direction + galleryImages.length) % galleryImages.length;
             document.getElementById('lightboxImg').src = galleryImages[currentImageIndex];
         }
