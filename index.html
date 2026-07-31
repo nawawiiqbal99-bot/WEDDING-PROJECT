@@ -368,6 +368,22 @@
             margin-top: 0;
         }
 
+.fade-in-quote {
+  opacity: 0;
+  animation: fadeIn 2s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px); /* Efek sedikit naik saat muncul */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
         .quote-landscape-frame .bg-layer {
             position: absolute;
             top: 0;
@@ -1127,9 +1143,9 @@
             <div class="quote-landscape-frame">
                 <div class="bg-layer bg-slide-right" id="bgQuote"></div>
                 <div class="quote-content-clean reveal-zoom">
-                    <p class="quote-translation-clean">
-                        “Dan diantara ayat-ayat-Nya ialah Dia menciptakan untukmu istri-istri dari jenismu sendiri, supaya kamu merasa nyaman kepadanya, dan dijadikan-Nya di antaramu mawadah dan rahmah. Sesungguhnya pada yang demikian itu benar-benar terdapat tanda-tanda bagi kaum yang berpikir.”
-                    </p>
+<p class="fade-in-quote">
+  "Dan diantara ayat-ayat-Nya ialah Dia menciptakan untukmu istri-istri dari jenismu sendiri, supaya kamu merasa nyaman kepadanya, dan dijadikan-Nya di antaramu mawadah dan rahmah. Sesungguhnya pada yang demikian itu benar-benar terdapat tanda-tanda bagi kaum yang berpikir."
+</p>
                     <div class="quote-source-script">
                         Q.S. Ar-Rum: 21
                     </div>
