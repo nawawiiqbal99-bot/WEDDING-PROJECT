@@ -66,7 +66,7 @@
             background-repeat: no-repeat;
             z-index: 0;
             pointer-events: none;
-            opacity: 0.55; /* Ditingkatkan sedikit agar lebih terang */
+            opacity: 0.55;
         }
 
         /* --- LOCK SCROLL AWAL --- */
@@ -120,7 +120,7 @@
         .container {
             max-width: 480px;
             margin: 0 auto;
-            background-color: rgba(26, 10, 16, 0.45); /* Transparansi diperkecil agar lebih terang */
+            background-color: rgba(26, 10, 16, 0.45);
             box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
             position: relative;
             min-height: 100vh;
@@ -187,7 +187,7 @@
 
         .bg-layer {
             opacity: 0.95;
-            filter: brightness(0.9) contrast(1.02); /* Brightness dinaikkan agar cerah siang hari */
+            filter: brightness(0.9) contrast(1.02);
         }
 
         .bg-layer-clear {
@@ -211,9 +211,7 @@
         .bg-zoom-out { transform: scale(0.95); }
         section.active .bg-zoom-out { transform: scale(1.02); }
 
-        /* ==========================================================================
-           OVERLAY GRADIENT - DISESUAIKAN UNTUK SIANG HARI / OUTDOOR
-           ========================================================================== */
+        /* --- OVERLAY GRADIENT --- */
         section::before, .hero-cover::before {
             content: '';
             position: absolute;
@@ -836,8 +834,13 @@
             text-shadow: 0 1px 4px rgba(0,0,0,0.8);
         }
 
+        /* ==========================================================================
+           PENGATURAN POSISI TULISAN PADA COVER DEPAN
+           ========================================================================== */
         #coverOverlay .hero-content {
-            transform: translateY(0) !important;
+            /* Nilai 'translateY(80px)' digunakan untuk menggeser tulisan cover lebih rendah ke bawah. 
+               Ubah nilainya (misal: 60px, 100px, 120px) sesuai kebutuhan visual foto Anda. */
+            transform: translateY(64px) !important;
             transition: transform var(--speed-cover-slide) var(--ease-smooth), opacity var(--speed-cover-slide) ease;
         }
     </style>
@@ -968,7 +971,7 @@
 
                     <h2 class="event-title-clean">Akad Nikah</h2>
                     <div class="event-date-clean">Minggu, 25 Oktober 2026</div>
-                    <div class="event-time-clean">08.00 - selesai WIB</div>
+                    <div class="event-time-clean">08.00 - selesai WITA</div>
                 </div>
 
                 <!-- BLOCK RESEPSI -->
@@ -982,7 +985,7 @@
 
                     <h2 class="event-title-clean">Resepsi</h2>
                     <div class="event-date-clean">Minggu, 25 Oktober 2026</div>
-                    <div class="event-time-clean">18.00 - 21.00 WIB</div>
+                    <div class="event-time-clean">10.00 - Selesai</div>
 
                     <!-- COUNTDOWN TIMER REALTIME -->
                     <div class="countdown-container">
