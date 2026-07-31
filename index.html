@@ -368,21 +368,21 @@
             margin-top: 0;
         }
 
-.fade-in-quote {
-  opacity: 0;
-  animation: fadeIn 2s ease-in-out forwards;
-}
+        .fade-in-quote {
+            opacity: 0;
+            animation: fadeIn 2s ease-in-out forwards;
+        }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px); /* Efek sedikit naik saat muncul */
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
         .quote-landscape-frame .bg-layer {
             position: absolute;
@@ -396,7 +396,6 @@
             z-index: 1;
         }
 
-        /* Overlay Gelap Langsung pada Gambar untuk Keterbacaan Teks */
         .quote-landscape-frame::after {
             content: '';
             position: absolute;
@@ -408,7 +407,6 @@
             z-index: 2;
         }
 
-        /* Konten Quote Tanpa Card / Blur / Box */
         .quote-content-clean {
             position: relative;
             z-index: 3;
@@ -417,7 +415,6 @@
             text-align: center;
         }
 
-        /* Terjemahan Ayat (Teks Putih Bersih) */
         .quote-translation-clean {
             font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 0.8rem;
@@ -428,7 +425,6 @@
             text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
         }
 
-        /* Sumber QS dengan Font Script / Handwriting */
         .quote-source-script {
             font-family: 'Alex Brush', cursive;
             font-size: 2.1rem;
@@ -514,7 +510,6 @@
             z-index: 3;
         }
 
-        /* Container Foto Menggantung */
         .hanging-photos-wrapper {
             position: relative;
             z-index: 3;
@@ -718,11 +713,11 @@
             border: 0;
         }
 
-        /* --- GALLERY STYLING --- */
+        /* --- GALLERY STYLING (SESUAI GRID REFERENSI) --- */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
+            gap: 8px;
             margin-top: 14px;
             position: relative;
             z-index: 3;
@@ -732,9 +727,9 @@
         .gallery-wrapper {
             position: relative;
             width: 100%;
-            border-radius: 8px;
+            border-radius: 4px;
             overflow: hidden;
-            border: 1px solid rgba(253, 186, 116, 0.4);
+            border: 1px solid rgba(253, 186, 116, 0.3);
             box-shadow: 0 4px 12px rgba(0,0,0,0.4);
             cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -745,20 +740,29 @@
             box-shadow: 0 6px 18px rgba(251, 146, 60, 0.3);
         }
 
+        /* Foto Portrait (Sebelah-sebelahan) */
+        .gallery-wrapper.portrait {
+            grid-column: span 1;
+        }
+
+        .gallery-wrapper.portrait .gallery-item {
+            height: 250px;
+        }
+
+        /* Foto Landscape (Lebar memenuhi 2 kolom) */
         .gallery-wrapper.landscape {
             grid-column: span 2;
         }
 
+        .gallery-wrapper.landscape .gallery-item {
+            height: 210px;
+        }
+
         .gallery-item {
             width: 100%;
-            height: 190px;
             object-fit: cover;
             display: block;
             transition: filter 0.3s ease;
-        }
-
-        .gallery-wrapper.landscape .gallery-item {
-            height: 210px;
         }
 
         /* Lightbox Modal / Popup Galeri Fullscreen */
@@ -1143,9 +1147,9 @@
             <div class="quote-landscape-frame">
                 <div class="bg-layer bg-slide-right" id="bgQuote"></div>
                 <div class="quote-content-clean reveal-zoom">
-<p class="fade-in-quote">
-  "Dan diantara ayat-ayat-Nya ialah Dia menciptakan untukmu istri-istri dari jenismu sendiri, supaya kamu merasa nyaman kepadanya, dan dijadikan-Nya di antaramu mawadah dan rahmah. Sesungguhnya pada yang demikian itu benar-benar terdapat tanda-tanda bagi kaum yang berpikir."
-</p>
+                    <p class="fade-in-quote">
+                      "Dan diantara ayat-ayat-Nya ialah Dia menciptakan untukmu istri-istri dari jenismu sendiri, supaya kamu merasa nyaman kepadanya, dan dijadikan-Nya di antaramu mawadah dan rahmah. Sesungguhnya pada yang demikian itu benar-benar terdapat tanda-tanda bagi kaum yang berpikir."
+                    </p>
                     <div class="quote-source-script">
                         Q.S. Ar-Rum: 21
                     </div>
@@ -1328,7 +1332,7 @@
             </div>
         </section>
 
-        <!-- 8. MOMEN BAHAGIA -->
+        <!-- 8. MOMEN BAHAGIA (GRID SESUAI ACUAN GAMBAR REFERENSI) -->
         <section id="secGallery">
             <div class="bg-layer bg-slide-up" id="bgGallery"></div>
             <div class="section-content">
@@ -1336,14 +1340,30 @@
                 <p class="reveal" style="font-size: 0.78rem; color: #fbcfe8;">Kenangan manis perjalanan cinta kami</p>
                 
                 <div class="gallery-grid reveal-zoom" id="galleryGrid">
-                    <div class="gallery-wrapper">
+                    <!-- Baris 1: 2 Portrait -->
+                    <div class="gallery-wrapper portrait">
                         <img class="gallery-item" src="gallery1.png.png" alt="Galeri 1" onclick="openLightbox(0)">
                     </div>
-                    <div class="gallery-wrapper">
+                    <div class="gallery-wrapper portrait">
                         <img class="gallery-item" src="gallery2.png.png" alt="Galeri 2" onclick="openLightbox(1)">
                     </div>
+
+                    <!-- Baris 2: 1 Landscape -->
                     <div class="gallery-wrapper landscape">
                         <img class="gallery-item" src="gallery3.png.png" alt="Galeri 3" onclick="openLightbox(2)">
+                    </div>
+
+                    <!-- Baris 3: 2 Portrait -->
+                    <div class="gallery-wrapper portrait">
+                        <img class="gallery-item" src="gallery4.png.png" alt="Galeri 4" onclick="openLightbox(3)" onerror="this.src='gallery1.png.png'">
+                    </div>
+                    <div class="gallery-wrapper portrait">
+                        <img class="gallery-item" src="gallery5.png.png" alt="Galeri 5" onclick="openLightbox(4)" onerror="this.src='gallery2.png.png'">
+                    </div>
+
+                    <!-- Baris 4: 1 Landscape -->
+                    <div class="gallery-wrapper landscape">
+                        <img class="gallery-item" src="gallery6.png.png" alt="Galeri 6" onclick="openLightbox(5)" onerror="this.src='gallery3.png.png'">
                     </div>
                 </div>
             </div>
@@ -1595,29 +1615,6 @@
             }
         }
 
-        /* --- DETEKSI ORIENTASI FOTO GALERI SECARA OTOMATIS --- */
-        function adjustGalleryOrientation() {
-            const galleryWrappers = document.querySelectorAll('.gallery-wrapper');
-            galleryWrappers.forEach(wrapper => {
-                const img = wrapper.querySelector('img');
-                if (!img) return;
-
-                function checkDimensions() {
-                    if (img.naturalWidth && img.naturalHeight) {
-                        if (img.naturalHeight > img.naturalWidth) {
-                            wrapper.classList.add('landscape');
-                        }
-                    }
-                }
-
-                if (img.complete) {
-                    checkDimensions();
-                } else {
-                    img.addEventListener('load', checkDimensions);
-                }
-            });
-        }
-
         /* --- FITUR LIGHTBOX / POPUP GALERI --- */
         let currentImageIndex = 0;
         let galleryImages = [];
@@ -1646,7 +1643,6 @@
 
         document.addEventListener("DOMContentLoaded", function () {
             loadWishes();
-            adjustGalleryOrientation();
             initGalleryInteractivity();
 
             const urlParams = new URLSearchParams(window.location.search);
