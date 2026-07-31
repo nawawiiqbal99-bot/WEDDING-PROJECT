@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Undangan Pernikahan - Iqbal & Ira</title>
     <!-- GOOGLE FONTS -->
-    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     
     <!-- QR CODE LIBRARY -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
@@ -240,9 +240,9 @@
         section.lovestory-section::before {
             background: linear-gradient(
                 to bottom,
-                rgba(26, 10, 16, 0.55) 0%,
-                rgba(26, 10, 16, 0.35) 50%,
-                rgba(26, 10, 16, 0.15) 100%
+                rgba(26, 10, 16, 0.65) 0%,
+                rgba(26, 10, 16, 0.45) 50%,
+                rgba(26, 10, 16, 0.35) 100%
             ) !important;
         }
 
@@ -398,19 +398,91 @@
         /* --- LOVE STORY SECTION --- */
         .lovestory-section {
             justify-content: flex-start;
-            align-items: flex-start;
-            text-align: left;
-            padding: 45px 20px 30px 20px;
+            align-items: center;
+            text-align: center;
+            padding: 40px 15px 30px 15px;
         }
 
         .lovestory-title {
             font-family: 'Alex Brush', cursive;
-            font-size: 2.2rem;
+            font-size: 2.3rem;
             color: #fde68a;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
             text-shadow: 0 2px 8px rgba(0,0,0,0.8);
             position: relative;
             z-index: 3;
+        }
+
+        /* Container Foto Menggantung */
+        .hanging-photos-wrapper {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            padding: 0 5px;
+        }
+
+        .hanging-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            animation: floatSwing 4s ease-in-out infinite alternate;
+        }
+
+        .hanging-item:nth-child(1) { animation-delay: 0s; animation-duration: 3.8s; }
+        .hanging-item:nth-child(2) { animation-delay: 0.6s; animation-duration: 4.2s; }
+        .hanging-item:nth-child(3) { animation-delay: 1.2s; animation-duration: 3.9s; }
+        .hanging-item:nth-child(4) { animation-delay: 1.8s; animation-duration: 4.4s; }
+
+        @keyframes floatSwing {
+            0% {
+                transform: translateY(0px) rotate(-3deg);
+            }
+            100% {
+                transform: translateY(10px) rotate(3deg);
+            }
+        }
+
+        .hanging-string {
+            width: 1px;
+            height: 25px;
+            background: linear-gradient(to bottom, rgba(253, 186, 116, 0.8), rgba(253, 186, 116, 0.3));
+            position: relative;
+        }
+
+        .hanging-string::before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -3px;
+            width: 7px;
+            height: 7px;
+            background: #fde68a;
+            border-radius: 50%;
+            box-shadow: 0 0 6px rgba(253, 230, 138, 0.8);
+        }
+
+        .hanging-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(5px);
+            padding: 4px;
+            border-radius: 6px;
+            border: 1px solid rgba(253, 186, 116, 0.5);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+            transform: rotate(0deg);
+            transition: transform 0.3s ease;
+        }
+
+        .hanging-card img {
+            width: 65px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 4px;
+            display: block;
         }
 
         .story-container {
@@ -420,6 +492,12 @@
             flex-direction: column;
             gap: 12px;
             width: 100%;
+            text-align: left;
+            background: rgba(35, 17, 24, 0.45);
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(253, 186, 116, 0.25);
+            backdrop-filter: blur(4px);
         }
 
         .story-item {
@@ -435,39 +513,117 @@
             color: #ffffff;
         }
 
-        /* --- KUTIPAN --- */
+        /* ==========================================
+           STYLING KHUSUS QUOTE AR-RUM (PERBAIKAN BACKGROUND LANDSCAPE & TAMPILAN LEBIH RINGKAS)
+           ========================================== */
         .quote-section {
-            justify-content: start;
-            padding-bottom: 50px;
+            padding: 20px 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+            min-height: 100vh;
         }
 
-        .quote-content {
+        /* Pengaturan khusus background quote agar bergaya landscape ramping (tidak full) */
+        #quote .bg-layer {
+            background-size: contain !important;
+            background-position: center !important;
+            width: 92%;
+            height: 220px;
+            top: 50%;
+            left: 4%;
+            transform: translateY(-50%);
+            border-radius: 12px;
+            opacity: 0.45 !important;
+            filter: brightness(0.8) contrast(1.1);
+        }
+
+        section#quote.active #quote .bg-layer {
+            transform: translateY(-50%) scale(1);
+        }
+
+        .quote-container {
+            max-width: 380px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px 16px;
             position: relative;
             z-index: 3;
-            max-width: 95%;
-            background: transparent;
-            padding: 0;
-            border: none;
-            text-align: left;
+            background: rgba(35, 17, 24, 0.65);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 14px;
+            border: 1px solid rgba(253, 186, 116, 0.35);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
         }
 
-        .quote-text {
+        /* Watermark Tanda Kutip Elegan */
+        .quote-icon {
             font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
-            font-size: 1.2rem;
-            line-height: 1.5;
-            color: #fce7f3;
-            margin-bottom: 6px;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.9);
+            font-size: 50px;
+            line-height: 1;
+            color: #fde68a;
+            opacity: 0.25;
+            margin-bottom: -25px;
+            margin-top: -10px;
+            pointer-events: none;
         }
 
-        .quote-author {
-            display: block;
-            font-family: 'Cinzel', serif;
-            font-size: 0.80rem;
-            color: #fdba74;
-            letter-spacing: 1px;
+        /* Teks Arab Ringkas */
+        .quote-arabic {
+            font-family: 'Amiri', serif;
+            font-size: 1.15rem;
+            line-height: 1.85;
+            color: #fde68a;
+            direction: rtl;
+            margin-bottom: 10px;
+            font-weight: 700;
             text-shadow: 0 2px 6px rgba(0,0,0,0.9);
+        }
+
+        /* Terjemahan Ringkas */
+        .quote-translation {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-size: 0.85rem;
+            line-height: 1.45;
+            color: #fce7f3;
+            margin-bottom: 12px;
+            font-weight: 400;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.9);
+        }
+
+        /* Sumber Ayat */
+        .quote-source {
+            display: inline-block;
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            color: #fdba74;
+            text-transform: uppercase;
+            padding-top: 8px;
+            border-top: 1px solid rgba(253, 186, 116, 0.2);
+        }
+
+        /* Responsif Quote untuk Layar Kecil */
+        @media (max-width: 480px) {
+            .quote-container {
+                padding: 18px 12px;
+                max-width: 90%;
+            }
+            .quote-arabic {
+                font-size: 1.05rem;
+                line-height: 1.75;
+            }
+            .quote-translation {
+                font-size: 0.8rem;
+            }
+            .quote-source {
+                font-size: 0.65rem;
+            }
         }
 
         /* --- FLOATING MUSIC BUTTON --- */
@@ -584,18 +740,122 @@
             z-index: 3;
             width: 100%;
         }
+        
+        .gallery-wrapper {
+            position: relative;
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(253, 186, 116, 0.4);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-wrapper:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 18px rgba(251, 146, 60, 0.3);
+        }
+
+        .gallery-wrapper.landscape {
+            grid-column: span 2;
+        }
+
         .gallery-item {
             width: 100%;
-            height: 200px;
+            height: 190px;
             object-fit: cover;
-            border-radius: 6px;
-            border: 1px solid rgba(253, 186, 116, 0.3);
             display: block;
+            transition: filter 0.3s ease;
         }
-        .gallery-item.landscape {
-            grid-column: span 2;
-            height: 220px;
+
+        .gallery-wrapper.landscape .gallery-item {
+            height: 210px;
         }
+
+        /* Lightbox Modal / Popup Galeri Fullscreen */
+        .lightbox-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(15, 5, 10, 0.92);
+            backdrop-filter: blur(10px);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .lightbox-modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .lightbox-content {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 100%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            box-shadow: 0 0 30px rgba(0,0,0,0.8);
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 36px;
+            height: 36px;
+            background: rgba(35, 17, 24, 0.8);
+            border: 1px solid rgba(253, 186, 116, 0.6);
+            color: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 100000;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: rgba(35, 17, 24, 0.7);
+            border: 1px solid rgba(253, 186, 116, 0.5);
+            color: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100000;
+        }
+
+        .lightbox-prev { left: 15px; }
+        .lightbox-next { right: 15px; }
 
         /* --- HADIAH DIGITAL --- */
         .bank-title {
@@ -838,8 +1098,6 @@
            PENGATURAN POSISI TULISAN PADA COVER DEPAN
            ========================================================================== */
         #coverOverlay .hero-content {
-            /* Nilai 'translateY(80px)' digunakan untuk menggeser tulisan cover lebih rendah ke bawah. 
-               Ubah nilainya (misal: 60px, 100px, 120px) sesuai kebutuhan visual foto Anda. */
             transform: translateY(60px) !important;
             transition: transform var(--speed-cover-slide) var(--ease-smooth), opacity var(--speed-cover-slide) ease;
         }
@@ -893,14 +1151,25 @@
             </div>
         </section>
 
-        <!-- 2. KUTIPAN POLOS -->
-        <section id="contentSection" class="quote-section">
-            <div class="bg-layer bg-slide-up" id="bgQuote"></div>
-            <div class="quote-content reveal">
-                <p class="quote-text">
-                    "Di antara tanda-tanda (kebesaran)-Nya ialah bahwa Dia menciptakan pasangan-pasangan untukmu dari (jenis) dirimu sendiri agar kamu merasa tenteram kepadanya. Dia menjadikan di antaramu rasa cinta dan kasih sayang.."
+        <!-- 2. SECTION QUOTE AR-RUM -->
+        <section id="quote" class="quote-section">
+            <div class="bg-layer bg-slide-right" id="bgQuote"></div>
+            <div class="quote-container reveal-zoom">
+                <!-- Elemen Dekoratif Tanda Kutip -->
+                <div class="quote-icon">“</div>
+
+                <!-- Teks Arab Ringkas -->
+                <div class="quote-arabic">
+                    وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً
+                </div>
+
+                <!-- Terjemahan Ringkas -->
+                <p class="quote-translation">
+                    "Dan di antara tanda-tanda (kebesaran-Nya) ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang."
                 </p>
-                <span class="quote-author">AR-RUM: 21</span>
+
+                <!-- Sumber Ayat -->
+                <span class="quote-source">— QS. AR-RUM: 21 —</span>
             </div>
         </section>
 
@@ -942,6 +1211,35 @@
         <section id="secLoveStory" class="lovestory-section">
             <div class="bg-layer-clear bg-zoom-out" id="bgLoveStory"></div>
             <div class="lovestory-title reveal">Love Story</div>
+            
+            <!-- 4 FOTO MENGGANTUNG KECIL DENGAN ANIMASI FLOATING LUCU -->
+            <div class="hanging-photos-wrapper reveal-zoom">
+                <div class="hanging-item">
+                    <div class="hanging-string"></div>
+                    <div class="hanging-card">
+                        <img src="story1.png.png" alt="Love Story 1" onerror="this.src='gallery1.png.png'">
+                    </div>
+                </div>
+                <div class="hanging-item">
+                    <div class="hanging-string"></div>
+                    <div class="hanging-card">
+                        <img src="story2.png.png" alt="Love Story 2" onerror="this.src='gallery2.png.png'">
+                    </div>
+                </div>
+                <div class="hanging-item">
+                    <div class="hanging-string"></div>
+                    <div class="hanging-card">
+                        <img src="story3.png.png" alt="Love Story 3" onerror="this.src='gallery3.png.png'">
+                    </div>
+                </div>
+                <div class="hanging-item">
+                    <div class="hanging-string"></div>
+                    <div class="hanging-card">
+                        <img src="story4.png.png" alt="Love Story 4" onerror="this.src='bg-lovestory.png.png'">
+                    </div>
+                </div>
+            </div>
+
             <div class="story-container reveal">
                 <div class="story-item">
                     <strong>Awal Bertemu -</strong> Pertama kali kami saling mengenal di bangku perkuliahan, dari tatapan singkat yang akhirnya menjadi awal mula kisah kasih kami.
@@ -1063,13 +1361,29 @@
                 <h2 class="reveal">Momen Bahagia</h2>
                 <p class="reveal" style="font-size: 0.78rem; color: #fbcfe8;">Kenangan manis perjalanan cinta kami</p>
                 
-                <div class="gallery-grid reveal-zoom">
-                    <img class="gallery-item" src="gallery1.png.png" alt="Galeri 1">
-                    <img class="gallery-item" src="gallery2.png.png" alt="Galeri 2">
-                    <img class="gallery-item landscape" src="gallery3.png.png" alt="Galeri 3">
+                <div class="gallery-grid reveal-zoom" id="galleryGrid">
+                    <div class="gallery-wrapper">
+                        <img class="gallery-item" src="gallery1.png.png" alt="Galeri 1" onclick="openLightbox(0)">
+                    </div>
+                    <div class="gallery-wrapper">
+                        <img class="gallery-item" src="gallery2.png.png" alt="Galeri 2" onclick="openLightbox(1)">
+                    </div>
+                    <div class="gallery-wrapper landscape">
+                        <img class="gallery-item" src="gallery3.png.png" alt="Galeri 3" onclick="openLightbox(2)">
+                    </div>
                 </div>
             </div>
         </section>
+
+        <!-- LIGHTBOX POPUP UNTUK GALERI FOTO INTERAKTIF -->
+        <div class="lightbox-modal" id="lightboxModal">
+            <div class="lightbox-close" onclick="closeLightbox()">&times;</div>
+            <div class="lightbox-nav lightbox-prev" onclick="changeLightbox(-1)">&#10094;</div>
+            <div class="lightbox-nav lightbox-next" onclick="changeLightbox(1)">&#10095;</div>
+            <div class="lightbox-content">
+                <img class="lightbox-img" id="lightboxImg" src="" alt="Full Photo">
+            </div>
+        </div>
 
         <!-- 9. HADIAH DIGITAL -->
         <section id="secGift">
@@ -1307,8 +1621,59 @@
             }
         }
 
+        /* --- DETEKSI ORIENTASI FOTO GALERI SECARA OTOMATIS --- */
+        function adjustGalleryOrientation() {
+            const galleryWrappers = document.querySelectorAll('.gallery-wrapper');
+            galleryWrappers.forEach(wrapper => {
+                const img = wrapper.querySelector('img');
+                if (!img) return;
+
+                function checkDimensions() {
+                    if (img.naturalWidth && img.naturalHeight) {
+                        if (img.naturalHeight > img.naturalWidth) {
+                            wrapper.classList.add('landscape');
+                        }
+                    }
+                }
+
+                if (img.complete) {
+                    checkDimensions();
+                } else {
+                    img.addEventListener('load', checkDimensions);
+                }
+            });
+        }
+
+        /* --- FITUR LIGHTBOX / POPUP GALERI --- */
+        let currentImageIndex = 0;
+        let galleryImages = [];
+
+        function initGalleryInteractivity() {
+            const imgs = document.querySelectorAll('.gallery-item');
+            galleryImages = Array.from(imgs).map(img => img.src);
+        }
+
+        function openLightbox(index) {
+            currentImageIndex = index;
+            const modal = document.getElementById('lightboxModal');
+            const lightboxImg = document.getElementById('lightboxImg');
+            lightboxImg.src = galleryImages[currentImageIndex];
+            modal.classList.add('active');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightboxModal').classList.remove('active');
+        }
+
+        function changeLightbox(direction) {
+            currentImageIndex = (currentImageIndex + direction + galleryImages.length) % galleryImages.length;
+            document.getElementById('lightboxImg').src = galleryImages[currentImageIndex];
+        }
+
         document.addEventListener("DOMContentLoaded", function () {
             loadWishes();
+            adjustGalleryOrientation();
+            initGalleryInteractivity();
 
             const urlParams = new URLSearchParams(window.location.search);
             const guestName = urlParams.get('to') || urlParams.get('id') || "Tamu Undangan";
