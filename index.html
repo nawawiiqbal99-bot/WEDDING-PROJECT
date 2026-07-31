@@ -16,16 +16,16 @@
            ========================================================================== */
         :root {
             /* Kecepatan animasi tulisan/elemen saat muncul ketika di-scroll */
-            --speed-text-reveal: 5.8s; 
+            --speed-text-reveal: 1.2s; 
 
             /* Kecepatan transisi pergerakan foto background antar-section */
-            --speed-bg-transition: 7.5s;
+            --speed-bg-transition: 1.5s;
 
             /* Kecepatan saat tombol "Open Invitation" ditekan (Slide Cover) */
-            --speed-cover-slide: 7.2s;
+            --speed-cover-slide: 1.2s;
 
             /* Kurva Kehalusan Pergerakan (Easing) */
-            --ease-smooth: cubic-bezier(0.1, 1, 0.1, 1);
+            --ease-smooth: cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         /* --- RESET & BASIC STYLES --- */
@@ -51,7 +51,7 @@
             -webkit-overflow-scrolling: touch;
         }
 
-        /* --- BACKGROUND UTAMA FIXED (TETAP MENEMPEL DIBALAKANG) --- */
+        /* --- BACKGROUND UTAMA FIXED --- */
         .main-fixed-bg {
             position: fixed;
             top: 0;
@@ -60,7 +60,6 @@
             width: 100%;
             max-width: 480px;
             height: 100vh;
-            background-image: url('./stick-bg.jpeg'); 
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -76,7 +75,7 @@
             touch-action: none;
         }
 
-        /* --- TYPOGRAPHY MODERN ELEGAN --- */
+        /* --- TYPOGRAPHY --- */
         .title-serif {
             font-family: 'Cinzel', serif;
             font-weight: 500;
@@ -140,7 +139,7 @@
             overflow: hidden;
         }
 
-        /* --- COVER & SLIDE 1 ALIGNMENT PRESISI --- */
+        /* --- COVER OVERLAY --- */
         .hero-cover {
             height: 100vh;
             width: 100%;
@@ -213,21 +212,21 @@
             filter: none !important;
         }
 
-        /* PERGERAKAN BACKGROUND BERVARIASI */
-        .bg-zoom-in { transform: scale(1.12); }
+        /* PERGERAKAN BACKGROUND */
+        .bg-zoom-in { transform: scale(1.1); }
         section.active .bg-zoom-in, .hero-cover.active .bg-zoom-in, .main-hero-section.active .bg-zoom-in { transform: scale(1); opacity: 0.9; }
 
-        .bg-slide-left { transform: translateX(-6%) scale(1.06); }
+        .bg-slide-left { transform: translateX(-5%) scale(1.05); }
         section.active .bg-slide-left { transform: translateX(0) scale(1); }
 
-        .bg-slide-right { transform: translateX(6%) scale(1.06); }
+        .bg-slide-right { transform: translateX(5%) scale(1.05); }
         section.active .bg-slide-right, .main-hero-section.active .bg-slide-right { transform: translateX(0) scale(1); }
 
-        .bg-slide-up { transform: translateY(6%) scale(1.06); }
+        .bg-slide-up { transform: translateY(5%) scale(1.05); }
         section.active .bg-slide-up { transform: translateY(0) scale(1); }
 
         .bg-zoom-out { transform: scale(0.95); }
-        section.active .bg-zoom-out { transform: scale(1.02); }
+        section.active .bg-zoom-out { transform: scale(1); }
 
         /* --- OVERLAY GRADIENT --- */
         section::before, .hero-cover::before, .opening-part::before {
@@ -239,9 +238,9 @@
             height: 100%;
             background: linear-gradient(
                 to bottom,
-                rgba(35, 17, 24, 0.12) 0%,
-                rgba(35, 17, 24, 0.38) 60%,
-                rgba(35, 17, 24, 0.55) 100%
+                rgba(35, 17, 24, 0.15) 0%,
+                rgba(35, 17, 24, 0.45) 60%,
+                rgba(35, 17, 24, 0.65) 100%
             );
             z-index: 2;
         }
@@ -250,8 +249,8 @@
             background: linear-gradient(
                 to bottom,
                 rgba(0, 0, 0, 0) 40%,
-                rgba(26, 10, 16, 0.35) 75%,
-                rgba(26, 10, 16, 0.55) 100%
+                rgba(26, 10, 16, 0.4) 75%,
+                rgba(26, 10, 16, 0.6) 100%
             ) !important;
         }
 
@@ -344,7 +343,7 @@
             font-weight: 500;
             letter-spacing: 0.5px;
             cursor: pointer;
-            transition: all 0.5s ease;
+            transition: all 0.3s ease;
             box-shadow: 0 4px 12px rgba(0,0,0,0.5);
             position: relative;
             z-index: 10;
@@ -366,22 +365,6 @@
             overflow: hidden;
             z-index: 3;
             margin-top: 0;
-        }
-
-        .fade-in-quote {
-            opacity: 0;
-            animation: fadeIn 2s ease-in-out forwards;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .quote-landscape-frame .bg-layer {
@@ -488,7 +471,7 @@
             text-decoration: none;
             font-size: 0.75rem;
             font-weight: 400;
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
         }
 
@@ -535,12 +518,8 @@
         .hanging-item:nth-child(4) { animation-delay: 1.8s; animation-duration: 4.4s; }
 
         @keyframes floatSwing {
-            0% {
-                transform: translateY(0px) rotate(-3deg);
-            }
-            100% {
-                transform: translateY(10px) rotate(3deg);
-            }
+            0% { transform: translateY(0px) rotate(-3deg); }
+            100% { transform: translateY(8px) rotate(3deg); }
         }
 
         .hanging-string {
@@ -569,8 +548,6 @@
             border-radius: 6px;
             border: 1px solid rgba(253, 186, 116, 0.5);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-            transform: rotate(0deg);
-            transition: transform 0.3s ease;
         }
 
         .hanging-card img {
@@ -626,7 +603,7 @@
             cursor: pointer;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
             z-index: 999;
-            transition: transform 0.4s ease;
+            transition: transform 0.3s ease;
         }
         .music-btn.playing { animation: spin 5s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
@@ -644,7 +621,6 @@
             z-index: 3;
         }
 
-        /* --- QR CODE CARD --- */
         .qr-card {
             display: flex;
             flex-direction: column;
@@ -701,11 +677,13 @@
         /* --- MAP FRAME --- */
         .map-frame-wrapper {
             width: 100%;
-            height: 120px;
-            border-radius: 6px;
+            height: 220px;
+            border-radius: 12px;
             overflow: hidden;
-            border: 1px solid rgba(253, 186, 116, 0.3);
-            margin-bottom: 10px;
+            border: 1px solid rgba(253, 186, 116, 0.4);
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
+            position: relative;
+            margin-bottom: 16px;
         }
         .map-frame-wrapper iframe {
             width: 100%;
@@ -713,7 +691,7 @@
             border: 0;
         }
 
-        /* --- GALLERY STYLING (GRID) --- */
+        /* --- GALLERY STYLING --- */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -740,34 +718,18 @@
             box-shadow: 0 6px 18px rgba(251, 146, 60, 0.3);
         }
 
-        /* Foto Portrait (Sebelah-sebelahan) */
-        .gallery-wrapper.portrait {
-            grid-column: span 1;
-        }
-
-        .gallery-wrapper.portrait .gallery-item {
-            height: 250px;
-        }
-
-        /* Foto Landscape (Lebar memenuhi 2 kolom) */
-        .gallery-wrapper.landscape {
-            grid-column: span 2;
-        }
-
-        .gallery-wrapper.landscape .gallery-item {
-            height: 210px;
-        }
+        .gallery-wrapper.portrait { grid-column: span 1; }
+        .gallery-wrapper.portrait .gallery-item { height: 250px; }
+        .gallery-wrapper.landscape { grid-column: span 2; }
+        .gallery-wrapper.landscape .gallery-item { height: 210px; }
 
         .gallery-item {
             width: 100%;
             object-fit: cover;
             display: block;
-            transition: filter 0.3s ease;
         }
 
-        /* ==========================================================================
-           LIGHTBOX MODAL / POPUP GALERI FULLSCREEN (RESPONSIF - FOTO TAMPIL UTUH)
-           ========================================================================== */
+        /* --- LIGHTBOX MODAL --- */
         .lightbox-modal {
             position: fixed;
             top: 0;
@@ -782,7 +744,7 @@
             justify-content: center;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.4s ease;
+            transition: opacity 0.3s ease;
         }
 
         .lightbox-modal.active {
@@ -802,16 +764,14 @@
             overflow: hidden;
         }
 
-        /* Penyesuaian Foto agar tidak terpotong di HP/Laptop */
         .lightbox-img {
             max-width: 90vw;
             max-height: 90vh;
             width: auto;
             height: auto;
-            object-fit: contain; /* Menjaga rasio asli foto secara penuh */
+            object-fit: contain;
             border-radius: 8px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-            transition: transform 0.3s ease;
         }
 
         .lightbox-close {
@@ -830,12 +790,6 @@
             font-size: 1.5rem;
             cursor: pointer;
             z-index: 100000;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-            transition: background 0.3s;
-        }
-
-        .lightbox-close:hover {
-            background: rgba(251, 146, 60, 0.8);
         }
 
         .lightbox-nav {
@@ -853,12 +807,6 @@
             justify-content: center;
             cursor: pointer;
             z-index: 100000;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-            transition: background 0.3s;
-        }
-
-        .lightbox-nav:hover {
-            background: rgba(251, 146, 60, 0.8);
         }
 
         .lightbox-prev { left: 15px; }
@@ -892,7 +840,7 @@
             border-radius: 16px;
             font-size: 0.72rem;
             cursor: pointer;
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
         }
 
         /* --- BUTTONS --- */
@@ -905,13 +853,12 @@
             border-radius: 16px;
             font-size: 0.75rem;
             margin-top: 6px;
-            transition: all 0.4s;
+            transition: all 0.3s;
             border: 1px solid rgba(253, 186, 116, 0.6);
             cursor: pointer;
             position: relative;
             z-index: 3;
         }
-        .btn:hover { background-color: #f97316; color: #ffffff; }
 
         /* --- FORM (RSVP) --- */
         form {
@@ -982,69 +929,47 @@
         /* --- ANIMASI SCROLL REVEAL --- */
         .reveal {
             opacity: 0;
-            transform: translateY(25px) scale(0.98);
-            filter: blur(5px);
-            transition: opacity var(--speed-text-reveal) var(--ease-smooth), 
-                        transform var(--speed-text-reveal) var(--ease-smooth), 
-                        filter var(--speed-text-reveal) var(--ease-smooth);
-            will-change: transform, opacity, filter;
+            transform: translateY(20px);
+            transition: opacity var(--speed-text-reveal) var(--ease-smooth), transform var(--speed-text-reveal) var(--ease-smooth);
+            will-change: transform, opacity;
         }
         .reveal.active {
             opacity: 1;
-            transform: translateY(0) scale(1);
-            filter: blur(0);
+            transform: translateY(0);
         }
 
-        /* VARIASI REVEAL KIRI & KANAN */
         .reveal-left {
             opacity: 0;
-            transform: translateX(-30px) scale(0.98);
-            filter: blur(5px);
-            transition: opacity var(--speed-text-reveal) var(--ease-smooth), 
-                        transform var(--speed-text-reveal) var(--ease-smooth), 
-                        filter var(--speed-text-reveal) var(--ease-smooth);
-            will-change: transform, opacity, filter;
+            transform: translateX(-25px);
+            transition: opacity var(--speed-text-reveal) var(--ease-smooth), transform var(--speed-text-reveal) var(--ease-smooth);
+            will-change: transform, opacity;
         }
         .reveal-left.active {
             opacity: 1;
-            transform: translateX(0) scale(1);
-            filter: blur(0);
+            transform: translateX(0);
         }
 
         .reveal-right {
             opacity: 0;
-            transform: translateX(30px) scale(0.98);
-            filter: blur(5px);
-            transition: opacity var(--speed-text-reveal) var(--ease-smooth), 
-                        transform var(--speed-text-reveal) var(--ease-smooth), 
-                        filter var(--speed-text-reveal) var(--ease-smooth);
-            will-change: transform, opacity, filter;
+            transform: translateX(25px);
+            transition: opacity var(--speed-text-reveal) var(--ease-smooth), transform var(--speed-text-reveal) var(--ease-smooth);
+            will-change: transform, opacity;
         }
         .reveal-right.active {
             opacity: 1;
-            transform: translateX(0) scale(1);
-            filter: blur(0);
+            transform: translateX(0);
         }
 
         .reveal-zoom {
             opacity: 0;
-            transform: scale(0.92);
-            filter: blur(6px);
-            transition: opacity var(--speed-text-reveal) var(--ease-smooth), 
-                        transform var(--speed-text-reveal) var(--ease-smooth), 
-                        filter var(--speed-text-reveal) var(--ease-smooth);
-            will-change: transform, opacity, filter;
+            transform: scale(0.95);
+            transition: opacity var(--speed-text-reveal) var(--ease-smooth), transform var(--speed-text-reveal) var(--ease-smooth);
+            will-change: transform, opacity;
         }
         .reveal-zoom.active {
             opacity: 1;
             transform: scale(1);
-            filter: blur(0);
         }
-
-        /* STAGGER EFFECT DELAY */
-        .reveal:nth-child(2), .reveal-left:nth-child(2), .reveal-right:nth-child(2) { transition-delay: 0.4s; }
-        .reveal:nth-child(3), .reveal-left:nth-child(3), .reveal-right:nth-child(3) { transition-delay: 0.8s; }
-        .reveal:nth-child(4), .reveal-left:nth-child(4), .reveal-right:nth-child(4) { transition-delay: 1.2s; }
 
         /* STYLING KHUSUS SECTION EVENT */
         .event-section-clean {
@@ -1064,9 +989,7 @@
             align-items: center;
         }
 
-        .event-block:last-child {
-            margin-bottom: 0;
-        }
+        .event-block:last-child { margin-bottom: 0; }
 
         .event-icon {
             width: 42px;
@@ -1101,9 +1024,8 @@
             text-shadow: 0 1px 4px rgba(0,0,0,0.8);
         }
 
-        /* POSISI TULISAN ON COVER OVERLAY */
         #coverOverlay .hero-content {
-            transform: translateY(60px) !important;
+            transform: translateY(20px);
             transition: transform var(--speed-cover-slide) var(--ease-smooth), opacity var(--speed-cover-slide) ease;
         }
     </style>
@@ -1111,7 +1033,7 @@
 <body class="no-scroll">
 
     <!-- FOTO BACKGROUND UTAMA -->
-    <div class="main-fixed-bg"></div>
+    <div class="main-fixed-bg" id="mainFixedBg"></div>
 
     <!-- OVERLAY SAMPUL DEPAN -->
     <div class="hero-cover" id="coverOverlay">
@@ -1160,7 +1082,7 @@
             <div class="quote-landscape-frame">
                 <div class="bg-layer bg-slide-right" id="bgQuote"></div>
                 <div class="quote-content-clean reveal-zoom">
-                    <p class="fade-in-quote">
+                    <p class="quote-translation-clean">
                       "Dan diantara ayat-ayat-Nya ialah Dia menciptakan untukmu istri-istri dari jenismu sendiri, supaya kamu merasa nyaman kepadanya, dan dijadikan-Nya di antaramu mawadah dan rahmah. Sesungguhnya pada yang demikian itu benar-benar terdapat tanda-tanda bagi kaum yang berpikir."
                     </p>
                     <div class="quote-source-script">
@@ -1209,31 +1131,8 @@
             <div class="bg-layer-clear bg-zoom-out" id="bgLoveStory"></div>
             <div class="lovestory-title reveal">Love Story</div>
             
-            <div class="hanging-photos-wrapper reveal-zoom">
-                <div class="hanging-item">
-                    <div class="hanging-string"></div>
-                    <div class="hanging-card">
-                        <img src="story1.png.png" alt="Love Story 1" onerror="this.src='gallery1.png.png'">
-                    </div>
-                </div>
-                <div class="hanging-item">
-                    <div class="hanging-string"></div>
-                    <div class="hanging-card">
-                        <img src="story2.png.png" alt="Love Story 2" onerror="this.src='gallery2.png.png'">
-                    </div>
-                </div>
-                <div class="hanging-item">
-                    <div class="hanging-string"></div>
-                    <div class="hanging-card">
-                        <img src="story3.png.png" alt="Love Story 3" onerror="this.src='gallery3.png.png'">
-                    </div>
-                </div>
-                <div class="hanging-item">
-                    <div class="hanging-string"></div>
-                    <div class="hanging-card">
-                        <img src="story4.png.png" alt="Love Story 4" onerror="this.src='bg-lovestory.png.png'">
-                    </div>
-                </div>
+            <div class="hanging-photos-wrapper reveal-zoom" id="hangingPhotosWrapper">
+                <!-- Diisi otomatis oleh JavaScript -->
             </div>
 
             <div class="story-container reveal">
@@ -1276,7 +1175,7 @@
 
                     <h2 class="event-title-clean">Resepsi</h2>
                     <div class="event-date-clean">Minggu, 25 Oktober 2026</div>
-                    <div class="event-time-clean">10.00 - Selesai</div>
+                    <div class="event-time-clean">10.00 - Selesai WITA</div>
 
                     <div class="countdown-container">
                         <div class="countdown-item">
@@ -1312,14 +1211,14 @@
                             Tempat Acara
                         </h3>
                         <p style="font-size: 0.8rem; color: #fce7f3; margin-bottom: 4px; line-height: 1.4;">
-                            Jurang Nangka, Dusun Gunung Agung,Desa Pringgarata, Kecamatan Pringgarata,Kabupaten Lombok Tengah
+                            Jurang Nangka, Dusun Gunung Agung, Desa Pringgarata, Kecamatan Pringgarata, Kabupaten Lombok Tengah
                         </p>
                         <p style="font-size: 0.72rem; color: #fdba74; font-style: italic;">
                             (Patokan: Belakang SDN 2 Pringgarata)
                         </p>
                     </div>
 
-                    <div class="map-frame-wrapper" style="height: 220px; border-radius: 12px; border: 1px solid rgba(253, 186, 116, 0.4); box-shadow: inset 0 0 15px rgba(0,0,0,0.5); position: relative; overflow: hidden; margin-bottom: 16px;">
+                    <div class="map-frame-wrapper">
                         <iframe 
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d465.413459782759!2d116.25026045123631!3d-8.624092419176506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcdb70068b9c2c5%3A0xab45ef6350c3c680!2sPrisma%20Maggot!5e0!3m2!1sid!2sid!4v1784718098024!5m2!1sid!2sid" 
                             width="100%" 
@@ -1353,36 +1252,12 @@
                 <p class="reveal" style="font-size: 0.78rem; color: #fbcfe8;">Kenangan manis perjalanan cinta kami</p>
                 
                 <div class="gallery-grid reveal-zoom" id="galleryGrid">
-                    <!-- Baris 1: 2 Portrait -->
-                    <div class="gallery-wrapper portrait">
-                        <img class="gallery-item" src="gallery1.png.png" alt="Galeri 1" onclick="openLightbox(0)">
-                    </div>
-                    <div class="gallery-wrapper portrait">
-                        <img class="gallery-item" src="gallery2.png.png" alt="Galeri 2" onclick="openLightbox(1)">
-                    </div>
-
-                    <!-- Baris 2: 1 Landscape -->
-                    <div class="gallery-wrapper landscape">
-                        <img class="gallery-item" src="gallery3.png.png" alt="Galeri 3" onclick="openLightbox(2)">
-                    </div>
-
-                    <!-- Baris 3: 2 Portrait -->
-                    <div class="gallery-wrapper portrait">
-                        <img class="gallery-item" src="gallery4.png.png" alt="Galeri 4" onclick="openLightbox(3)" onerror="this.src='gallery1.png.png'">
-                    </div>
-                    <div class="gallery-wrapper portrait">
-                        <img class="gallery-item" src="gallery5.png.png" alt="Galeri 5" onclick="openLightbox(4)" onerror="this.src='gallery2.png.png'">
-                    </div>
-
-                    <!-- Baris 4: 1 Landscape -->
-                    <div class="gallery-wrapper landscape">
-                        <img class="gallery-item" src="gallery6.png.png" alt="Galeri 6" onclick="openLightbox(5)" onerror="this.src='gallery3.png.png'">
-                    </div>
+                    <!-- Diisi otomatis oleh JavaScript -->
                 </div>
             </div>
         </section>
 
-        <!-- LIGHTBOX POPUP UNTUK GALERI FOTO INTERAKTIF -->
+        <!-- LIGHTBOX POPUP -->
         <div class="lightbox-modal" id="lightboxModal" onclick="closeLightboxOnBg(event)">
             <div class="lightbox-close" onclick="closeLightbox()">&times;</div>
             <div class="lightbox-nav lightbox-prev" onclick="changeLightbox(-1, event)">&#10094;</div>
@@ -1470,35 +1345,97 @@
 
     <!-- JAVASCRIPT -->
     <script>
-        const BASE_PATH = "./";
+        /* ==========================================================================
+           KONFIGURASI PUSAT GAMBAR & FOTO (CLOUDINARY)
+           Silakan ganti "YOUR_CLOUD_NAME" dengan Cloud Name dari akun Cloudinary Anda.
+           ========================================================================== */
+        const CLOUDINARY_BASE_URL = "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/";
 
-        const SECTION_BACKGROUNDS = {
-            cover: BASE_PATH + "cover.jpeg",
-            opening: BASE_PATH + "opening.jpeg",
-            quote: BASE_PATH + "quote.jpeg",
-            groom: BASE_PATH + "groom.jpeg",
-            bride: BASE_PATH + "bride.jpeg",
-            lovestory: BASE_PATH + "love-story.jpeg",
-            event: BASE_PATH + "event.jpeg",
-            location: BASE_PATH + "bg-location.png.png",
-            gallery: BASE_PATH + "bg-gallery.png.png",
-            gift: BASE_PATH + "bg-gift.png",
-            rsvp: BASE_PATH + "bg-rsvp.png",
-            qr: BASE_PATH + "bg-opening.png.png"
+        const CONFIG_GAMBAR = {
+            // Foto Background Utama & Tiap Section
+            backgrounds: {
+                mainFixed: CLOUDINARY_BASE_URL + "https://res.cloudinary.com/pzfosxf1/image/upload/f_auto,q_auto/v1785493198/stick-bg_py8oar.jpg",
+                cover: CLOUDINARY_BASE_URL + "https://res.cloudinary.com/pzfosxf1/image/upload/v1785493197/opening_uspqw4.jpg",
+                opening: CLOUDINARY_BASE_URL + "https://res.cloudinary.com/pzfosxf1/image/upload/v1785493197/opening_uspqw4.jpg",
+                quote: CLOUDINARY_BASE_URL + "https://res.cloudinary.com/pzfosxf1/image/upload/f_auto,q_auto/v1785493197/quote_ohk4ct.jpg",
+                groom: CLOUDINARY_BASE_URL + "https://res.cloudinary.com/pzfosxf1/image/upload/f_auto,q_auto/v1785493207/groom_efal86.jpg",
+                bride: CLOUDINARY_BASE_URL + "https://res.cloudinary.com/pzfosxf1/image/upload/f_auto,q_auto/v1785493197/bride_ejhhr7.jpg",
+                lovestory: CLOUDINARY_BASE_URL + "https://res.cloudinary.com/pzfosxf1/image/upload/f_auto,q_auto/v1785493197/love-story_nkysgc.jpg",
+                event: CLOUDINARY_BASE_URL + "https://res.cloudinary.com/pzfosxf1/image/upload/f_auto,q_auto/v1785493196/event_m7byhm.jpg",
+                location: CLOUDINARY_BASE_URL + "v1/bg-location.png",
+                gallery: CLOUDINARY_BASE_URL + "v1/bg-gallery.png",
+                gift: CLOUDINARY_BASE_URL + "v1/bg-gift.png",
+                rsvp: CLOUDINARY_BASE_URL + "v1/bg-rsvp.png",
+                qr: CLOUDINARY_BASE_URL + "v1/bg-opening.png"
+            },
+
+            // Foto Love Story (Gantung)
+            loveStory: [
+                CLOUDINARY_BASE_URL + "v1/story1.jpg",
+                CLOUDINARY_BASE_URL + "v1/story2.jpg",
+                CLOUDINARY_BASE_URL + "v1/story3.jpg",
+                CLOUDINARY_BASE_URL + "v1/story4.jpg"
+            ],
+
+            // Galeri Foto (Momen Bahagia)
+            gallery: [
+                { url: CLOUDINARY_BASE_URL + "v1/gallery1.jpg", layout: "portrait", alt: "Galeri 1" },
+                { url: CLOUDINARY_BASE_URL + "v1/gallery2.jpg", layout: "portrait", alt: "Galeri 2" },
+                { url: CLOUDINARY_BASE_URL + "v1/gallery3.jpg", layout: "landscape", alt: "Galeri 3" },
+                { url: CLOUDINARY_BASE_URL + "v1/gallery4.jpg", layout: "portrait", alt: "Galeri 4" },
+                { url: CLOUDINARY_BASE_URL + "v1/gallery5.jpg", layout: "portrait", alt: "Galeri 5" },
+                { url: CLOUDINARY_BASE_URL + "v1/gallery6.jpg", layout: "landscape", alt: "Galeri 6" }
+            ]
         };
 
-        document.getElementById('bgCover').style.backgroundImage = `url('${SECTION_BACKGROUNDS.cover}')`;
-        document.getElementById('bgOpening').style.backgroundImage = `url('${SECTION_BACKGROUNDS.opening}')`;
-        document.getElementById('bgQuote').style.backgroundImage = `url('${SECTION_BACKGROUNDS.quote}')`;
-        document.getElementById('bgGroom').style.backgroundImage = `url('${SECTION_BACKGROUNDS.groom}')`;
-        document.getElementById('bgBride').style.backgroundImage = `url('${SECTION_BACKGROUNDS.bride}')`;
-        document.getElementById('bgLoveStory').style.backgroundImage = `url('${SECTION_BACKGROUNDS.lovestory}')`;
-        document.getElementById('bgEvent').style.backgroundImage = `url('${SECTION_BACKGROUNDS.event}')`;
-        document.getElementById('bgLocation').style.backgroundImage = `url('${SECTION_BACKGROUNDS.location}')`;
-        document.getElementById('bgGallery').style.backgroundImage = `url('${SECTION_BACKGROUNDS.gallery}')`;
-        document.getElementById('bgGift').style.backgroundImage = `url('${SECTION_BACKGROUNDS.gift}')`;
-        document.getElementById('bgRsvp').style.backgroundImage = `url('${SECTION_BACKGROUNDS.rsvp}')`;
-        document.getElementById('bgQr').style.backgroundImage = `url('${SECTION_BACKGROUNDS.qr}')`;
+        /* ==========================================================================
+           INITIALIZATION & RENDERING
+           ========================================================================== */
+        function renderImages() {
+            const mainBg = document.getElementById('mainFixedBg');
+            if (mainBg) mainBg.style.backgroundImage = `url('${CONFIG_GAMBAR.backgrounds.mainFixed}')`;
+
+            const bgMappings = {
+                'bgCover': CONFIG_GAMBAR.backgrounds.cover,
+                'bgOpening': CONFIG_GAMBAR.backgrounds.opening,
+                'bgQuote': CONFIG_GAMBAR.backgrounds.quote,
+                'bgGroom': CONFIG_GAMBAR.backgrounds.groom,
+                'bgBride': CONFIG_GAMBAR.backgrounds.bride,
+                'bgLoveStory': CONFIG_GAMBAR.backgrounds.lovestory,
+                'bgEvent': CONFIG_GAMBAR.backgrounds.event,
+                'bgLocation': CONFIG_GAMBAR.backgrounds.location,
+                'bgGallery': CONFIG_GAMBAR.backgrounds.gallery,
+                'bgGift': CONFIG_GAMBAR.backgrounds.gift,
+                'bgRsvp': CONFIG_GAMBAR.backgrounds.rsvp,
+                'bgQr': CONFIG_GAMBAR.backgrounds.qr
+            };
+
+            for (const [id, url] of Object.entries(bgMappings)) {
+                const elem = document.getElementById(id);
+                if (elem) elem.style.backgroundImage = `url('${url}')`;
+            }
+
+            const hangingContainer = document.getElementById('hangingPhotosWrapper');
+            if (hangingContainer) {
+                hangingContainer.innerHTML = CONFIG_GAMBAR.loveStory.map((url, idx) => `
+                    <div class="hanging-item">
+                        <div class="hanging-string"></div>
+                        <div class="hanging-card">
+                            <img src="${url}" alt="Love Story ${idx + 1}">
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            const galleryContainer = document.getElementById('galleryGrid');
+            if (galleryContainer) {
+                galleryContainer.innerHTML = CONFIG_GAMBAR.gallery.map((item, idx) => `
+                    <div class="gallery-wrapper ${item.layout}">
+                        <img class="gallery-item" src="${item.url}" alt="${item.alt}" onclick="openLightbox(${idx})">
+                    </div>
+                `).join('');
+            }
+        }
 
         document.getElementById('coverOverlay').classList.add('active');
 
@@ -1508,9 +1445,7 @@
 
         function openInvitation() {
             const cover = document.getElementById('coverOverlay');
-            if (cover) {
-                cover.classList.add('slide-up');
-            }
+            if (cover) cover.classList.add('slide-up');
 
             document.body.classList.remove('no-scroll');
 
@@ -1609,7 +1544,6 @@
             });
         }
 
-        /* --- GENERATE QR CODE DINAMIS --- */
         function generateGuestQRCode(guestIdentifier) {
             const GUEST_CHECKER_URL = "https://nawawiiqbal99-bot.github.io/GuestChecker.github.io/";
             const checkinData = `${GUEST_CHECKER_URL}?nama=${encodeURIComponent(guestIdentifier)}`;
@@ -1628,20 +1562,13 @@
             }
         }
 
-        /* --- FITUR LIGHTBOX / POPUP GALERI INTERAKTIF --- */
         let currentImageIndex = 0;
-        let galleryImages = [];
-
-        function initGalleryInteractivity() {
-            const imgs = document.querySelectorAll('.gallery-item');
-            galleryImages = Array.from(imgs).map(img => img.src);
-        }
 
         function openLightbox(index) {
             currentImageIndex = index;
             const modal = document.getElementById('lightboxModal');
             const lightboxImg = document.getElementById('lightboxImg');
-            lightboxImg.src = galleryImages[currentImageIndex];
+            lightboxImg.src = CONFIG_GAMBAR.gallery[currentImageIndex].url;
             modal.classList.add('active');
         }
 
@@ -1657,13 +1584,14 @@
 
         function changeLightbox(direction, event) {
             if(event) event.stopPropagation();
-            currentImageIndex = (currentImageIndex + direction + galleryImages.length) % galleryImages.length;
-            document.getElementById('lightboxImg').src = galleryImages[currentImageIndex];
+            const total = CONFIG_GAMBAR.gallery.length;
+            currentImageIndex = (currentImageIndex + direction + total) % total;
+            document.getElementById('lightboxImg').src = CONFIG_GAMBAR.gallery[currentImageIndex].url;
         }
 
         document.addEventListener("DOMContentLoaded", function () {
+            renderImages();
             loadWishes();
-            initGalleryInteractivity();
 
             const urlParams = new URLSearchParams(window.location.search);
             const guestName = urlParams.get('to') || urlParams.get('id') || "Tamu Undangan";
@@ -1681,7 +1609,6 @@
 
             generateGuestQRCode(guestName);
 
-            /* OBSERVER DIPERHALUS UNTUK MEMICU ANIMASI */
             const reveals = document.querySelectorAll(".reveal, .reveal-left, .reveal-right, .reveal-zoom");
             const revealObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -1689,7 +1616,7 @@
                         entry.target.classList.add("active");
                     }
                 });
-            }, { threshold: 0.1, rootMargin: "0px 0px -20px 0px" });
+            }, { threshold: 0.1 });
             reveals.forEach(reveal => revealObserver.observe(reveal));
 
             const sections = document.querySelectorAll("section, .main-hero-section");
@@ -1703,7 +1630,7 @@
             sections.forEach(section => sectionObserver.observe(section));
         });
 
-        const eventDate = new Date("October 25, 2026 18:00:00").getTime();
+        const eventDate = new Date("October 25, 2026 08:00:00").getTime();
         
         function updateCountdown() {
             const now = new Date().getTime();
