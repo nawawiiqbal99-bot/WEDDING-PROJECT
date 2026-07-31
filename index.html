@@ -141,7 +141,7 @@
         }
 
         /* --- COVER & SLIDE 1 ALIGNMENT PRESISI --- */
-        .hero-cover, #secOpening {
+        .hero-cover {
             height: 100vh;
             width: 100%;
             max-width: 480px;
@@ -151,9 +151,6 @@
             justify-content: center;
             padding: 0 20px;
             box-sizing: border-box;
-        }
-
-        .hero-cover {
             position: fixed;
             top: 0;
             left: 50%;
@@ -168,6 +165,27 @@
             pointer-events: none;
             visibility: hidden;
             transition: transform var(--speed-cover-slide) var(--ease-smooth), visibility 0s var(--speed-cover-slide);
+        }
+
+        /* --- MAIN HERO WRAPPER (MENYATUKAN SLIDE 1 & QUOTE MENUMPUK BEBAS SPACE) --- */
+        .main-hero-section {
+            position: relative;
+            width: 100%;
+            padding: 0;
+            min-height: auto;
+            display: block;
+        }
+
+        .opening-part {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 3;
+            padding: 0 20px;
         }
 
         /* --- BACKGROUND LAYER --- */
@@ -197,13 +215,13 @@
 
         /* PERGERAKAN BACKGROUND BERVARIASI */
         .bg-zoom-in { transform: scale(1.12); }
-        section.active .bg-zoom-in, .hero-cover.active .bg-zoom-in { transform: scale(1); opacity: 0.9; }
+        section.active .bg-zoom-in, .hero-cover.active .bg-zoom-in, .main-hero-section.active .bg-zoom-in { transform: scale(1); opacity: 0.9; }
 
         .bg-slide-left { transform: translateX(-6%) scale(1.06); }
         section.active .bg-slide-left { transform: translateX(0) scale(1); }
 
         .bg-slide-right { transform: translateX(6%) scale(1.06); }
-        section.active .bg-slide-right { transform: translateX(0) scale(1); }
+        section.active .bg-slide-right, .main-hero-section.active .bg-slide-right { transform: translateX(0) scale(1); }
 
         .bg-slide-up { transform: translateY(6%) scale(1.06); }
         section.active .bg-slide-up { transform: translateY(0) scale(1); }
@@ -212,7 +230,7 @@
         section.active .bg-zoom-out { transform: scale(1.02); }
 
         /* --- OVERLAY GRADIENT --- */
-        section::before, .hero-cover::before {
+        section::before, .hero-cover::before, .opening-part::before {
             content: '';
             position: absolute;
             top: 0;
@@ -289,7 +307,7 @@
             display: block;
         }
 
-        #secOpening .hero-title {
+        .opening-part .hero-title {
             margin-bottom: 0 !important;
         }
 
@@ -335,6 +353,73 @@
         .btn-open:hover {
             background: rgba(251, 146, 60, 0.85);
             border-color: #ffffff;
+        }
+
+        /* --- STYLING KHUSUS QUOTE LANDSCAPE MENEMPEL PAS DI BAWAH SLIDE 1 --- */
+        .quote-landscape-frame {
+            position: relative;
+            width: 100%;
+            height: 290px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            z-index: 3;
+            margin-top: 0;
+        }
+
+        .quote-landscape-frame .bg-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover !important;
+            background-position: center !important;
+            opacity: 1 !important;
+            z-index: 1;
+        }
+
+        /* Overlay Gelap Langsung pada Gambar untuk Keterbacaan Teks */
+        .quote-landscape-frame::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.45);
+            z-index: 2;
+        }
+
+        /* Konten Quote Tanpa Card / Blur / Box */
+        .quote-content-clean {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            padding: 0 24px;
+            text-align: center;
+        }
+
+        /* Terjemahan Ayat (Teks Putih Bersih) */
+        .quote-translation-clean {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.8rem;
+            line-height: 1.6;
+            color: #ffffff;
+            margin-bottom: 16px;
+            font-weight: 300;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Sumber QS dengan Font Script / Handwriting */
+        .quote-source-script {
+            font-family: 'Alex Brush', cursive;
+            font-size: 2.1rem;
+            color: #ffffff;
+            line-height: 1;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+            letter-spacing: 1px;
         }
 
         /* --- SLIDE MEMPELAI --- */
@@ -511,91 +596,6 @@
         .story-item strong {
             font-weight: 500;
             color: #ffffff;
-        }
-
-        /* ==========================================
-           STYLING KHUSUS QUOTE LANDSCAPE (TANPA BLUR & TANPA KOTAK CARD)
-           ========================================== */
-        .quote-section {
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            min-height: 100vh;
-            position: relative;
-        }
-
-        /* Hilangkan overlay default section untuk quote */
-        section#quote::before {
-            display: none !important;
-        }
-
-        /* Frame foto landscape di tengah */
-        .quote-landscape-frame {
-            position: relative;
-            width: 100%;
-            height: 280px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            z-index: 3;
-        }
-
-        /* Foto background landscape */
-        #quote .bg-layer {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover !important;
-            background-position: center !important;
-            opacity: 1 !important;
-            z-index: 1;
-        }
-
-        /* Overlay Gelap Langsung pada Gambar untuk Keterbacaan Teks */
-        .quote-landscape-frame::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.45);
-            z-index: 2;
-        }
-
-        /* Konten Quote Tanpa Card / Blur / Box */
-        .quote-content-clean {
-            position: relative;
-            z-index: 3;
-            width: 100%;
-            padding: 0 24px;
-            text-align: center;
-        }
-
-        /* Terjemahan Ayat (Teks Putih Bersih) */
-        .quote-translation-clean {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 0.8rem;
-            line-height: 1.6;
-            color: #ffffff;
-            margin-bottom: 18px;
-            font-weight: 300;
-            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
-        }
-
-        /* Sumber QS dengan Font Script / Handwriting */
-        .quote-source-script {
-            font-family: 'Alex Brush', cursive;
-            font-size: 2.1rem;
-            color: #ffffff;
-            line-height: 1;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
-            letter-spacing: 1px;
         }
 
         /* --- FLOATING MUSIC BUTTON --- */
@@ -1066,9 +1066,7 @@
             text-shadow: 0 1px 4px rgba(0,0,0,0.8);
         }
 
-        /* ==========================================================================
-           PENGATURAN POSISI TULISAN PADA COVER DEPAN
-           ========================================================================== */
+        /* POSISI TULISAN ON COVER OVERLAY */
         #coverOverlay .hero-content {
             transform: translateY(60px) !important;
             transition: transform var(--speed-cover-slide) var(--ease-smooth), opacity var(--speed-cover-slide) ease;
@@ -1114,22 +1112,20 @@
             </svg>
         </div>
 
-        <!-- 1. SLIDE PERTAMA: PEMBUKAAN UNDANGAN -->
-        <section id="secOpening">
-            <div class="bg-layer bg-zoom-in" id="bgOpening"></div>
-            <div class="hero-content reveal-zoom">
-                <div class="hero-subtitle">The Wedding of</div>
-                <div class="hero-title">Iqbal & Ira</div>
+        <!-- 1 & 2. GABUNGAN SLIDE OPENING DENGAN FOTO QUOTE LANDSCAPE YANG MENEMPEL PERFEK -->
+        <div class="main-hero-section">
+            <!-- Bagian Atas: Slide Pembukaan -->
+            <div class="opening-part">
+                <div class="bg-layer bg-zoom-in" id="bgOpening"></div>
+                <div class="hero-content reveal-zoom">
+                    <div class="hero-subtitle">The Wedding of</div>
+                    <div class="hero-title">Iqbal & Ira</div>
+                </div>
             </div>
-        </section>
 
-        <!-- 2. SECTION QUOTE AR-RUM (DESAIN LANDSCAPE BERSISIAN SESUAI CONTOH GAMBAR) -->
-        <section id="quote" class="quote-section">
+            <!-- Bagian Bawah: Foto Quote Landscape Langsung Menempel -->
             <div class="quote-landscape-frame">
-                <!-- Foto background landscape -->
                 <div class="bg-layer bg-slide-right" id="bgQuote"></div>
-                
-                <!-- Tulisan langsung di atas foto tanpa background card/blur -->
                 <div class="quote-content-clean reveal-zoom">
                     <p class="quote-translation-clean">
                         “Dan diantara ayat-ayat-Nya ialah Dia menciptakan untukmu istri-istri dari jenismu sendiri, supaya kamu merasa nyaman kepadanya, dan dijadikan-Nya di antaramu mawadah dan rahmah. Sesungguhnya pada yang demikian itu benar-benar terdapat tanda-tanda bagi kaum yang berpikir.”
@@ -1139,9 +1135,9 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- 3. SLIDE MEMPELAI PRIA -->
+        <!-- 3. SLIDE MEMPELAI PRIA (GROOM) -->
         <section id="secGroom" class="couple-section">
             <div class="bg-layer-clear bg-slide-left" id="bgGroom"></div>
             <div class="couple-details reveal-left">
@@ -1180,7 +1176,6 @@
             <div class="bg-layer-clear bg-zoom-out" id="bgLoveStory"></div>
             <div class="lovestory-title reveal">Love Story</div>
             
-            <!-- 4 FOTO MENGGANTUNG KECIL DENGAN ANIMASI FLOATING LUCU -->
             <div class="hanging-photos-wrapper reveal-zoom">
                 <div class="hanging-item">
                     <div class="hanging-string"></div>
@@ -1226,8 +1221,6 @@
             <div class="bg-layer bg-slide-left" id="bgEvent"></div>
             
             <div class="event-section-clean">
-                
-                <!-- BLOCK AKAD NIKAH -->
                 <div class="event-block reveal-left">
                     <svg class="event-icon" viewBox="0 0 64 64" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="26" cy="36" r="16" />
@@ -1240,7 +1233,6 @@
                     <div class="event-time-clean">08.00 - selesai WITA</div>
                 </div>
 
-                <!-- BLOCK RESEPSI -->
                 <div class="event-block reveal-right">
                     <svg class="event-icon" viewBox="0 0 64 64" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M18 12 L30 12 L24 32 L24 48 M16 48 L32 48" />
@@ -1253,7 +1245,6 @@
                     <div class="event-date-clean">Minggu, 25 Oktober 2026</div>
                     <div class="event-time-clean">10.00 - Selesai</div>
 
-                    <!-- COUNTDOWN TIMER REALTIME -->
                     <div class="countdown-container">
                         <div class="countdown-item">
                             <span id="days">0</span>
@@ -1281,7 +1272,6 @@
         <section id="secLocation">
             <div class="bg-layer bg-slide-right" id="bgLocation"></div>
             <div class="section-content">
-                <h2 class="reveal"></h2>
                 
                 <div class="map-card reveal-zoom">
                     <div style="margin-bottom: 16px; text-align: center;">
@@ -1670,7 +1660,7 @@
             }, { threshold: 0.1, rootMargin: "0px 0px -20px 0px" });
             reveals.forEach(reveal => revealObserver.observe(reveal));
 
-            const sections = document.querySelectorAll("section");
+            const sections = document.querySelectorAll("section, .main-hero-section");
             const sectionObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
